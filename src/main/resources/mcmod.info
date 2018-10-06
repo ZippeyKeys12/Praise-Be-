@@ -1,0 +1,14 @@
+[
+{
+  "modid": "praisebe",
+  "name": "Praise Be!",
+  "description": "A mod about worship",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "authorList": ["ZippeyKeys12"],
+  "credits": "Created by ZippeyKeys12",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

@@ -6,6 +6,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.INBTSerializable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,11 +19,11 @@ public class GodlyRegard implements INBTSerializable<NBTTagCompound>{
     private UUID uuid;
     private Map<String, Double> regards = new HashMap<>();
 
-    public GodlyRegard(EntityPlayer player, PBWorldData saver){
+    public GodlyRegard(@NotNull EntityPlayer player, PBWorldData saver){
         this(player.getUniqueID(), saver);
     }
 
-    public GodlyRegard(UUID uuid, PBWorldData saver){
+    public GodlyRegard(@NotNull UUID uuid, @Nullable PBWorldData saver){
         this.uuid = uuid;
         this.saver = saver;
         DeityRegistry.DEITIES.keySet().forEach((id) -> regards.put(id, 0d));
@@ -77,7 +79,7 @@ public class GodlyRegard implements INBTSerializable<NBTTagCompound>{
     }
 
     @Override
-    public void deserializeNBT(NBTTagCompound nbt){
+    public void deserializeNBT(@NotNull NBTTagCompound nbt){
         uuid = nbt.getUniqueId("uuid");
         NBTTagList regData = nbt.getTagList("regards", 10);
         regData.forEach((tag) -> {

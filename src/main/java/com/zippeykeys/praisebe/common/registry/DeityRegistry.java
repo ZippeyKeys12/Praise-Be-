@@ -16,4 +16,10 @@ public class DeityRegistry{
     public static void removeDeity(String id){
         DEITIES.remove(id);
     }
+
+    public static IDeity getDeity(String id){
+        if(id.isEmpty())
+            return null;
+        return DEITIES.get(id);
+    }
 }

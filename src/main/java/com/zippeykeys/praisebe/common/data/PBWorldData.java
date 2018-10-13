@@ -6,6 +6,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.MapStorage;
 import net.minecraft.world.storage.WorldSavedData;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +17,7 @@ public class PBWorldData extends WorldSavedData{
     private static final String ID = PraiseBe.MODID + "_Regards";
     public Map<UUID, GodlyRegard> playerRegards = new HashMap<>();
 
-    public static PBWorldData get(World world){
+    public static PBWorldData get(@NotNull World world){
         MapStorage storage = world.getMapStorage();
         PBWorldData instance = (PBWorldData) storage.getOrLoadData(PBWorldData.class, ID);
         if(instance == null){

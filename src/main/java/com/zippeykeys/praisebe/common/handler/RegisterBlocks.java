@@ -18,10 +18,10 @@ import java.util.Arrays;
 
 //@Mod.EventBusSubscriber(modid = PraiseBe.MODID)
 public class RegisterBlocks{
-    public static final Block[] blocks = new Block[]{new BlockIdol().setRegistryName("idol")};
+    static final Block[] blocks = new Block[]{new BlockIdol().setRegistryName("idol")};
 
     @SubscribeEvent
-    public static void registerBlocks(@NotNull RegistryEvent.Register<Block> event){
+    public static void registerBlocks(@NotNull RegistryEvent.Register<? super Block> event){
         event.getRegistry().registerAll(blocks);
         //Arrays.stream(blocks).filter(Objects::nonNull).forEach(block -> new ItemBlock(block).setRegistryName(block.getRegistryName()));
         ///////////////////

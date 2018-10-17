@@ -21,7 +21,7 @@ public class PlayerUtil{
         return getBlocksNearby(player, world, clazz, 1);
     }
 
-    public @NotNull List<TileEntity> getBlocksNearby(@NotNull EntityPlayer player, @NotNull World world, @Nullable Class<? extends TileEntity> clazz, int range){
+    public List<TileEntity> getBlocksNearby(@NotNull EntityPlayer player, @NotNull World world, @Nullable Class<? extends TileEntity> clazz, int range){
         TileEntity tileEntity;
         List<TileEntity> tileEntities = new ArrayList<>();
         for(int x = -range; x <= range; x++)

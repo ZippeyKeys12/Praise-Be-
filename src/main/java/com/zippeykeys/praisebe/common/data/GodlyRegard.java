@@ -26,7 +26,7 @@ public class GodlyRegard implements INBTSerializable<NBTTagCompound>{
     public GodlyRegard(@NotNull UUID uuid, @Nullable PBWorldData saver){
         this.uuid = uuid;
         this.saver = saver;
-        DeityRegistry.DEITIES.keySet().forEach((id) -> regards.put(id, 0d));
+        DeityRegistry.keys().forEach(this::setRegard);
     }
 
     public PBWorldData getSaver(){
@@ -53,6 +53,10 @@ public class GodlyRegard implements INBTSerializable<NBTTagCompound>{
 
     public double getRegard(String deity){
         return regards.get(deity);
+    }
+
+    public void setRegard(String deity){
+        setRegard(deity, 0);
     }
 
     public void setRegard(String deity, double change){

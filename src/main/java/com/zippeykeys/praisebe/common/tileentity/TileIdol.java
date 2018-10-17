@@ -5,7 +5,6 @@ import com.zippeykeys.praisebe.common.registry.DeityRegistry;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
-import org.jetbrains.annotations.NotNull;
 
 
 public class TileIdol extends TileEntity implements ITickable{
@@ -33,7 +32,7 @@ public class TileIdol extends TileEntity implements ITickable{
     }
 
     @Override
-    public @NotNull NBTTagCompound writeToNBT(NBTTagCompound compound){
+    public NBTTagCompound writeToNBT(NBTTagCompound compound){
         super.writeToNBT(compound);
         compound.setString("deityID", deityId);
         return compound;

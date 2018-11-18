@@ -15,11 +15,19 @@ import org.jetbrains.annotations.NotNull;
 
 public class BlockIdol extends PBBlock
 {
+    private final String deityId;
+
     public BlockIdol()
+    {
+        this("");
+    }
+
+    public BlockIdol(String deityId)
     {
         super(Material.ROCK);
         setHardness(1.5f);
         setResistance(6000000.0F);
+        this.deityId = deityId;
     }
 
     @Override
@@ -53,7 +61,7 @@ public class BlockIdol extends PBBlock
     @Override
     public TileEntity createNewTileEntity(@NotNull World worldIn, int meta)
     {
-        return new TileIdol();
+        return new TileIdol(deityId);
     }
 
     @Override

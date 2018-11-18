@@ -2,12 +2,11 @@ package com.zippeykeys.praisebe.common.handler;
 
 import com.zippeykeys.praisebe.common.PraiseBe;
 import com.zippeykeys.praisebe.common.block.BlockIdol;
-import com.zippeykeys.praisebe.common.block.IPBBlock;
-import com.zippeykeys.praisebe.common.tileentity.TileIdol;
+import com.zippeykeys.praisebe.common.block.PBBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -16,25 +15,22 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 
 
-//@Mod.EventBusSubscriber(modid = PraiseBe.MODID)
-public class RegisterBlocks{
-    static final Block[] blocks = new Block[]{new BlockIdol().setRegistryName("idol")};
+@EventBusSubscriber(modid = PraiseBe.MOD_ID)
+public class RegisterBlocks
+{
+    private static final PBBlock[] blocks = new PBBlock[]{new BlockIdol()};
 
     @SubscribeEvent
-    public static void registerBlocks(@NotNull RegistryEvent.Register<? super Block> event){
+    public static void registerBlocks(@NotNull RegistryEvent.Register<Block> event)
+    {
         event.getRegistry().registerAll(blocks);
-        //Arrays.stream(blocks).filter(Objects::nonNull).forEach(block -> new ItemBlock(block).setRegistryName(block.getRegistryName()));
-        ///////////////////
-        // Tile Entities //
-        ///////////////////
-        GameRegistry.registerTileEntity(TileIdol.class, new ResourceLocation(PraiseBe.MODID, "idol"));
+        Arrays.stream(blocks).filter(block -> block.getTileEntity() != null).forEach(block -> GameRegistry.registerTileEntity(block.getTileEntity(), block.getResource()));
     }
 
     @SubscribeEvent
-    public static void registerItemBlocks(@NotNull RegistryEvent.Register<Item> event){
+    public static void registerItemBlocks(@NotNull RegistryEvent.Register<Item> event)
+    {
         IForgeRegistry<Item> r = event.getRegistry();
-        Arrays.stream(blocks).filter(block -> block instanceof IPBBlock).forEach(b -> {
-            r.register(((IPBBlock) b).getItem().setRegistryName(b.getRegistryName()));
-        });
+        Arrays.stream(blocks).forEach(b -> r.register(b.getItem()));
     }
 }

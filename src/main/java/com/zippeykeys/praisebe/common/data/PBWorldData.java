@@ -13,11 +13,13 @@ import java.util.Map;
 import java.util.UUID;
 
 
-public class PBWorldData extends WorldSavedData{
-    private static final String ID = PraiseBe.MODID + "_Regards";
+public class PBWorldData extends WorldSavedData
+{
+    private static final String ID = PraiseBe.MOD_ID + "_Regards";
     public Map<UUID, GodlyRegard> playerRegards = new HashMap<>();
 
-    public static PBWorldData get(@NotNull World world){
+    public static PBWorldData get(@NotNull World world)
+    {
         MapStorage storage = world.getMapStorage();
         PBWorldData instance = (PBWorldData) storage.getOrLoadData(PBWorldData.class, ID);
         if(instance == null){
@@ -27,16 +29,19 @@ public class PBWorldData extends WorldSavedData{
         return instance;
     }
 
-    public PBWorldData(){
+    public PBWorldData()
+    {
         super(ID);
     }
 
-    public PBWorldData(String id){
+    public PBWorldData(String id)
+    {
         super(id);
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound nbt){
+    public void readFromNBT(@NotNull NBTTagCompound nbt)
+    {
         NBTTagList regards = nbt.getTagList("godlyRegards", 10);
         regards.forEach((tag) -> {
             NBTTagCompound tagCompound = (NBTTagCompound) tag;
@@ -50,7 +55,8 @@ public class PBWorldData extends WorldSavedData{
     }
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound){
+    public @NotNull NBTTagCompound writeToNBT(@NotNull NBTTagCompound compound)
+    {
         NBTTagList regards = new NBTTagList();
         playerRegards.forEach((key, value) -> {
             NBTTagCompound tagCompound = new NBTTagCompound();

@@ -1,8 +1,6 @@
 package com.zippeykeys.praisebe.common.block;
 
-import com.zippeykeys.praisebe.common.PraiseBe;
 import com.zippeykeys.praisebe.common.tileentity.TileIdol;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,26 +10,34 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nullable;
 
-
-public class BlockIdol extends BlockContainer implements IPBBlock{
-    public BlockIdol(){
+public class BlockIdol extends PBBlock
+{
+    public BlockIdol()
+    {
         super(Material.ROCK);
         setHardness(1.5f);
         setResistance(6000000.0F);
-        setUnlocalizedName(PraiseBe.MODID + ".idol");
     }
 
     @Override
-    public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos){
+    public String id()
+    {
+        return "idol";
+    }
+
+    @Override
+    public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
         return false;
     }
 
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ){
-        TileEntity self = (TileEntity) worldIn.getTileEntity(pos);
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    {
+        TileEntity self = worldIn.getTileEntity(pos);
         if(self == null || playerIn.isSneaking())
             return false;
         worldIn.notifyBlockUpdate(pos, state, state, 3);
@@ -39,13 +45,20 @@ public class BlockIdol extends BlockContainer implements IPBBlock{
     }
 
     @Override
-    public boolean hasTileEntity(IBlockState state){
+    public boolean hasTileEntity(IBlockState state)
+    {
         return true;
     }
 
-    @Nullable
     @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta){
+    public TileEntity createNewTileEntity(@NotNull World worldIn, int meta)
+    {
         return new TileIdol();
+    }
+
+    @Override
+    public Class<? extends TileEntity> getTileEntity()
+    {
+        return TileIdol.class;
     }
 }

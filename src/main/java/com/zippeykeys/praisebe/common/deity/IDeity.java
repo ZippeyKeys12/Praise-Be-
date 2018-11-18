@@ -1,6 +1,7 @@
 package com.zippeykeys.praisebe.common.deity;
 
-public interface IDeity{
+public interface IDeity
+{
     String getName();
 
     double getRegard(IDeity deity);

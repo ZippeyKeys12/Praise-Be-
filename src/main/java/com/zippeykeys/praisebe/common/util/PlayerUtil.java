@@ -13,15 +13,18 @@ import java.util.UUID;
 
 
 public class PlayerUtil{
-    public static @NotNull EntityPlayer getPlayer(@NotNull UUID uuid){
+    public static @NotNull EntityPlayer getPlayer(@NotNull UUID uuid)
+    {
         return FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUUID(uuid);
     }
 
-    public List<TileEntity> getBlocksNearby(@NotNull EntityPlayer player, @NotNull World world, @Nullable Class<? extends TileEntity> clazz){
+    public List<TileEntity> getBlocksNearby(@NotNull EntityPlayer player, @NotNull World world, @Nullable Class<? extends TileEntity> clazz)
+    {
         return getBlocksNearby(player, world, clazz, 1);
     }
 
-    public List<TileEntity> getBlocksNearby(@NotNull EntityPlayer player, @NotNull World world, @Nullable Class<? extends TileEntity> clazz, int range){
+    public List<TileEntity> getBlocksNearby(@NotNull EntityPlayer player, @NotNull World world, @Nullable Class<? extends TileEntity> clazz, int range)
+    {
         TileEntity tileEntity;
         List<TileEntity> tileEntities = new ArrayList<>();
         for(int x = -range; x <= range; x++)

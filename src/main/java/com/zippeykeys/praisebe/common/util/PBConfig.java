@@ -8,21 +8,24 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.jetbrains.annotations.NotNull;
 
 
-@Config(modid = PraiseBe.MODID)
-public class PBConfig{
+@Config(modid = PraiseBe.MOD_ID)
+public class PBConfig
+{
     @Config.Comment("Visual Settings")
     public static final Visual VISUAL = new Visual();
 
-    public static class Visual{
+    public static class Visual
+    {
         @Config.Name("Idols glow")
         @Config.Comment("Determines whether idols emit light")
         public boolean idolGlow = true;
     }
 
     @SubscribeEvent
-    public static void onConfigChanged(@NotNull ConfigChangedEvent.OnConfigChangedEvent event){
-        if(event.getModID().equals(PraiseBe.MODID)){
-            ConfigManager.sync(PraiseBe.MODID, Config.Type.INSTANCE);
+    public static void onConfigChanged(@NotNull ConfigChangedEvent.OnConfigChangedEvent event)
+    {
+        if(event.getModID().equals(PraiseBe.MOD_ID)){
+            ConfigManager.sync(PraiseBe.MOD_ID, Config.Type.INSTANCE);
         }
     }
 }

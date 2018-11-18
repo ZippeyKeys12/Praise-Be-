@@ -11,28 +11,34 @@ public class TileIdol extends TileEntity implements ITickable{
     private String deityId;
     private IDeity deity;
 
-    public TileIdol(){
+    public TileIdol()
+    {
         this("");
     }
 
-    public TileIdol(String deityName){
+    public TileIdol(String deityName)
+    {
         deityId = deityName;
         deity = DeityRegistry.getDeity(deityId);
+        markDirty();
     }
 
     @Override
-    public void update(){
+    public void update()
+    {
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound compound){
+    public void readFromNBT(NBTTagCompound compound)
+    {
         super.readFromNBT(compound);
         deityId = compound.getString("deityID");
         deity = DeityRegistry.getDeity(deityId);
     }
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound){
+    public NBTTagCompound writeToNBT(NBTTagCompound compound)
+    {
         super.writeToNBT(compound);
         compound.setString("deityID", deityId);
         return compound;

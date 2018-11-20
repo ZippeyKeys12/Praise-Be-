@@ -1,6 +1,6 @@
 package com.zippeykeys.praisebe.common.block;
 
-import com.zippeykeys.praisebe.common.PraiseBe;
+import com.zippeykeys.praisebe.PraiseBe;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;

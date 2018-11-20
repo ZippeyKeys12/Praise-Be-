@@ -1,6 +1,6 @@
 package com.zippeykeys.praisebe.common.data;
 
-import com.zippeykeys.praisebe.common.PraiseBe;
+import com.zippeykeys.praisebe.PraiseBe;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;

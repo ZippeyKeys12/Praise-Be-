@@ -1,6 +1,6 @@
 package com.zippeykeys.praisebe.common.util;
 
-import com.zippeykeys.praisebe.common.PraiseBe;
+import com.zippeykeys.praisebe.PraiseBe;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;

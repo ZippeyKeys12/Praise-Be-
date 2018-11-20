@@ -1,5 +1,4 @@
-[
-{
+[{
   "modid": "praisebe",
   "name": "Praise Be!",
   "description": "A mod about worship",
@@ -10,5 +9,4 @@
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
-}
-]
+}]

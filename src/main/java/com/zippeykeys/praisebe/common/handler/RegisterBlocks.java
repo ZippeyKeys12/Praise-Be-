@@ -1,6 +1,6 @@
 package com.zippeykeys.praisebe.common.handler;
 
-import com.zippeykeys.praisebe.common.PraiseBe;
+import com.zippeykeys.praisebe.PraiseBe;
 import com.zippeykeys.praisebe.common.block.BlockIdol;
 import com.zippeykeys.praisebe.common.block.PBBlock;
 import net.minecraft.block.Block;

@@ -20,7 +20,7 @@ public class PraiseBe
     public static final String VERSION = "${version}";
     public static final String DEPENDENCIES = "";
     public static final String UPDATE_JSON = "https://raw.github.com/ZippeyKeys12/PraiseBe/master/update.json";
-    public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
+    public static final Logger LOGGER = LogManager.getLogger(NAME);
 
     @Instance(MOD_ID)
     public static PraiseBe instance;

@@ -5,6 +5,10 @@
     "tasks": [{
         "label": "runClient",
         "type": "shell",
-        "command": "gradlew runClient"
+        "command": "gradlew runClient",
+        "group": {
+            "kind": "build",
+            "isDefault": true
+        }
     }]
 }

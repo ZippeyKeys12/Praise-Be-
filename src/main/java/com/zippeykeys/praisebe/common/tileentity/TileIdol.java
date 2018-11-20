@@ -2,43 +2,40 @@ package com.zippeykeys.praisebe.common.tileentity;
 
 import com.zippeykeys.praisebe.common.deity.IDeity;
 import com.zippeykeys.praisebe.common.registry.DeityRegistry;
+
+import lombok.Getter;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 
-
-public class TileIdol extends TileEntity implements ITickable{
+public class TileIdol extends TileEntity implements ITickable {
+    @Getter
     private String deityId;
     private IDeity deity;
 
-    public TileIdol()
-    {
+    public TileIdol() {
         this("");
     }
 
-    public TileIdol(String deityName)
-    {
+    public TileIdol(String deityName) {
         deityId = deityName;
         deity = DeityRegistry.getDeity(deityId);
         markDirty();
     }
 
     @Override
-    public void update()
-    {
+    public void update() {
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound compound)
-    {
+    public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
         deityId = compound.getString("deityID");
         deity = DeityRegistry.getDeity(deityId);
     }
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound)
-    {
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
         compound.setString("deityID", deityId);
         return compound;

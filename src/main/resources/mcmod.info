@@ -4,9 +4,10 @@
   "description": "A mod about worship",
   "version": "${version}",
   "mcversion": "${mcversion}",
+  "updateJSON": "https://raw.github.com/ZippeyKeys12/PraiseBe/master/update.json",
   "authorList": ["ZippeyKeys12"],
   "credits": "Created by ZippeyKeys12",
   "logoFile": "",
-  "screenshots": [],
-  "dependencies": []
+  "dependencies": [],
+  "useDependencyInformation": true
 }]

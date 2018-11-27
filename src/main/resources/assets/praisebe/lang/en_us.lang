@@ -1,7 +1,88 @@
-#Start of localization file
+########################################
+################ Deities ###############
+########################################
 
-# Creative Tab
-itemGroup.praisebe = Praise Be!
+#### Names
 
-# Blocks
-tile.praisebe.idol.name = Idol
+### Celestial
+
+## Air
+deity.name.zeus=Zeus
+deity.name.odin=Odin
+deity.name.amun=Amun
+
+## Earth
+deity.name.tlaloc=Tlaloc
+
+## Fire
+deity.name.ra=Ra
+deity.name.apollo=Apollo
+deity.name.amat=Amaterasu
+
+## Water
+deity.name.wirnpa=Wirnpa
+deity.name.huracan=Huracán
+deity.name.thor=Thor
+
+### Terrestrial
+
+## Air
+deity.name.morrigan=The Morrígan
+deity.name.njord=Njörðr
+deity.name.tezc=Tezcatlipoca
+
+## Earth
+deity.name.dagda=The Dagda
+deity.name.pan=Pan
+deity.name.dagon=Dagon
+
+## Fire
+deity.name.heph=Hephaestus
+deity.name.grannus=Grannus
+deity.name.xiuh=Xiuhtecuhtli
+
+## Water
+deity.name.poseidon=Poseidon
+deity.name.sirona=Sirona
+deity.name.lotan=Lotan
+
+### Otherworldly
+
+## Air
+deity.name.nyar=Nyarlathotep
+deity.name.fujin=Fūjin
+deity.name.raijin=Raijin
+
+## Earth
+deity.name.shub=Shub-Niggurath
+deity.name.atum=Atum
+
+## Fire
+deity.name.hades=Hades
+deity.name.moloch=Moloch
+
+## Water
+deity.name.cthulu=Cthulu
+deity.name.osiris=Osiris
+
+## Types
+deity.type.terrestrial=Terrestrial
+deity.type.celestial=Celestial
+deity.type.otherworldly=Otherworldly
+
+## Elements
+deity.type.air=Air
+deity.type.earth=Earth
+deity.type.fire=Fire
+deity.type.water=Water
+
+## Alignments
+deity.alignment.good=Good
+deity.alignment.neutral=Neutral
+deity.alignment.evil=Evil
+
+########################################
+############# Creative Tabs ############
+########################################
+
+itemGroup.praisebe=Praise Be!

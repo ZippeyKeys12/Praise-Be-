@@ -1,6 +1,6 @@
 package com.zippeykeys.praisebe.common.block;
 
-import com.zippeykeys.praisebe.PraiseBe;
+import com.zippeykeys.praisebe.common.util.Reference;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.MapColor;
@@ -17,12 +17,12 @@ public abstract class PBBlock extends BlockContainer {
 
     protected PBBlock(Material materialIn, MapColor color) {
         super(materialIn, color);
-        setUnlocalizedName(PraiseBe.MOD_ID + "." + id());
         setRegistryName(getResource());
+        setUnlocalizedName(Reference.MOD_ID + "." + getRegistryName().getResourcePath());
     }
 
     public ResourceLocation getResource() {
-        return new ResourceLocation(PraiseBe.MOD_ID, id());
+        return new ResourceLocation(Reference.MOD_ID, id());
     }
 
     public Item getItem() {

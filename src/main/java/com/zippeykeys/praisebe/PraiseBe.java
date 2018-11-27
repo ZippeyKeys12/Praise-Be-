@@ -1,13 +1,11 @@
 package com.zippeykeys.praisebe;
 
+import com.zippeykeys.praisebe.common.util.Reference;
 import com.zippeykeys.praisebe.proxy.IProxy;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import net.minecraft.block.BlockStone;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -16,50 +14,41 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = PraiseBe.MOD_ID, version = PraiseBe.VERSION, useMetadata = true)
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION, dependencies = Reference.MOD_DEPENDENCIES, useMetadata = true)
 public class PraiseBe {
-    // Mod Info
-    public static final String MOD_ID = "praisebe";
-    public static final String NAME = "Praise Be!";
-    public static final String VERSION = "@VERSION@";
-    public static final String PACKAGE = "com.zippeykeys.praisebe";
-    public static final String PROXY_SERVER = PACKAGE + ".proxy.ServerProxy";
-    public static final String PROXY_CLIENT = PACKAGE + ".proxy.ClientProxy";
-    public static final String DEPENDENCIES = "";
-
-    public static final CreativeTabs CREATIVE_TAB = new CreativeTabs("praisebe") {
-        @Override
-        public ItemStack getTabIconItem() {
-            return new ItemStack(new BlockStone());
-        }
-    };
-
-    @Instance(MOD_ID)
+    @Instance(Reference.MOD_ID)
     public static PraiseBe instance;
 
-    @SidedProxy(clientSide = PROXY_CLIENT, serverSide = PROXY_SERVER)
+    @SidedProxy(clientSide = Reference.PROXY_CLIENT, serverSide = Reference.PROXY_SERVER)
     public static IProxy PROXY;
 
-    public static final Logger LOGGER = LogManager.getLogger(NAME);
+    public static final Logger LOGGER = LogManager.getLogger(Reference.MOD_NAME);
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         LOGGER.info("Starting PreInitialization");
+
+        event.getModMetadata().version = Reference.MOD_VERSION;
         PROXY.preInit(event);
+
         LOGGER.info("PreInitialization Completed");
     }
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
         LOGGER.info("Starting Initialization");
+
         PROXY.init(event);
+
         LOGGER.info("Initialization Completed");
     }
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         LOGGER.info("Starting PostInitialization");
+
         PROXY.postInit(event);
+
         LOGGER.info("PostInitialization Completed");
     }
 }

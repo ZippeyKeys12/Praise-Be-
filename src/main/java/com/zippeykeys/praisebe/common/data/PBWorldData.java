@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import com.zippeykeys.praisebe.PraiseBe;
+import com.zippeykeys.praisebe.common.util.Reference;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -15,7 +15,7 @@ import net.minecraft.world.storage.MapStorage;
 import net.minecraft.world.storage.WorldSavedData;
 
 public class PBWorldData extends WorldSavedData {
-    private static final String ID = PraiseBe.MOD_ID + "_Regards";
+    private static final String ID = Reference.MOD_ID + "_Regards";
     public Map<UUID, GodlyRegard> playerRegards = new HashMap<>();
 
     public static PBWorldData get(@NotNull World world) {

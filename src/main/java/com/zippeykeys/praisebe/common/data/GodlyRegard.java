@@ -24,7 +24,7 @@ public class GodlyRegard implements INBTSerializable<NBTTagCompound> {
         this(player.getUniqueID(), saver);
     }
 
-    public GodlyRegard(@NotNull UUID uuid, @Nullable PBWorldData saver) {
+    GodlyRegard(@NotNull UUID uuid, @Nullable PBWorldData saver) {
         this.uuid = uuid;
         this.saver = saver;
         DeityRegistry.keys().forEach(this::setRegard);

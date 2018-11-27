@@ -2,13 +2,21 @@
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
     "version": "2.0.0",
-    "tasks": [{
-        "label": "runClient",
-        "type": "shell",
-        "command": "gradlew runClient",
-        "group": {
-            "kind": "build",
-            "isDefault": true
+    "tasks": [
+        {
+            "label": "runClient",
+            "type": "shell",
+            "command": "gradlew runClient",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "inspect",
+            "type": "shell",
+            "command": "\"C:\\Program Files\\JetBrains\\IntelliJ IDEA Community Edition 2018.2.6\\bin\\inspect.bat\" C:\\Users\\ZAame\\Documents\\GitHub\\PraiseBe C:\\Users\\ZAame\\Documents\\GitHub\\PraiseBe\\.idea\\inspectionProfiles\\Project_Default.xml C:\\Users\\ZAame\\Documents\\GitHub\\PraiseBe\\inspectionResults -v2 -d C:\\Users\\ZAame\\Documents\\GitHub\\PraiseBe\\src\\main\\java",
+            "problemMatcher": []
         }
-    }]
+    ]
 }

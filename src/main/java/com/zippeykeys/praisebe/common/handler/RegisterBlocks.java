@@ -2,9 +2,8 @@ package com.zippeykeys.praisebe.common.handler;
 
 import java.util.Arrays;
 
-import com.zippeykeys.praisebe.PraiseBe;
-import com.zippeykeys.praisebe.common.block.BlockIdol;
 import com.zippeykeys.praisebe.common.block.PBBlock;
+import com.zippeykeys.praisebe.common.util.Reference;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -16,9 +15,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 
-@EventBusSubscriber(modid = PraiseBe.MOD_ID)
+@EventBusSubscriber(modid = Reference.MOD_ID)
 public class RegisterBlocks {
-    private static final PBBlock[] blocks = new PBBlock[] { new BlockIdol() };
+    private static final PBBlock[] blocks = new PBBlock[] {};
 
     @SubscribeEvent
     public static void registerBlocks(@NotNull RegistryEvent.Register<Block> event) {

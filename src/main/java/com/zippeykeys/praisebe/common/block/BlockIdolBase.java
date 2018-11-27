@@ -1,7 +1,6 @@
 package com.zippeykeys.praisebe.common.block;
 
-import com.zippeykeys.praisebe.PraiseBe;
-import com.zippeykeys.praisebe.common.tileentity.TileIdol;
+import com.zippeykeys.praisebe.common.util.Reference;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -20,15 +19,15 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockIdol extends PBBlock {
+public abstract class BlockIdolBase extends PBBlock {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
-    public BlockIdol() {
+    public BlockIdolBase() {
         super(Material.ROCK);
         setHardness(1.5f);
         setResistance(6000000.0F);
         setSoundType(SoundType.STONE);
-        setCreativeTab(PraiseBe.CREATIVE_TAB);
+        setCreativeTab(Reference.CREATIVE_TAB);
         setHarvestLevel("pickaxe", 0);
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
@@ -45,20 +44,20 @@ public class BlockIdol extends PBBlock {
 
     @Override
     public int getMetaFromState(IBlockState state) {
-        return ((EnumFacing) state.getValue(FACING)).getIndex();
+        return state.getValue(FACING).getIndex();
     }
 
     @Override
-    public IBlockState getStateFromMeta(int meta) {
+    public @NotNull IBlockState getStateFromMeta(int meta) {
         EnumFacing enumfacing = EnumFacing.getFront(meta);
         if (enumfacing.getAxis() == EnumFacing.Axis.Y) {
             enumfacing = EnumFacing.NORTH;
         }
-        return this.getDefaultState().withProperty(FACING, enumfacing);
+        return getDefaultState().withProperty(FACING, enumfacing);
     }
 
     @Override
-    public EnumBlockRenderType getRenderType(IBlockState state) {
+    public @NotNull EnumBlockRenderType getRenderType(IBlockState state) {
         return EnumBlockRenderType.MODEL;
     }
 
@@ -73,26 +72,7 @@ public class BlockIdol extends PBBlock {
     }
 
     @Override
-    public boolean hasTileEntity(IBlockState state) {
-        return true;
-    }
-
-    @Override
-    public TileEntity createNewTileEntity(@NotNull World worldIn, int meta) {
-        return new TileIdol();
-    }
-
-    @Override
-    protected BlockStateContainer createBlockState() {
+    protected @NotNull BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, FACING);
-    }
-
-    @Override
-    public Class<? extends TileEntity> getTileEntity() {
-        return TileIdol.class;
-    }
-
-    public enum EDeity {
-
     }
 }

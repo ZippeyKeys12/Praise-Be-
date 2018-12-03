@@ -1,18 +1,20 @@
 package com.zippeykeys.praisebe.common.data;
 
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.UUID;
+
 import com.zippeykeys.praisebe.common.deity.EDeity;
 import com.zippeykeys.praisebe.common.util.PlayerUtil;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import lombok.var;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.INBTSerializable;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.EnumMap;
-import java.util.Map;
-import java.util.UUID;
 
 public class GodlyRegard implements INBTSerializable<NBTTagCompound> {
     private PBWorldData saver;

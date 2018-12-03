@@ -1,11 +1,13 @@
 package com.zippeykeys.praisebe.common.deity;
 
 import com.zippeykeys.praisebe.common.util.EnumUtil;
+
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 
 @ToString
 @AllArgsConstructor

@@ -23,7 +23,8 @@ public enum EDeity {
 
     // Earth //
     TLALOC("tlaloc", Type.CELESTIAL, Element.EARTH, Alignment.NEUTRAL),
-    HURACAN("huracan", Type.CELESTIAL, Element.EARTH, Alignment.NEUTRAL),
+    HURACAN("huracan", Type.CELESTIAL, Element.EARTH, Alignment.EVIL),
+    DEMETER("demeter", Type.CELESTIAL, Element.EARTH, Alignment.EVIL),
 
     // Fire //
     RA("ra", Type.CELESTIAL, Element.FIRE, Alignment.GOOD),
@@ -33,6 +34,7 @@ public enum EDeity {
     // Water //
     WIRNPA("wirnpa", Type.CELESTIAL, Element.WATER, Alignment.NEUTRAL),
     THOR("thor", Type.CELESTIAL, Element.WATER, Alignment.GOOD),
+    BAAL("baal", Type.CELESTIAL, Element.WATER, Alignment.GOOD),
 
     ////////////////////
     //// Terrestrial ///
@@ -70,14 +72,17 @@ public enum EDeity {
     // Earth //
     SHUB_NIGGURATH("shub", Type.OTHERWORLDLY, Element.EARTH, Alignment.NEUTRAL),
     ATUM("atum", Type.OTHERWORLDLY, Element.EARTH, Alignment.NEUTRAL),
+    ANUBIS("anubis", Type.OTHERWORLDLY, Element.EARTH, Alignment.EVIL),
 
     // Fire //
     HADES("hades", Type.OTHERWORLDLY, Element.FIRE, Alignment.EVIL),
     MOLOCH("moloch", Type.OTHERWORLDLY, Element.FIRE, Alignment.EVIL),
+    PEKELNYBOG("pekelnybog", Type.OTHERWORLDLY, Element.FIRE, Alignment.NEUTRAL),
 
     // Water //
     CTHULU("cthulu", Type.OTHERWORLDLY, Element.WATER, Alignment.EVIL),
-    OSIRIS("osiris", Type.OTHERWORLDLY, Element.WATER, Alignment.NEUTRAL);
+    OSIRIS("osiris", Type.OTHERWORLDLY, Element.WATER, Alignment.NEUTRAL),
+    CHARON("charon", Type.OTHERWORLDLY, Element.WATER, Alignment.GOOD);
 
     public static final EDeity[] DEITIES = values();
 

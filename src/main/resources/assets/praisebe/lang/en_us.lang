@@ -13,6 +13,8 @@ deity.name.amun=Amun
 
 ## Earth
 deity.name.tlaloc=Tlaloc
+deity.name.huracan=Huracán
+deity.name.demeter=Demeter
 
 ## Fire
 deity.name.ra=Ra
@@ -21,8 +23,8 @@ deity.name.amat=Amaterasu
 
 ## Water
 deity.name.wirnpa=Wirnpa
-deity.name.huracan=Huracán
 deity.name.thor=Thor
+deity.name.baal=Baʿal
 
 ### Terrestrial
 
@@ -56,14 +58,17 @@ deity.name.raijin=Raijin
 ## Earth
 deity.name.shub=Shub-Niggurath
 deity.name.atum=Atum
+deity.name.anubis=Anubis
 
 ## Fire
 deity.name.hades=Hades
 deity.name.moloch=Moloch
+deity.name.pekelnybog=Pekelnybog
 
 ## Water
 deity.name.cthulu=Cthulu
 deity.name.osiris=Osiris
+deity.name.charon=Charon
 
 ## Types
 deity.type.terrestrial=Terrestrial

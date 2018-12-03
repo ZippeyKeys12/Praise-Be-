@@ -1,13 +1,11 @@
 package com.zippeykeys.praisebe.common.deity;
 
+import com.zippeykeys.praisebe.common.util.EnumUtil;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Arrays;
-import java.util.List;
 
 @ToString
 @AllArgsConstructor
@@ -84,8 +82,6 @@ public enum EDeity {
     OSIRIS("osiris", Type.OTHERWORLDLY, Element.WATER, Alignment.NEUTRAL),
     CHARON("charon", Type.OTHERWORLDLY, Element.WATER, Alignment.GOOD);
 
-    public static final EDeity[] DEITIES = values();
-
     @Getter
     private String name;
 
@@ -108,21 +104,14 @@ public enum EDeity {
         return "deity." + name + ".desc";
     }
 
-    public int getIndex() {
-        return Arrays.asList(DEITIES).indexOf(this);
-    }
-
-    @Contract(pure = true)
-    public EDeity byIndex(int index) {
-        return DEITIES[index];
+    public int getMeta() {
+        return EnumUtil.getUniqueIndex(type, element, alignment);
     }
 
     @ToString
     @AllArgsConstructor
     private enum Type {
         TERRESTRIAL("terrestrial"), CELESTIAL("celestial"), OTHERWORLDLY("otherworldly");
-
-        private static final List<Type> INDICES = Arrays.asList(values());
 
         @Getter
         private String name;
@@ -137,23 +126,12 @@ public enum EDeity {
             return "deity.type." + name + ".desc";
         }
 
-        public int getIndex() {
-            return INDICES.indexOf(this);
-        }
-
-        @Contract(pure = true)
-        public Type byIndex(int index) {
-            return INDICES.get(index);
-        }
-
     }
 
     @ToString
     @AllArgsConstructor
     private enum Element {
         AIR("air"), EARTH("earth"), FIRE("fire"), WATER("water");
-
-        private static final List<Element> INDICES = Arrays.asList(values());
 
         @Getter
         private String name;
@@ -167,23 +145,12 @@ public enum EDeity {
         public @NotNull String getUnlocalizedDescription() {
             return "deity.element." + name + ".desc";
         }
-
-        public int getIndex() {
-            return INDICES.indexOf(this);
-        }
-
-        @Contract(pure = true)
-        public Element byIndex(int index) {
-            return INDICES.get(index);
-        }
     }
 
     @ToString
     @AllArgsConstructor
     private enum Alignment {
         GOOD("good"), NEUTRAL("neutral"), EVIL("evil");
-
-        private static final List<Alignment> INDICES = Arrays.asList(values());
 
         @Getter
         private String name;
@@ -196,15 +163,6 @@ public enum EDeity {
         @Contract(pure = true)
         public @NotNull String getUnlocalizedDescription() {
             return "deity.alignment." + name + ".desc";
-        }
-
-        public int getIndex() {
-            return INDICES.indexOf(this);
-        }
-
-        @Contract(pure = true)
-        public Alignment byIndex(int index) {
-            return INDICES.get(index);
         }
     }
 }

@@ -1,24 +1,23 @@
 package com.zippeykeys.praisebe.common.data;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-
-import com.zippeykeys.praisebe.common.registry.DeityRegistry;
+import com.zippeykeys.praisebe.common.deity.EDeity;
 import com.zippeykeys.praisebe.common.util.PlayerUtil;
-
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
+import lombok.var;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.INBTSerializable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class GodlyRegard implements INBTSerializable<NBTTagCompound> {
     private PBWorldData saver;
     private UUID uuid;
-    private Map<String, Double> regards = new HashMap<>();
+    private Map<EDeity, Double> regards = new EnumMap<>(EDeity.class);
 
     public GodlyRegard(@NotNull EntityPlayer player, PBWorldData saver) {
         this(player.getUniqueID(), saver);
@@ -27,7 +26,9 @@ public class GodlyRegard implements INBTSerializable<NBTTagCompound> {
     GodlyRegard(@NotNull UUID uuid, @Nullable PBWorldData saver) {
         this.uuid = uuid;
         this.saver = saver;
-        DeityRegistry.keys().forEach(this::setRegard);
+        for (var deity : EDeity.values()) {
+            setRegard(deity);
+        }
     }
 
     public PBWorldData getSaver() {
@@ -53,6 +54,10 @@ public class GodlyRegard implements INBTSerializable<NBTTagCompound> {
     }
 
     public double getRegard(String deity) {
+        return regards.get(EDeity.valueOf(deity));
+    }
+
+    public double getRegard(EDeity deity) {
         return regards.get(deity);
     }
 
@@ -61,6 +66,14 @@ public class GodlyRegard implements INBTSerializable<NBTTagCompound> {
     }
 
     public void setRegard(String deity, double change) {
+        setRegard(EDeity.valueOf(deity), change);
+    }
+
+    public void setRegard(EDeity deity) {
+        setRegard(deity, 0);
+    }
+
+    public void setRegard(EDeity deity, double change) {
         regards.put(deity, regards.get(deity) + change);
     }
 
@@ -75,7 +88,7 @@ public class GodlyRegard implements INBTSerializable<NBTTagCompound> {
         NBTTagList regData = new NBTTagList();
         regards.forEach((key, value) -> {
             NBTTagCompound compound = new NBTTagCompound();
-            compound.setString("name", key);
+            compound.setString("name", key.name());
             compound.setDouble("regard", value);
             regData.appendTag(compound);
         });
@@ -91,7 +104,7 @@ public class GodlyRegard implements INBTSerializable<NBTTagCompound> {
             NBTTagCompound tagCompound = (NBTTagCompound) tag;
             if (tagCompound == null)
                 return;
-            regards.put(tagCompound.getString("name"), tagCompound.getDouble("regard"));
+            regards.put(EDeity.valueOf(tagCompound.getString("name")), tagCompound.getDouble("regard"));
         });
     }
 }

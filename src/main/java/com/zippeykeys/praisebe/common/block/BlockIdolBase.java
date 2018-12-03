@@ -39,6 +39,21 @@ public abstract class BlockIdolBase extends PBBlock {
     }
 
     @Override
+    public boolean isOpaqueCube(IBlockState state) {
+        return false;
+    }
+
+    @Override
+    public boolean isFullCube(IBlockState state) {
+        return false;
+    }
+
+    @Override
+    public @NotNull EnumBlockRenderType getRenderType(IBlockState state) {
+        return EnumBlockRenderType.MODEL;
+    }
+
+    @Override
     public int getMetaFromState(IBlockState state) {
         return state.getValue(FACING).getIndex();
     }
@@ -50,11 +65,6 @@ public abstract class BlockIdolBase extends PBBlock {
             enumfacing = EnumFacing.NORTH;
         }
         return getDefaultState().withProperty(FACING, enumfacing);
-    }
-
-    @Override
-    public @NotNull EnumBlockRenderType getRenderType(IBlockState state) {
-        return EnumBlockRenderType.MODEL;
     }
 
     @Override

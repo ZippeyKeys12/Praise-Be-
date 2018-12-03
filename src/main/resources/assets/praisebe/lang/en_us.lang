@@ -48,7 +48,7 @@ deity.name.poseidon=Poseidon
 deity.name.sirona=Sirona
 deity.name.lotan=Lotan
 
-### Otherworldly
+### Ethereal
 
 ## Air
 deity.name.nyar=Nyarlathotep
@@ -73,7 +73,7 @@ deity.name.charon=Charon
 ## Types
 deity.type.terrestrial=Terrestrial
 deity.type.celestial=Celestial
-deity.type.otherworldly=Otherworldly
+deity.type.ethereal=Ethereal
 
 ## Elements
 deity.type.air=Air

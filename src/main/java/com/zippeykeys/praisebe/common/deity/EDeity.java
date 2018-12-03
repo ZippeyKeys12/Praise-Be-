@@ -59,28 +59,28 @@ public enum EDeity {
     LOTAN("lotan", Type.TERRESTRIAL, Element.WATER, Alignment.EVIL),
 
     ////////////////////
-    /// Otherworldly ///
+    /// Ethereal ///
     ////////////////////
 
     // Air //
-    NYARLATHOTEP("nyar", Type.OTHERWORLDLY, Element.AIR, Alignment.EVIL),
-    FUJIN("fujin", Type.OTHERWORLDLY, Element.AIR, Alignment.EVIL),
-    RAIJIN("raijin", Type.OTHERWORLDLY, Element.AIR, Alignment.EVIL),
+    NYARLATHOTEP("nyar", Type.ETHEREAL, Element.AIR, Alignment.EVIL),
+    FUJIN("fujin", Type.ETHEREAL, Element.AIR, Alignment.EVIL),
+    RAIJIN("raijin", Type.ETHEREAL, Element.AIR, Alignment.EVIL),
 
     // Earth //
-    SHUB_NIGGURATH("shub", Type.OTHERWORLDLY, Element.EARTH, Alignment.NEUTRAL),
-    ATUM("atum", Type.OTHERWORLDLY, Element.EARTH, Alignment.NEUTRAL),
-    ANUBIS("anubis", Type.OTHERWORLDLY, Element.EARTH, Alignment.EVIL),
+    SHUB_NIGGURATH("shub", Type.ETHEREAL, Element.EARTH, Alignment.NEUTRAL),
+    ATUM("atum", Type.ETHEREAL, Element.EARTH, Alignment.NEUTRAL),
+    ANUBIS("anubis", Type.ETHEREAL, Element.EARTH, Alignment.EVIL),
 
     // Fire //
-    HADES("hades", Type.OTHERWORLDLY, Element.FIRE, Alignment.EVIL),
-    MOLOCH("moloch", Type.OTHERWORLDLY, Element.FIRE, Alignment.EVIL),
-    PEKELNYBOG("pekelnybog", Type.OTHERWORLDLY, Element.FIRE, Alignment.NEUTRAL),
+    HADES("hades", Type.ETHEREAL, Element.FIRE, Alignment.EVIL),
+    MOLOCH("moloch", Type.ETHEREAL, Element.FIRE, Alignment.EVIL),
+    PEKELNYBOG("pekelnybog", Type.ETHEREAL, Element.FIRE, Alignment.NEUTRAL),
 
     // Water //
-    CTHULU("cthulu", Type.OTHERWORLDLY, Element.WATER, Alignment.EVIL),
-    OSIRIS("osiris", Type.OTHERWORLDLY, Element.WATER, Alignment.NEUTRAL),
-    CHARON("charon", Type.OTHERWORLDLY, Element.WATER, Alignment.GOOD);
+    CTHULU("cthulu", Type.ETHEREAL, Element.WATER, Alignment.EVIL),
+    OSIRIS("osiris", Type.ETHEREAL, Element.WATER, Alignment.NEUTRAL),
+    CHARON("charon", Type.ETHEREAL, Element.WATER, Alignment.GOOD);
 
     @Getter
     private String name;
@@ -111,7 +111,7 @@ public enum EDeity {
     @ToString
     @AllArgsConstructor
     private enum Type {
-        TERRESTRIAL("terrestrial"), CELESTIAL("celestial"), OTHERWORLDLY("otherworldly");
+        TERRESTRIAL("terrestrial"), CELESTIAL("celestial"), ETHEREAL("ethereal");
 
         @Getter
         private String name;

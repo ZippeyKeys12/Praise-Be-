@@ -1,5 +1,35 @@
 package com.zippeykeys.praisebe.common.block;
 
+import java.util.Arrays;
+
+import com.zippeykeys.praisebe.common.util.Reference;
+
+import org.jetbrains.annotations.NotNull;
+
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.IForgeRegistry;
+
+@EventBusSubscriber(modid = Reference.MOD_ID)
 public class ModBlocks {
     // public static final PBBlock IDOL_ = new BlockIdol();
+
+    private static final PBBlock[] blocks = new PBBlock[] {};
+
+    @SubscribeEvent
+    public static void registerBlocks(@NotNull RegistryEvent.Register<Block> event) {
+        event.getRegistry().registerAll(blocks);
+        Arrays.stream(blocks).filter(block -> block.getTileEntity() != null)
+                .forEach(block -> GameRegistry.registerTileEntity(block.getTileEntity(), block.getResource()));
+    }
+
+    @SubscribeEvent
+    public static void registerItemBlocks(@NotNull RegistryEvent.Register<Item> event) {
+        IForgeRegistry<Item> r = event.getRegistry();
+        Arrays.stream(blocks).forEach(b -> r.register(b.getItem()));
+    }
 }

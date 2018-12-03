@@ -15,7 +15,28 @@ public class Reference {
     public static final String PROXY_SERVER = MOD_PACKAGE + ".proxy.ServerProxy";
     public static final String PROXY_CLIENT = MOD_PACKAGE + ".proxy.ClientProxy";
 
-    public static final CreativeTabs CREATIVE_TAB = new CreativeTabs("praisebe") {
+    public static final CreativeTabs TAB_GENERAL = new CreativeTabs("praisebe") {
+        @Override
+        public ItemStack getTabIconItem() {
+            return new ItemStack(Item.getItemFromBlock(new BlockStone()));
+        }
+    };
+
+    public static final CreativeTabs TAB_TERRESTRIAL = new CreativeTabs("praisebe.terrestrial") {
+        @Override
+        public ItemStack getTabIconItem() {
+            return new ItemStack(Item.getItemFromBlock(new BlockStone()));
+        }
+    };
+
+    public static final CreativeTabs TAB_CELESTIAL = new CreativeTabs("praisebe.celestial") {
+        @Override
+        public ItemStack getTabIconItem() {
+            return new ItemStack(Item.getItemFromBlock(new BlockStone()));
+        }
+    };
+
+    public static final CreativeTabs TAB_ETHEREAL = new CreativeTabs("praisebe.ethereal") {
         @Override
         public ItemStack getTabIconItem() {
             return new ItemStack(Item.getItemFromBlock(new BlockStone()));

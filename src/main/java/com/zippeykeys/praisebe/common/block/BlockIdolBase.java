@@ -1,9 +1,5 @@
 package com.zippeykeys.praisebe.common.block;
 
-import com.zippeykeys.praisebe.common.util.Reference;
-
-import org.jetbrains.annotations.NotNull;
-
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -18,6 +14,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 public abstract class BlockIdolBase extends PBBlock {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
@@ -27,8 +24,7 @@ public abstract class BlockIdolBase extends PBBlock {
         setHardness(1.5f);
         setResistance(6000000.0F);
         setSoundType(SoundType.STONE);
-        setCreativeTab(Reference.CREATIVE_TAB);
-        setHarvestLevel("pickaxe", 0);
+        setHarvestLevel("pickaxe", 1);
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
 

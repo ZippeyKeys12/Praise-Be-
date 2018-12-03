@@ -19,6 +19,7 @@ public abstract class PBBlock extends BlockContainer {
         super(materialIn, color);
         setRegistryName(getResource());
         setUnlocalizedName(Reference.MOD_ID + "." + getRegistryName().getResourcePath());
+        setCreativeTab(Reference.TAB_GENERAL);
     }
 
     public ResourceLocation getResource() {

@@ -1,6 +1,7 @@
 buildscript {
     repositories {
         jcenter()
+        mavenCentral()
         maven { url = "http://files.minecraftforge.net/maven" }
     }
     dependencies {
@@ -10,11 +11,10 @@ buildscript {
 
 plugins {
     id 'io.franzbecker.gradle-lombok' version '1.14'
+    id "net.ltgt.apt" version "0.10"
     id 'java'
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
-//Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
-
 
 version = "1.0"
 group = "com.zippeykeys.praisebe" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -56,6 +56,11 @@ dependencies {
     //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
     //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
     compile 'org.jetbrains:annotations:16.0.2'
+
+    compile 'com.google.dagger:dagger:2.x'
+    apt 'com.google.dagger:dagger-compiler:2.x'
+
+    compileOnly 'com.google.auto.factory:auto-factory:1.x'
     // the 'provided' configuration is for optional dependencies that exist at compile-time but might not at runtime.
     //provided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
 
@@ -68,6 +73,17 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
+    testCompile "org.mockito:mockito-core:2.+"
+    testCompileOnly 'junit:junit:4.12'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.1.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.1.0'
+}
+
+test {
+    useJUnitPlatform {
+        includeEngines 'junit-jupiter'
+    }
 }
 
 processResources {

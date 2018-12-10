@@ -5,11 +5,10 @@ import java.util.Arrays;
 import org.jetbrains.annotations.NotNull;
 
 import lombok.var;
+import lombok.experimental.UtilityClass;
 
-public final class EnumUtil {
-    private EnumUtil() {
-    }
-
+@UtilityClass
+public class EnumUtil {
     public static int getIndex(Enum<?> enumVar) {
         return Arrays.asList(getValues(enumVar)).indexOf(enumVar);
     }

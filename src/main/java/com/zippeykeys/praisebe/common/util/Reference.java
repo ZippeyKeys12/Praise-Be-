@@ -1,10 +1,12 @@
 package com.zippeykeys.praisebe.common.util;
 
+import lombok.experimental.UtilityClass;
 import net.minecraft.block.BlockStone;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+@UtilityClass
 public class Reference {
     public static final String MOD_ID = "praisebe";
     public static final String MOD_NAME = "Praise Be!";

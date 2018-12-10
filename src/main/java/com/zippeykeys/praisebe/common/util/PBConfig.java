@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
-import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Config(modid = Reference.MOD_ID)
@@ -16,7 +16,7 @@ public class PBConfig {
     }
 
     @SubscribeEvent
-    public static void onConfigChanged(@NotNull ConfigChangedEvent.OnConfigChangedEvent event) {
+    public static void onConfigChanged(@NotNull OnConfigChangedEvent event) {
         if (event.getModID().equals(Reference.MOD_ID)) {
             ConfigManager.sync(Reference.MOD_ID, Config.Type.INSTANCE);
         }

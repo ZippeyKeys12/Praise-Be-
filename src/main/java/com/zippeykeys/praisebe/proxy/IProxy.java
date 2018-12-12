@@ -1,25 +1,28 @@
 package com.zippeykeys.praisebe.proxy;
 
-import com.zippeykeys.praisebe.PraiseBe;
+import org.apache.logging.log4j.Logger;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.relauncher.Side;
 
 public interface IProxy {
-    default void preInit(FMLPreInitializationEvent event) {
-        PraiseBe.LOGGER.info("PreInitializing" + type() + "Proxy");
+    default void preInit(Logger logger, FMLPreInitializationEvent event) {
+        logger.info("PreInitializing " + type() + " Proxy");
     }
 
-    default void init(FMLInitializationEvent event) {
-        PraiseBe.LOGGER.info("Initializing" + type() + "Proxy");
+    default void init(Logger logger, FMLInitializationEvent event) {
+        logger.info("Initializing " + type() + " Proxy");
     }
 
-    default void postInit(FMLPostInitializationEvent event) {
-        PraiseBe.LOGGER.info("PostInitializing" + type() + "Proxy");
+    default void postInit(Logger logger, FMLPostInitializationEvent event) {
+        logger.info("PostInitializing " + type() + " Proxy");
     }
 
-    default String type() {
-        return " ";
-    }
+    String type();
+
+    String localize(String translateKey, Object... parameters);
+
+    Side getPhysicalSide();
 }

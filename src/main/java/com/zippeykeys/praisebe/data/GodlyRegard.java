@@ -1,11 +1,11 @@
-package com.zippeykeys.praisebe.common.data;
+package com.zippeykeys.praisebe.data;
 
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.UUID;
 
-import com.zippeykeys.praisebe.common.deity.EDeity;
-import com.zippeykeys.praisebe.common.util.PlayerUtil;
+import com.zippeykeys.praisebe.deity.EDeity;
+import com.zippeykeys.praisebe.util.PlayerUtil;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

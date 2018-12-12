@@ -1,4 +1,4 @@
-package com.zippeykeys.praisebe.common.util;
+package com.zippeykeys.praisebe.util;
 
 import java.util.ArrayList;
 import java.util.List;

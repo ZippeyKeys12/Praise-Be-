@@ -1,4 +1,7 @@
-package com.zippeykeys.praisebe.common.util;
+package com.zippeykeys.praisebe.util;
+
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 import lombok.experimental.UtilityClass;
 import net.minecraft.block.BlockStone;
@@ -19,28 +22,32 @@ public class Reference {
 
     public static final CreativeTabs TAB_GENERAL = new CreativeTabs("praisebe") {
         @Override
-        public ItemStack getTabIconItem() {
+        @Contract(" -> new")
+        public @NotNull ItemStack getTabIconItem() {
             return new ItemStack(Item.getItemFromBlock(new BlockStone()));
         }
     };
 
     public static final CreativeTabs TAB_TERRESTRIAL = new CreativeTabs("praisebe.terrestrial") {
         @Override
-        public ItemStack getTabIconItem() {
+        @Contract(" -> new")
+        public @NotNull ItemStack getTabIconItem() {
             return new ItemStack(Item.getItemFromBlock(new BlockStone()));
         }
     };
 
     public static final CreativeTabs TAB_CELESTIAL = new CreativeTabs("praisebe.celestial") {
         @Override
-        public ItemStack getTabIconItem() {
+        @Contract(" -> new")
+        public @NotNull ItemStack getTabIconItem() {
             return new ItemStack(Item.getItemFromBlock(new BlockStone()));
         }
     };
 
     public static final CreativeTabs TAB_ETHEREAL = new CreativeTabs("praisebe.ethereal") {
         @Override
-        public ItemStack getTabIconItem() {
+        @Contract(" -> new")
+        public @NotNull ItemStack getTabIconItem() {
             return new ItemStack(Item.getItemFromBlock(new BlockStone()));
         }
     };

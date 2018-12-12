@@ -1,6 +1,6 @@
-package com.zippeykeys.praisebe.common.deity;
+package com.zippeykeys.praisebe.deity;
 
-import com.zippeykeys.praisebe.common.util.EnumUtil;
+import com.zippeykeys.praisebe.util.EnumUtil;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;

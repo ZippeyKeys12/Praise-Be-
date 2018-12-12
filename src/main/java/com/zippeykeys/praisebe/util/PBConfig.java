@@ -1,4 +1,4 @@
-package com.zippeykeys.praisebe.common.util;
+package com.zippeykeys.praisebe.util;
 
 import org.jetbrains.annotations.NotNull;
 

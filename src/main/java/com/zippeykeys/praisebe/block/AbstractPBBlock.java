@@ -10,16 +10,16 @@ import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
-public abstract class PBBlock extends BlockContainer {
-    protected PBBlock() {
+public abstract class AbstractPBBlock extends BlockContainer {
+    protected AbstractPBBlock() {
         this(Material.ROCK);
     }
 
-    protected PBBlock(Material materialIn) {
+    protected AbstractPBBlock(Material materialIn) {
         this(materialIn, materialIn.getMaterialMapColor());
     }
 
-    protected PBBlock(Material materialIn, MapColor color) {
+    protected AbstractPBBlock(Material materialIn, MapColor color) {
         super(materialIn, color);
         setRegistryName(getResource());
         setUnlocalizedName(Reference.MOD_ID + "." + getRegistryName().getResourcePath());

@@ -8,6 +8,7 @@ import com.zippeykeys.praisebe.util.Reference;
 
 import org.jetbrains.annotations.NotNull;
 
+import lombok.var;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
@@ -39,7 +40,7 @@ public class PBWorldData extends WorldSavedData {
     @Override
     public void readFromNBT(@NotNull NBTTagCompound nbt) {
         NBTTagList regards = nbt.getTagList("godlyRegards", 10);
-        regards.forEach((tag) -> {
+        for (var tag : regards) {
             NBTTagCompound tagCompound = (NBTTagCompound) tag;
             if (tagCompound == null)
                 return;
@@ -47,7 +48,7 @@ public class PBWorldData extends WorldSavedData {
             GodlyRegard regard = new GodlyRegard(uuid, this);
             regard.deserializeNBT(tagCompound.getCompoundTag("regards"));
             playerRegards.put(uuid, regard);
-        });
+        }
     }
 
     @Override

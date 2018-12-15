@@ -1,6 +1,6 @@
 package com.zippeykeys.praisebe.deity;
 
-import com.zippeykeys.praisebe.util.EnumUtil;
+import com.zippeykeys.praisebe.util.Localize;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -11,7 +11,7 @@ import lombok.ToString;
 
 @ToString
 @AllArgsConstructor
-public enum EDeity {
+public enum EDeity implements IDeity<EDeity.Type, EDeity.Element, EDeity.Alignment> {
     ////////////////////
     ///// Celestial ////
     ////////////////////
@@ -84,45 +84,45 @@ public enum EDeity {
     OSIRIS("osiris", Type.ETHEREAL, Element.WATER, Alignment.NEUTRAL),
     CHARON("charon", Type.ETHEREAL, Element.WATER, Alignment.GOOD);
 
-    @Getter
+    @Getter(onMethod_ = @Override)
     private String name;
 
-    @Getter
+    @Getter(onMethod_ = @Override)
     private Type type;
 
-    @Getter
+    @Getter(onMethod_ = @Override)
     private Element element;
 
-    @Getter
+    @Getter(onMethod_ = @Override)
     private Alignment alignment;
 
+    @Override
     @Contract(pure = true)
     public @NotNull String getUnlocalizedName() {
         return "deity." + name + ".name";
     }
 
+    @Override
     @Contract(pure = true)
     public @NotNull String getUnlocalizedDescription() {
         return "deity." + name + ".desc";
     }
 
-    public int getMeta() {
-        return EnumUtil.getUniqueIndex(type, element, alignment);
-    }
-
     @ToString
     @AllArgsConstructor
-    private enum Type {
+    public enum Type implements Localize {
         TERRESTRIAL("terrestrial"), CELESTIAL("celestial"), ETHEREAL("ethereal");
 
-        @Getter
+        @Getter(onMethod_ = @Override)
         private String name;
 
+        @Override
         @Contract(pure = true)
         public @NotNull String getUnlocalizedName() {
             return "deity.type." + name + ".name";
         }
 
+        @Override
         @Contract(pure = true)
         public @NotNull String getUnlocalizedDescription() {
             return "deity.type." + name + ".desc";
@@ -132,17 +132,19 @@ public enum EDeity {
 
     @ToString
     @AllArgsConstructor
-    private enum Element {
+    public enum Element implements Localize {
         AIR("air"), EARTH("earth"), FIRE("fire"), WATER("water");
 
-        @Getter
+        @Getter(onMethod_ = @Override)
         private String name;
 
+        @Override
         @Contract(pure = true)
         public @NotNull String getUnlocalizedName() {
             return "deity.element." + name + ".name";
         }
 
+        @Override
         @Contract(pure = true)
         public @NotNull String getUnlocalizedDescription() {
             return "deity.element." + name + ".desc";
@@ -151,17 +153,19 @@ public enum EDeity {
 
     @ToString
     @AllArgsConstructor
-    private enum Alignment {
+    public enum Alignment implements Localize {
         GOOD("good"), NEUTRAL("neutral"), EVIL("evil");
 
-        @Getter
+        @Getter(onMethod_ = @Override)
         private String name;
 
+        @Override
         @Contract(pure = true)
         public @NotNull String getUnlocalizedName() {
             return "deity.alignment." + name + ".name";
         }
 
+        @Override
         @Contract(pure = true)
         public @NotNull String getUnlocalizedDescription() {
             return "deity.alignment." + name + ".desc";

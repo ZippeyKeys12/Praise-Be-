@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-import com.zippeykeys.praisebe.block.PBBlock;
+import com.zippeykeys.praisebe.block.AbstractPBBlock;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -28,7 +28,7 @@ public class ModRegistry {
     @SubscribeEvent
     public static void registerBlocks(@NotNull Register<Block> event) {
         register(event, BLOCKS);
-        BLOCKS.stream().map(b -> (PBBlock) b).filter(block -> block != null && block.getTileEntity() != null)
+        BLOCKS.stream().map(b -> (AbstractPBBlock) b).filter(block -> block != null && block.getTileEntity() != null)
                 .forEach(block -> GameRegistry.registerTileEntity(block.getTileEntity(), block.getResource()));
     }
 

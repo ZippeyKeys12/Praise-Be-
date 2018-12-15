@@ -17,10 +17,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public abstract class BlockIdolBase extends PBBlock {
+public abstract class AbstractBlockIdolBase extends AbstractPBBlock {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
-    public BlockIdolBase() {
+    public AbstractBlockIdolBase() {
         super(Material.ROCK);
         setHardness(1.5f);
         setResistance(6000000.0F);

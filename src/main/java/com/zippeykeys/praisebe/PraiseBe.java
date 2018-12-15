@@ -1,10 +1,16 @@
 package com.zippeykeys.praisebe;
 
+import java.lang.reflect.AccessibleObject;
+import java.util.Arrays;
+
+import com.zippeykeys.praisebe.block.AbstractPBBlock;
 import com.zippeykeys.praisebe.block.ModBlocks;
-import com.zippeykeys.praisebe.block.PBBlock;
 import com.zippeykeys.praisebe.proxy.IProxy;
 import com.zippeykeys.praisebe.util.ModRegistry;
 import com.zippeykeys.praisebe.util.Reference;
+
+import org.apache.logging.log4j.Logger;
+
 import lombok.Getter;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -13,10 +19,6 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import org.apache.logging.log4j.Logger;
-
-import java.lang.reflect.AccessibleObject;
-import java.util.Arrays;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION, dependencies = Reference.MOD_DEPENDENCIES, useMetadata = true)
 public class PraiseBe {
@@ -38,9 +40,10 @@ public class PraiseBe {
         event.getModMetadata().version = Reference.MOD_VERSION;
         PROXY.preInit(logger, event);
 
+        // TODO: Check if this runs before ModBlocks EventHandler
         Arrays.stream(ModBlocks.class.getDeclaredFields()).filter(AccessibleObject::isAccessible).forEach(f -> {
             try {
-                ModRegistry.BLOCKS.add((PBBlock) f.get(null));
+                ModRegistry.BLOCKS.add((AbstractPBBlock) f.get(null));
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }

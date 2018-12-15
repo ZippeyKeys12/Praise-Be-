@@ -1,6 +1,5 @@
 package com.zippeykeys.praisebe.util;
 
-import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -18,31 +17,39 @@ import lombok.experimental.ExtensionMethod;
 import net.minecraft.util.ResourceLocation;
 
 @ExtensionMethod(ClassUtil.class)
-public class Registry<T, C> implements Serializable {
-    private static final long serialVersionUID = 3510013522407682579L;
-
-    public final Set<Class<T>> classifiers;
+public class Registry<T, C> {
+    public final Set<Class<? extends T>> classifiers;
 
     public final Map<ResourceLocation, C> classes;
 
-    public final Map<Class<T>, Map<T, Set<C>>> categorized;
+    public final Map<Class<? extends T>, Map<T, Set<C>>> categorized;
+
+    private final Class<T> clazzT;
+
+    private final Class<C> clazzC;
 
     @SafeVarargs
-    public Registry(Class<T>... classifiers) {
-        this.classifiers = ImmutableSet.<Class<T>>builder().add(classifiers).build();
+    public static <T, C> Registry<T, C> of(Class<T> clazzT, Class<C> clazzC, Class<T>... classifiers) {
+        return new Registry<T, C>(clazzT, clazzC, classifiers);
+    }
+
+    @SafeVarargs
+    public Registry(Class<T> clazzT, Class<C> clazzC, Class<? extends T>... classifiers) {
+        this.clazzT = clazzT;
+        this.clazzC = clazzC;
+        this.classifiers = ImmutableSet.<Class<? extends T>>builder().add(classifiers).build();
         classes = new HashMap<>();
-        val builder = ImmutableMap.<Class<T>, Map<T, Set<C>>>builder();
+        val builder = ImmutableMap.<Class<? extends T>, Map<T, Set<C>>>builder();
         for (var clazz : classifiers)
             builder.put(clazz, new HashMap<>());
         categorized = builder.build();
     }
 
-    @SuppressWarnings("unchecked")
     public C register(ResourceLocation key, C value) {
         val previousValue = classes.put(key, value);
         for (var clazz : classifiers) {
             try {
-                var type = (T) value.getClass().getMethod("get" + clazz.getSimpleName()).invoke(value);
+                var type = clazzT.cast(value.getClass().getMethod("get" + clazz.getSimpleName()).invoke(value));
                 if (type == null) {
                     continue;
                 }
@@ -52,26 +59,24 @@ public class Registry<T, C> implements Serializable {
                     map.get(type).add(value);
                 } else {
                     map.put(type, new HashSet<C>() {
-                        private static final long serialVersionUID = 2184164362052827748L;
+                        private static final long serialVersionUID = 1L;
 
                         {
                             add(value);
                         }
                     });
                 }
-            } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-                continue;
+            } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException ignored) {
             }
         }
         return previousValue;
     }
 
-    @SuppressWarnings("unchecked")
     public C unregister(ResourceLocation key) {
         val value = classes.remove(key);
         for (var clazz : classifiers) {
             try {
-                var type = (T) value.getClass().getMethod("get" + clazz.getSimpleName()).invoke(value);
+                var type = clazzT.cast(value.getClass().getMethod("get" + clazz.getSimpleName()).invoke(value));
                 if (type == null) {
                     continue;
                 }
@@ -83,8 +88,7 @@ public class Registry<T, C> implements Serializable {
                 if (set.isEmpty()) {
                     map.remove(type);
                 }
-            } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-                continue;
+            } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException ignored) {
             }
         }
         return value;
@@ -101,7 +105,7 @@ public class Registry<T, C> implements Serializable {
     @SuppressWarnings("unchecked")
     public C getRandom(T key) {
         val set = getSet(key);
-        return (C) set.toArray()[new Random().nextInt(set.size())];
+        return ((C[]) set.toArray())[new Random().nextInt(set.size())];
     }
 
     public Set<C> getSet(T key) {

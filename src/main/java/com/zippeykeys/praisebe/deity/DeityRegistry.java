@@ -1,26 +1,22 @@
 package com.zippeykeys.praisebe.deity;
 
-import java.util.Map;
-import java.util.function.BiConsumer;
+import java.util.Arrays;
+import java.util.Objects;
 
-import net.minecraft.util.ResourceLocation;
+import com.zippeykeys.praisebe.util.Localize;
+import com.zippeykeys.praisebe.util.Registry;
+import com.zippeykeys.praisebe.util.Util;
 
-public class DeityRegistry<C extends IDeity<?, ?, ?>> {
-    public Map<ResourceLocation, Class<C>> pantheons;
-
-    public Class<C> put(ResourceLocation key, Class<C> value) {
-        return pantheons.put(key, value);
+public class DeityRegistry extends Registry<Localize, IDeity> {
+    public DeityRegistry() {
+        super(Localize.class, IDeity.class, IDeity.Type.class, IDeity.Element.class, IDeity.Alignment.class);
     }
 
-    public Class<C> get(String key) {
-        return get(new ResourceLocation(key));
+    public IDeity[] registerAll(IDeity... values) {
+        return Arrays.stream(values).map(this::register).filter(Objects::nonNull).toArray(IDeity[]::new);
     }
 
-    public Class<C> get(ResourceLocation key) {
-        return pantheons.get(key);
-    }
-
-    public void forEach(BiConsumer<? super ResourceLocation, ? super Class<C>> action) {
-        pantheons.forEach(action);
+    public IDeity register(IDeity value) {
+        return register(Util.getResource(value.getName()), value);
     }
 }

@@ -11,6 +11,7 @@ import com.zippeykeys.praisebe.block.AbstractPBBlock;
 
 import org.jetbrains.annotations.NotNull;
 
+import lombok.val;
 import lombok.experimental.UtilityClass;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -53,15 +54,15 @@ public class ModRegistry {
         register(e, values.map(mapper));
     }
 
-    @SuppressWarnings("unchecked")
     public static <T extends IForgeRegistryEntry<T>> void register(@NotNull Register<T> e, @NotNull Stream<T> values) {
-        e.getRegistry().registerAll((T[]) values.toArray());
+        val r = e.getRegistry();
+        values.forEach(r::register);
     }
 
-    @SuppressWarnings("unchecked")
     public static <T extends IForgeRegistryEntry<T>> void register(@NotNull Register<T> e,
             @NotNull Collection<T> values) {
-        e.getRegistry().registerAll((T[]) values.toArray());
+        val r = e.getRegistry();
+        values.forEach(r::register);
     }
 
     @SafeVarargs

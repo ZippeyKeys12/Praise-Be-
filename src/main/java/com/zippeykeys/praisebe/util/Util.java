@@ -4,6 +4,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import lombok.experimental.UtilityClass;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 
@@ -16,5 +17,9 @@ public class Util {
         } else {
             return Side.SERVER;
         }
+    }
+
+    public static ResourceLocation getResource(String resourcePathIn) {
+        return new ResourceLocation(Reference.MOD_ID, resourcePathIn);
     }
 }

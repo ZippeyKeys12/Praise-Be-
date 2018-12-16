@@ -22,7 +22,7 @@ public class ClassUtil {
     public static @Nullable Object callDeclaredMethod(@NotNull Class<?> clazz, String methodName,
             Object... parameters) {
         try {
-            return clazz.getDeclaredMethod("getResource").invoke(parameters);
+            return clazz.getDeclaredMethod(methodName).invoke(parameters);
         } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException
                 | SecurityException ignored) {
         }

@@ -93,7 +93,7 @@ public class GodlyRegard implements INBTSerializable<NBTTagCompound> {
         NBTTagList regData = new NBTTagList();
         regards.forEach((key, value) -> {
             NBTTagCompound compound = new NBTTagCompound();
-            compound.setString("name", key.toString());
+            compound.setString("name", key);
             compound.setDouble("regard", value);
             regData.appendTag(compound);
         });

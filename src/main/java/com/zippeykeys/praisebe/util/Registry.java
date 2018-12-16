@@ -70,7 +70,7 @@ public class Registry<T> {
     public T register(String key, T value) {
         val previousValue = classes.put(key, value);
         for (var clazz : classifiers) {
-            var type = (Enum) ClassUtil.getFieldValueByClass(value, clazz);
+            var type = clazz.cast(ClassUtil.getFieldValueByClass(value, clazz));
             if (type == null) {
                 continue;
             }

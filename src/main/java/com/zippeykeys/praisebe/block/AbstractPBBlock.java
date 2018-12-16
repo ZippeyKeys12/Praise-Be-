@@ -1,5 +1,7 @@
 package com.zippeykeys.praisebe.block;
 
+import java.util.Objects;
+
 import com.zippeykeys.praisebe.tileentity.AbstractPBTileEntity;
 import com.zippeykeys.praisebe.util.BlockUtil;
 import com.zippeykeys.praisebe.util.Localize;
@@ -22,7 +24,7 @@ public abstract class AbstractPBBlock extends BlockContainer implements Localize
     protected AbstractPBBlock(Material materialIn, MapColor color) {
         super(materialIn, color);
         setRegistryName(getResource());
-        setUnlocalizedName(Reference.MOD_ID + "." + getRegistryName().getResourcePath());
+        setUnlocalizedName(Reference.MOD_ID + "." + Objects.requireNonNull(getRegistryName()).getResourcePath());
         setCreativeTab(Reference.TAB_GENERAL);
     }
 

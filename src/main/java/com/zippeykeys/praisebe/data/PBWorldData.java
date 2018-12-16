@@ -2,6 +2,7 @@ package com.zippeykeys.praisebe.data;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 
 import com.zippeykeys.praisebe.util.Reference;
@@ -19,9 +20,9 @@ public class PBWorldData extends WorldSavedData {
     private static final String ID = Reference.MOD_ID + "_Regards";
     public Map<UUID, GodlyRegard> playerRegards = new HashMap<>();
 
-    public static PBWorldData get(@NotNull World world) {
+    public static PBWorldData of(@NotNull World world) {
         MapStorage storage = world.getMapStorage();
-        PBWorldData instance = (PBWorldData) storage.getOrLoadData(PBWorldData.class, ID);
+        PBWorldData instance = (PBWorldData) Objects.requireNonNull(storage).getOrLoadData(PBWorldData.class, ID);
         if (instance == null) {
             instance = new PBWorldData();
             storage.setData(ID, instance);

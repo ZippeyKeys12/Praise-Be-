@@ -28,7 +28,7 @@ public class Reference {
         }
     };
 
-    public static final CreativeTabs TAB_TERRESTRIAL = new CreativeTabs("praisebe.terrestrial") {
+    public static final CreativeTabs TAB_CELESTIAL = new CreativeTabs("praisebe.celestial") {
         @Override
         @Contract(" -> new")
         public @NotNull ItemStack getTabIconItem() {
@@ -36,7 +36,7 @@ public class Reference {
         }
     };
 
-    public static final CreativeTabs TAB_CELESTIAL = new CreativeTabs("praisebe.celestial") {
+    public static final CreativeTabs TAB_TERRESTRIAL = new CreativeTabs("praisebe.terrestrial") {
         @Override
         @Contract(" -> new")
         public @NotNull ItemStack getTabIconItem() {

@@ -7,14 +7,9 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import javax.annotation.concurrent.Immutable;
-
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableSet;
 import com.zippeykeys.praisebe.util.Registry;
 import com.zippeykeys.praisebe.util.Util;
-
-import net.minecraft.util.ResourceLocation;
 
 public class DeityRegistry extends Registry<IDeity> {
     public static final DeityRegistry INSTANCE = new DeityRegistry();
@@ -36,8 +31,8 @@ public class DeityRegistry extends Registry<IDeity> {
     }
 
     public IDeity[] registerAll(Stream<? extends IDeity> values) {
-        return values.map(this::register)//
-                .filter(Objects::nonNull)//
+        return values.map(this::register) //
+                .filter(Objects::nonNull) //
                 .toArray(IDeity[]::new);
     }
 

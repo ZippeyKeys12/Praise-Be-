@@ -19,13 +19,16 @@ public interface IDeity extends Localize {
     @NotNull
     Alignment getAlignment();
 
+    @NotNull
+    Relationship getRelationship(IDeity other);
+
     @ToString
     @AllArgsConstructor
     public static enum Type implements Localize {
         TERRESTRIAL("terrestrial"), CELESTIAL("celestial"), ETHEREAL("ethereal");
 
         @Getter(onMethod_ = @Override)
-        private String name;
+        private final String name;
 
         @Override
         @Contract(pure = true)
@@ -46,7 +49,7 @@ public interface IDeity extends Localize {
         AIR("air"), EARTH("earth"), FIRE("fire"), WATER("water");
 
         @Getter(onMethod_ = @Override)
-        private String name;
+        private final String name;
 
         @Override
         @Contract(pure = true)
@@ -67,7 +70,7 @@ public interface IDeity extends Localize {
         GOOD("good"), NEUTRAL("neutral"), EVIL("evil");
 
         @Getter(onMethod_ = @Override)
-        private String name;
+        private final String name;
 
         @Override
         @Contract(pure = true)
@@ -79,6 +82,25 @@ public interface IDeity extends Localize {
         @Contract(pure = true)
         public @NotNull String getUnlocalizedDescription() {
             return "deity.alignment." + name + ".desc";
+        }
+    }
+
+    @ToString
+    @AllArgsConstructor
+    public static enum Relationship implements Localize {
+        HATED("hated"), DISLIKED("disliked"), INDIFFERENT("indifferent"), LIKED("liked"), LOVED("loved");
+
+        @Getter(onMethod_ = @Override)
+        private final String name;
+
+        @Override
+        public @NotNull String getUnlocalizedName() {
+            return "deity.relationship." + name + ".name";
+        }
+
+        @Override
+        public @NotNull String getUnlocalizedDescription() {
+            return "deity.relationship." + name + ".desc";
         }
     }
 }

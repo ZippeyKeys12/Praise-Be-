@@ -18,6 +18,6 @@ public interface Localize {
     String getUnlocalizedDescription();
 
     default ResourceLocation getResource() {
-        return new ResourceLocation(Reference.MOD_ID, getName());
+        return Util.getResource(getName());
     }
 }

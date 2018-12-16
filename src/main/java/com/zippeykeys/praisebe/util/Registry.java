@@ -11,33 +11,40 @@ import java.util.function.BiConsumer;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
+import com.zippeykeys.praisebe.deity.DeityRegistry;
+import com.zippeykeys.praisebe.deity.IDeity;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import lombok.Builder;
 import lombok.val;
 import lombok.var;
 import net.minecraft.util.ResourceLocation;
 
 public class Registry<T> {
-    protected final Set<Class<? extends Enum<?>>> classifiers;
+    protected final ImmutableSet<Class<? extends Enum<?>>> classifiers;
 
     protected final Map<ResourceLocation, T> classes;
 
     protected final Map<Class<? extends Enum<?>>, Map<Enum<?>, Set<T>>> categorized;
 
-    public final Class<T> CLAZZ_T;
+    private final Class<T> dataType;
 
+    @Builder
     @SafeVarargs
     @Contract("_, _ -> new")
+    @SuppressWarnings("unchecked")
     public static @NotNull <T> Registry<T> of(Class<T> clazzT, Class<? extends Enum<?>>... classifiers) {
-        return new Registry<T>(clazzT, classifiers);
+        if (clazzT == IDeity.class)
+            return (Registry<T>) new DeityRegistry();
+        return new Registry<>(clazzT, classifiers);
     }
 
     @SafeVarargs
     @SuppressWarnings("unchecked")
     public Registry(Class<T> clazzT, Class<? extends Enum<?>>... classifiers) {
-        CLAZZ_T = clazzT;
+        dataType = clazzT;
         this.classifiers = ImmutableSet.<Class<? extends Enum<?>>>builder().add(classifiers).build();
         classes = new HashMap<>();
         val builder = ImmutableMap.<Class<? extends Enum<?>>, Map<Enum<?>, Set<T>>>builder();
@@ -59,7 +66,7 @@ public class Registry<T> {
     public T register(ResourceLocation key, T value) {
         val previousValue = classes.put(key, value);
         for (var clazz : classifiers) {
-            var type = Enum.class.cast(ClassUtil.getClassedField(value, clazz));
+            var type = (Enum) ClassUtil.getFieldValueByClass(value, clazz);
             if (type == null) {
                 continue;
             }
@@ -73,7 +80,7 @@ public class Registry<T> {
     public T unregister(ResourceLocation key) {
         val value = classes.remove(key);
         for (var clazz : classifiers) {
-            var type = CLAZZ_T.cast(ClassUtil.getClassedField(value, clazz));
+            var type = dataType.cast(ClassUtil.getFieldValueByClass(value, clazz));
             if (type == null) {
                 continue;
             }

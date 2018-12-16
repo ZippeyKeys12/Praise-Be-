@@ -1,29 +1,29 @@
 package com.zippeykeys.praisebe.util;
 
-import com.google.common.collect.ImmutableSet;
-import com.zippeykeys.praisebe.block.AbstractPBBlock;
-import com.zippeykeys.praisebe.block.ModBlocks;
-import lombok.experimental.UtilityClass;
-import lombok.val;
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.event.RegistryEvent.Register;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.registries.IForgeRegistryEntry;
-import org.jetbrains.annotations.NotNull;
-
 import java.lang.reflect.AccessibleObject;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Stream;
+
+import com.google.common.collect.ImmutableSet;
+import com.zippeykeys.praisebe.block.AbstractPBBlock;
+import com.zippeykeys.praisebe.block.ModBlocks;
+
+import org.jetbrains.annotations.NotNull;
+
+import lombok.val;
+import lombok.experimental.UtilityClass;
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.event.RegistryEvent.Register;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 @UtilityClass
 @EventBusSubscriber(modid = Reference.MOD_ID)
@@ -32,27 +32,24 @@ public class ModRegistry {
 
     static {
         val blocks = ImmutableSet.<Block>builder();
-        Arrays.stream(ModBlocks.class.getDeclaredFields()).filter(AccessibleObject::isAccessible).forEach(f -> {
-            try {
-                blocks.add((AbstractPBBlock) f.get(null));
-            } catch (IllegalAccessException ignored) {
-            }
-        });
+        Arrays.stream(ModBlocks.class.getDeclaredFields())//
+                .filter(AccessibleObject::isAccessible)//
+                .map(x -> (Block) ClassUtil.getFieldValue(x))//
+                .filter(Objects::nonNull)//
+                .forEach(blocks::add);
         BLOCKS = blocks.build();
     }
 
     @SubscribeEvent
     public static void registerBlocks(@NotNull Register<Block> event) {
         register(event, BLOCKS);
-        BLOCKS.stream().map(b -> (AbstractPBBlock) b).filter(Objects::nonNull).map(AbstractPBBlock::getTileEntity)
-                .filter(Objects::nonNull).forEach(tilentity -> {
-                    try {
-                        GameRegistry.registerTileEntity(tilentity,
-                                (ResourceLocation) tilentity.getDeclaredMethod("getResource").invoke(null));
-                    } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
-                            | NoSuchMethodException | SecurityException ignored) {
-                    }
-                });
+        BLOCKS.stream()//
+                .map(b -> (AbstractPBBlock) b)//
+                .filter(Objects::nonNull)//
+                .map(AbstractPBBlock::getTileEntity)//
+                .filter(Objects::nonNull)//
+                .forEach(tilentity -> GameRegistry.registerTileEntity(tilentity, (ResourceLocation) Objects
+                        .requireNonNull(ClassUtil.callDeclaredMethod(tilentity, "getResource"))));
     }
 
     @SubscribeEvent

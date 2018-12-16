@@ -7,84 +7,91 @@
 ### Celestial
 
 ## Air
-deity.name.zeus=Zeus
-deity.name.odin=Odin
-deity.name.amun=Amun
+deity.name.zeus.name=Zeus
+deity.name.odin.name=Odin
+deity.name.amun.name=Amun
 
 ## Earth
-deity.name.tlaloc=Tlaloc
-deity.name.huracan=Huracán
-deity.name.demeter=Demeter
+deity.name.tlaloc.name=Tlaloc
+deity.name.huracan.name=Huracán
+deity.name.demeter.name=Demeter
 
 ## Fire
-deity.name.ra=Ra
-deity.name.apollo=Apollo
-deity.name.amat=Amaterasu
+deity.name.ra.name=Ra
+deity.name.apollo.name=Apollo
+deity.name.amat.name=Amaterasu
 
 ## Water
-deity.name.wirnpa=Wirnpa
-deity.name.thor=Thor
-deity.name.baal=Baʿal
+deity.name.wirnpa.name=Wirnpa
+deity.name.thor.name=Thor
+deity.name.baal.name=Baʿal
 
 ### Terrestrial
 
 ## Air
-deity.name.morrigan=The Morrígan
-deity.name.njord=Njörðr
-deity.name.tezc=Tezcatlipoca
+deity.name.morrigan.name=The Morrígan
+deity.name.njord.name=Njörðr
+deity.name.tezc.name=Tezcatlipoca
 
 ## Earth
-deity.name.dagda=The Dagda
-deity.name.pan=Pan
-deity.name.dagon=Dagon
+deity.name.dagda.name=The Dagda
+deity.name.pan.name=Pan
+deity.name.dagon.name=Dagon
 
 ## Fire
-deity.name.heph=Hephaestus
-deity.name.grannus=Grannus
-deity.name.xiuh=Xiuhtecuhtli
+deity.name.heph.name=Hephaestus
+deity.name.grannus.name=Grannus
+deity.name.xiuh.name=Xiuhtecuhtli
 
 ## Water
-deity.name.poseidon=Poseidon
-deity.name.sirona=Sirona
-deity.name.lotan=Lotan
+deity.name.poseidon.name=Poseidon
+deity.name.sirona.name=Sirona
+deity.name.lotan.name=Lotan
 
 ### Ethereal
 
 ## Air
-deity.name.nyar=Nyarlathotep
-deity.name.fujin=Fūjin
-deity.name.raijin=Raijin
+deity.name.nyar.name=Nyarlathotep
+deity.name.fujin.name=Fūjin
+deity.name.raijin.name=Raijin
 
 ## Earth
-deity.name.shub=Shub-Niggurath
-deity.name.atum=Atum
-deity.name.anubis=Anubis
+deity.name.shub.name=Shub-Niggurath
+deity.name.atum.name=Atum
+deity.name.anubis.name=Anubis
 
 ## Fire
-deity.name.hades=Hades
-deity.name.moloch=Moloch
-deity.name.pekelnybog=Pekelnybog
+deity.name.hades.name=Hades
+deity.name.moloch.name=Moloch
+deity.name.pekel.name=Pekelnybog
 
 ## Water
-deity.name.cthulu=Cthulu
-deity.name.osiris=Osiris
-deity.name.charon=Charon
+deity.name.cthulu.name=Cthulu
+deity.name.osiris.name=Osiris
+deity.name.charon.name=Charon
 
 ## Types
-deity.type.terrestrial=Terrestrial
-deity.type.celestial=Celestial
-deity.type.ethereal=Ethereal
+deity.type.terrestrial.name=Terrestrial
+deity.type.celestial.name=Celestial
+deity.type.ethereal.name=Ethereal
 
 ## Elements
-deity.type.air=Air
-deity.type.earth=Earth
-deity.type.fire=Fire
-deity.type.water=Water
+deity.type.air.name=Air
+deity.type.earth.name=Earth
+deity.type.fire.name=Fire
+deity.type.water.name=Water
 
 ## Alignments
-deity.alignment.good=Good
-deity.alignment.neutral=Neutral
-deity.alignment.evil=Evil
+deity.alignment.good.name=Good
+deity.alignment.neutral.name=Neutral
+deity.alignment.evil.name=Evil
+
+## Relationships
+deity.relationship.hated.name=Hated
+deity.relationship.disliked.name=Disliked
+deity.relationship.indifferent.name=Neutral
+deity.relationship.liked.name=Liked
+deity.relationship.loved.name=Loved
 
 ########################################
 ############# Creative Tabs ############

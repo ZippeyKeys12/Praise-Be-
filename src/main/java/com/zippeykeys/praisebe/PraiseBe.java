@@ -1,12 +1,6 @@
 package com.zippeykeys.praisebe;
 
-import java.lang.reflect.AccessibleObject;
-import java.util.Arrays;
-
-import com.zippeykeys.praisebe.block.AbstractPBBlock;
-import com.zippeykeys.praisebe.block.ModBlocks;
 import com.zippeykeys.praisebe.proxy.IProxy;
-import com.zippeykeys.praisebe.util.ModRegistry;
 import com.zippeykeys.praisebe.util.Reference;
 
 import org.apache.logging.log4j.Logger;

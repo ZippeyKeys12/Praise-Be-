@@ -7,15 +7,14 @@ import static com.zippeykeys.praisebe.deity.IDeity.Element.AIR;
 import static com.zippeykeys.praisebe.deity.IDeity.Element.EARTH;
 import static com.zippeykeys.praisebe.deity.IDeity.Element.FIRE;
 import static com.zippeykeys.praisebe.deity.IDeity.Element.WATER;
+import static com.zippeykeys.praisebe.deity.IDeity.Relationship.DISLIKED;
+import static com.zippeykeys.praisebe.deity.IDeity.Relationship.HATED;
+import static com.zippeykeys.praisebe.deity.IDeity.Relationship.INDIFFERENT;
+import static com.zippeykeys.praisebe.deity.IDeity.Relationship.LIKED;
+import static com.zippeykeys.praisebe.deity.IDeity.Relationship.LOVED;
 import static com.zippeykeys.praisebe.deity.IDeity.Type.CELESTIAL;
 import static com.zippeykeys.praisebe.deity.IDeity.Type.ETHEREAL;
 import static com.zippeykeys.praisebe.deity.IDeity.Type.TERRESTRIAL;
-
-import static com.zippeykeys.praisebe.deity.IDeity.Relationship.HATED;
-import static com.zippeykeys.praisebe.deity.IDeity.Relationship.DISLIKED;
-import static com.zippeykeys.praisebe.deity.IDeity.Relationship.LIKED;
-import static com.zippeykeys.praisebe.deity.IDeity.Relationship.LOVED;
-import static com.zippeykeys.praisebe.deity.IDeity.Relationship.INDIFFERENT;
 
 import lombok.experimental.UtilityClass;
 

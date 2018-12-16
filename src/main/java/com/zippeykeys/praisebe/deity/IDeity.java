@@ -22,6 +22,9 @@ public interface IDeity extends Localize {
     @NotNull
     Relationship getRelationship(IDeity other);
 
+    @NotNull
+    Relationship getRelationship(String other);
+
     @ToString
     @AllArgsConstructor
     public static enum Type implements Localize {

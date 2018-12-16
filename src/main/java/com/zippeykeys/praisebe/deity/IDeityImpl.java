@@ -41,7 +41,12 @@ public class IDeityImpl implements IDeity {
     }
 
     @Override
-    public @NotNull Relationship getRelationship(IDeity other) {
-        return Relationship.NEUTRAL;
+    public @NotNull Relationship getRelationship(IDeity deity) {
+        return getRelationship(deity.getName());
+    }
+
+    @Override
+    public @NotNull Relationship getRelationship(String deity) {
+        return relationships.get(deity);
     }
 }

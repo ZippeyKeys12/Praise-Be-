@@ -1,5 +1,7 @@
 package com.zippeykeys.praisebe.block.base;
 
+import com.zippeykeys.praisebe.item.block.ItemBlockEnum;
+
 import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.block.material.Material;
@@ -76,7 +78,7 @@ public abstract class AbstractBlockEnum<T extends Enum<T> & IStringSerializable>
 
     @Override
     public ItemBlock getItem() {
-        return null//new ItemBlockEnum<>(this);
+        return new ItemBlockEnum<>(this);
     }
 
     public T[] getValues() {

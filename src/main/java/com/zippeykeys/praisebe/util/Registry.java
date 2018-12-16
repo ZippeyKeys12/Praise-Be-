@@ -25,7 +25,7 @@ import net.minecraft.util.ResourceLocation;
 public class Registry<T> {
     protected final ImmutableSet<Class<? extends Enum<?>>> classifiers;
 
-    protected final Map<ResourceLocation, T> classes;
+    protected final Map<String, T> classes;
 
     protected final Map<Class<? extends Enum<?>>, Map<Enum<?>, Set<T>>> categorized;
 
@@ -64,6 +64,10 @@ public class Registry<T> {
     }
 
     public T register(ResourceLocation key, T value) {
+        return register(key.toString(), value);
+    }
+
+    public T register(String key, T value) {
         val previousValue = classes.put(key, value);
         for (var clazz : classifiers) {
             var type = (Enum) ClassUtil.getFieldValueByClass(value, clazz);
@@ -78,6 +82,10 @@ public class Registry<T> {
     }
 
     public T unregister(ResourceLocation key) {
+        return unregister(key.toString());
+    }
+
+    public T unregister(String key) {
         val value = classes.remove(key);
         for (var clazz : classifiers) {
             var type = dataType.cast(ClassUtil.getFieldValueByClass(value, clazz));
@@ -93,11 +101,11 @@ public class Registry<T> {
         return value;
     }
 
-    public T get(String key) {
-        return get(new ResourceLocation(key));
+    public T get(ResourceLocation key) {
+        return get(key.toString());
     }
 
-    public T get(ResourceLocation key) {
+    public T get(String key) {
         return classes.get(key);
     }
 
@@ -111,7 +119,7 @@ public class Registry<T> {
         return ImmutableSet.<T>builder().addAll(categorized.get(key.getClass()).get(key)).build();
     }
 
-    public void forEach(BiConsumer<? super ResourceLocation, ? super T> action) {
+    public void forEach(BiConsumer<? super String, ? super T> action) {
         classes.forEach(action);
     }
 }

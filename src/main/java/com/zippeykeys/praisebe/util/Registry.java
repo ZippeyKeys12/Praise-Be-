@@ -1,6 +1,7 @@
 package com.zippeykeys.praisebe.util;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -11,108 +12,99 @@ import java.util.function.BiConsumer;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
 import lombok.val;
 import lombok.var;
-import lombok.experimental.ExtensionMethod;
 import net.minecraft.util.ResourceLocation;
 
-@ExtensionMethod(ClassUtil.class)
-public class Registry<T, C> {
-    public final Set<Class<? extends T>> classifiers;
+public class Registry<T> {
+    protected final Set<Class<? extends Enum<?>>> classifiers;
 
-    public final Map<ResourceLocation, C> classes;
+    protected final Map<ResourceLocation, T> classes;
 
-    public final Map<Class<? extends T>, Map<T, Set<C>>> categorized;
+    protected final Map<Class<? extends Enum<?>>, Map<Enum<?>, Set<T>>> categorized;
 
-    private final Class<T> clazzT;
-
-    private final Class<C> clazzC;
+    public final Class<T> CLAZZ_T;
 
     @SafeVarargs
-    public static <T, C> Registry<T, C> of(Class<T> clazzT, Class<C> clazzC, Class<T>... classifiers) {
-        return new Registry<T, C>(clazzT, clazzC, classifiers);
+    @Contract("_, _ -> new")
+    public static @NotNull <T> Registry<T> of(Class<T> clazzT, Class<? extends Enum<?>>... classifiers) {
+        return new Registry<T>(clazzT, classifiers);
     }
 
     @SafeVarargs
-    public Registry(Class<T> clazzT, Class<C> clazzC, Class<? extends T>... classifiers) {
-        this.clazzT = clazzT;
-        this.clazzC = clazzC;
-        this.classifiers = ImmutableSet.<Class<? extends T>>builder().add(classifiers).build();
+    @SuppressWarnings("unchecked")
+    public Registry(Class<T> clazzT, Class<? extends Enum<?>>... classifiers) {
+        CLAZZ_T = clazzT;
+        this.classifiers = ImmutableSet.<Class<? extends Enum<?>>>builder().add(classifiers).build();
         classes = new HashMap<>();
-        val builder = ImmutableMap.<Class<? extends T>, Map<T, Set<C>>>builder();
-        for (var clazz : classifiers)
-            builder.put(clazz, new HashMap<>());
-        categorized = builder.build();
-    }
-
-    public C register(ResourceLocation key, C value) {
-        val previousValue = classes.put(key, value);
+        val builder = ImmutableMap.<Class<? extends Enum<?>>, Map<Enum<?>, Set<T>>>builder();
         for (var clazz : classifiers) {
             try {
-                var type = clazzT.cast(value.getClass().getMethod("get" + clazz.getSimpleName()).invoke(value));
-                if (type == null) {
-                    continue;
-                }
-
-                var map = categorized.get(clazz);
-                if (map.containsKey(type)) {
-                    map.get(type).add(value);
-                } else {
-                    map.put(type, new HashSet<C>() {
-                        private static final long serialVersionUID = 1L;
-
-                        {
-                            add(value);
-                        }
-                    });
-                }
-            } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException ignored) {
+                builder.put(clazz, EnumMap.class.getConstructor(Class.class).newInstance(clazz));
+            } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+                    | InvocationTargetException | NoSuchMethodException | SecurityException ignored) {
             }
+        }
+        categorized = builder.build();
+        categorized.forEach((k, v) -> {
+            for (var enumValue : k.getEnumConstants()) {
+                v.put(enumValue, new HashSet<>());
+            }
+        });
+    }
+
+    public T register(ResourceLocation key, T value) {
+        val previousValue = classes.put(key, value);
+        for (var clazz : classifiers) {
+            var type = Enum.class.cast(ClassUtil.getClassedField(value, clazz));
+            if (type == null) {
+                continue;
+            }
+
+            var map = categorized.get(clazz);
+            map.get(type).add(value);
         }
         return previousValue;
     }
 
-    public C unregister(ResourceLocation key) {
+    public T unregister(ResourceLocation key) {
         val value = classes.remove(key);
         for (var clazz : classifiers) {
-            try {
-                var type = clazzT.cast(value.getClass().getMethod("get" + clazz.getSimpleName()).invoke(value));
-                if (type == null) {
-                    continue;
-                }
-
-                var map = categorized.get(clazz);
-                var set = map.get(type);
-
-                set.remove(value);
-                if (set.isEmpty()) {
-                    map.remove(type);
-                }
-            } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException ignored) {
+            var type = CLAZZ_T.cast(ClassUtil.getClassedField(value, clazz));
+            if (type == null) {
+                continue;
             }
+
+            var map = categorized.get(clazz);
+            var set = map.get(type);
+
+            set.remove(value);
         }
         return value;
     }
 
-    public C get(String key) {
+    public T get(String key) {
         return get(new ResourceLocation(key));
     }
 
-    public C get(ResourceLocation key) {
+    public T get(ResourceLocation key) {
         return classes.get(key);
     }
 
     @SuppressWarnings("unchecked")
-    public C getRandom(T key) {
+    public T getRandom(Enum<?> key) {
         val set = getSet(key);
-        return ((C[]) set.toArray())[new Random().nextInt(set.size())];
+        return ((T[]) set.toArray())[new Random().nextInt(set.size())];
     }
 
-    public Set<C> getSet(T key) {
-        return ImmutableSet.<C>builder().addAll(categorized.get(key.getClass()).get(key)).build();
+    public Set<T> getSet(Enum<?> key) {
+        return ImmutableSet.<T>builder().addAll(categorized.get(key.getClass()).get(key)).build();
     }
 
-    public void forEach(BiConsumer<? super ResourceLocation, ? super C> action) {
+    public void forEach(BiConsumer<? super ResourceLocation, ? super T> action) {
         classes.forEach(action);
     }
 }

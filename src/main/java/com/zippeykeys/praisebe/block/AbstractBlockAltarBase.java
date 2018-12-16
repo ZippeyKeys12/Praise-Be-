@@ -2,6 +2,7 @@ package com.zippeykeys.praisebe.block;
 
 import org.jetbrains.annotations.NotNull;
 
+import lombok.Getter;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -18,10 +19,8 @@ public abstract class AbstractBlockAltarBase extends AbstractPBBlock {
         setHarvestLevel("pickaxe", 1);
     }
 
-    @Override
-    public String id() {
-        return "altar";
-    }
+    @Getter(onMethod_ = @Override)
+    private final String name = "altar";
 
     @Override
     public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos) {

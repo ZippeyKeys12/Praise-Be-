@@ -19,7 +19,8 @@ public class Util {
         }
     }
 
-    public static ResourceLocation getResource(String resourcePathIn) {
+    @Contract("_ -> new")
+    public static @NotNull ResourceLocation getResource(String resourcePathIn) {
         return new ResourceLocation(Reference.MOD_ID, resourcePathIn);
     }
 }

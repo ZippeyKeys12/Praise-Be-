@@ -21,7 +21,7 @@ public interface IDeity extends Localize {
 
     @ToString
     @AllArgsConstructor
-    public enum Type implements Localize {
+    public static enum Type implements Localize {
         TERRESTRIAL("terrestrial"), CELESTIAL("celestial"), ETHEREAL("ethereal");
 
         @Getter(onMethod_ = @Override)
@@ -42,7 +42,7 @@ public interface IDeity extends Localize {
 
     @ToString
     @AllArgsConstructor
-    public enum Element implements Localize {
+    public static enum Element implements Localize {
         AIR("air"), EARTH("earth"), FIRE("fire"), WATER("water");
 
         @Getter(onMethod_ = @Override)
@@ -63,7 +63,7 @@ public interface IDeity extends Localize {
 
     @ToString
     @AllArgsConstructor
-    public enum Alignment implements Localize {
+    public static enum Alignment implements Localize {
         GOOD("good"), NEUTRAL("neutral"), EVIL("evil");
 
         @Getter(onMethod_ = @Override)

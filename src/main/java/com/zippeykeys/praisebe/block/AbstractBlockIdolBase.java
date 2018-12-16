@@ -2,6 +2,7 @@ package com.zippeykeys.praisebe.block;
 
 import org.jetbrains.annotations.NotNull;
 
+import lombok.Getter;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -29,10 +30,8 @@ public abstract class AbstractBlockIdolBase extends AbstractPBBlock {
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
 
-    @Override
-    public String id() {
-        return "idol";
-    }
+    @Getter(onMethod_ = @Override)
+    private final String name = "idol";
 
     @Override
     public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos) {

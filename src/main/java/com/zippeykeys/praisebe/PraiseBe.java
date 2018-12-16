@@ -40,15 +40,6 @@ public class PraiseBe {
         event.getModMetadata().version = Reference.MOD_VERSION;
         PROXY.preInit(logger, event);
 
-        // TODO: Check if this runs before ModBlocks EventHandler
-        Arrays.stream(ModBlocks.class.getDeclaredFields()).filter(AccessibleObject::isAccessible).forEach(f -> {
-            try {
-                ModRegistry.BLOCKS.add((AbstractPBBlock) f.get(null));
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        });
-
         logger.info("PreInitialization Completed");
     }
 

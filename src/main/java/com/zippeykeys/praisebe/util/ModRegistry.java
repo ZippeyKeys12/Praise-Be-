@@ -31,7 +31,6 @@ public class ModRegistry {
     public static final Set<Block> BLOCKS;
 
     static {
-        // TODO: Check if this runs before ModBlocks EventHandler
         val blocks = ImmutableSet.<Block>builder();
         Arrays.stream(ModBlocks.class.getDeclaredFields()).filter(AccessibleObject::isAccessible).forEach(f -> {
             try {

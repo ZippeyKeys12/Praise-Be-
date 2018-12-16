@@ -55,23 +55,23 @@ public class PraiseBe {
         logger.info("PostInitialization Completed");
     }
 
-    public static void debug(final String messages) {
+    public static void debug(String messages) {
         logger.debug(messages);
     }
 
-    public static void info(final String messages) {
+    public static void info(String messages) {
         logger.info(messages);
     }
 
-    public static void warn(final String messages) {
+    public static void warn(String messages) {
         logger.warn(messages);
     }
 
-    public static void error(final String messages) {
+    public static void error(String messages) {
         logger.error(messages);
     }
 
-    public static void fatal(final String messages) {
+    public static void fatal(String messages) {
         logger.fatal(messages);
     }
 }

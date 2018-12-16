@@ -1,5 +1,7 @@
 package com.zippeykeys.praisebe.util;
 
+import com.zippeykeys.praisebe.PraiseBe;
+
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -10,12 +12,22 @@ public interface Localize {
     String getName();
 
     @NotNull
-    @Contract(pure = true)
-    String getUnlocalizedName();
+    String getPrefix();
 
-    @NotNull
     @Contract(pure = true)
-    String getUnlocalizedDescription();
+    default @NotNull String getUnlocalizedName() {
+        return getPrefix() + "." + getName();
+    }
+
+    @Contract(pure = true)
+    default @NotNull String getLocalizedName() {
+        return PraiseBe.PROXY.localize(getUnlocalizedName() + ".name");
+    }
+
+    @Contract(pure = true)
+    default @NotNull String getLocalizedDescription() {
+        return PraiseBe.PROXY.localize(getUnlocalizedName() + ".desc");
+    }
 
     default ResourceLocation getResource() {
         return Util.getResource(getName());

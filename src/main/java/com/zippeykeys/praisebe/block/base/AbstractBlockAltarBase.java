@@ -1,4 +1,4 @@
-package com.zippeykeys.praisebe.block;
+package com.zippeykeys.praisebe.block.base;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -15,8 +15,8 @@ public abstract class AbstractBlockAltarBase extends AbstractPBBlock {
         super(Material.ROCK);
         setHardness(1.5f);
         setResistance(6000000.0F);
-        setSoundType(SoundType.STONE);
         setHarvestLevel("pickaxe", 1);
+        setSoundType(SoundType.STONE);
     }
 
     @Getter(onMethod_ = @Override)

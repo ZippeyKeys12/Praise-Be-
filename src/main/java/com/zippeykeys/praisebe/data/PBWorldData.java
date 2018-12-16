@@ -5,11 +5,13 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
+import com.zippeykeys.praisebe.util.PlayerUtil;
 import com.zippeykeys.praisebe.util.Reference;
 
 import org.jetbrains.annotations.NotNull;
 
 import lombok.var;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
@@ -17,8 +19,9 @@ import net.minecraft.world.storage.MapStorage;
 import net.minecraft.world.storage.WorldSavedData;
 
 public class PBWorldData extends WorldSavedData {
-    private static final String ID = Reference.MOD_ID + "_Regards";
-    public Map<UUID, GodlyRegard> playerRegards = new HashMap<>();
+    public static final String ID = Reference.MOD_ID + "_Regards";
+
+    private Map<UUID, GodlyRegard> playerRegards = new HashMap<>();
 
     public static PBWorldData of(@NotNull World world) {
         MapStorage storage = world.getMapStorage();
@@ -30,12 +33,20 @@ public class PBWorldData extends WorldSavedData {
         return instance;
     }
 
-    public PBWorldData() {
-        super(ID);
+    private PBWorldData() {
+        this(ID);
     }
 
-    public PBWorldData(String id) {
+    private PBWorldData(String id) {
         super(id);
+    }
+
+    public GodlyRegard getGodlyRegard(EntityPlayer player) {
+        return getGodlyRegard(PlayerUtil.getUUID(player));
+    }
+
+    public GodlyRegard getGodlyRegard(UUID uuid) {
+        return playerRegards.get(uuid);
     }
 
     @Override
@@ -46,7 +57,7 @@ public class PBWorldData extends WorldSavedData {
             if (tagCompound == null)
                 return;
             UUID uuid = tagCompound.getUniqueId("playerID");
-            GodlyRegard regard = new GodlyRegard(uuid, this);
+            GodlyRegard regard = new GodlyRegard(Objects.requireNonNull(uuid), this);
             regard.deserializeNBT(tagCompound.getCompoundTag("regards"));
             playerRegards.put(uuid, regard);
         }

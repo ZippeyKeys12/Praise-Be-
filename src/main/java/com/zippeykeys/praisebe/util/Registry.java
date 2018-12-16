@@ -95,7 +95,6 @@ public class Registry<T> {
 
             var map = categorized.get(clazz);
             var set = map.get(type);
-
             set.remove(value);
         }
         return value;

@@ -30,14 +30,8 @@ public class IDeityImpl implements IDeity {
 
     @Override
     @Contract(pure = true)
-    public @NotNull String getUnlocalizedName() {
-        return "deity." + name + ".name";
-    }
-
-    @Override
-    @Contract(pure = true)
-    public @NotNull String getUnlocalizedDescription() {
-        return "deity." + name + ".desc";
+    public @NotNull String getPrefix() {
+        return "deity";
     }
 
     @Override

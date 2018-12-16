@@ -5,15 +5,10 @@ import java.util.Arrays;
 import org.jetbrains.annotations.NotNull;
 
 import lombok.var;
-import lombok.experimental.ExtensionMethod;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
-@ExtensionMethod(Arrays.class)
 public class EnumUtil {
-    public static <T extends Enum<T>> int getIndex(T enumVar) {
-        return getValues(enumVar).asList().indexOf(enumVar);
-    }
 
     public static <T extends Enum<T>> Enum<T> byIndex(T enumType, int index) {
         return getValues(enumType)[index];
@@ -34,10 +29,10 @@ public class EnumUtil {
 
     @SafeVarargs
     public static <T extends Enum<T>> int getUniqueIndex(@NotNull T... enums) {
-        int result = getIndex(enums[0]);
-        enums = enums.copyOfRange(1, enums.length);
+        int result = enums[0].ordinal();
+        enums = Arrays.copyOfRange(enums, 1, enums.length);
         for (var enumVar : enums) {
-            result = getIndex(enumVar) + getSize(enumVar) * result;
+            result = enumVar.ordinal() + getSize(enumVar) * result;
         }
         return result;
     }

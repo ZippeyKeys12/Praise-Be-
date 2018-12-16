@@ -6,6 +6,9 @@ import java.lang.reflect.InvocationTargetException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import lombok.experimental.UtilityClass;
+
+@UtilityClass
 public class ClassUtil {
     public static @Nullable Object getFieldValue(Field field) {
         return getFieldValue(field, null);
@@ -36,9 +39,5 @@ public class ClassUtil {
                 | SecurityException ignored) {
         }
         return null;
-    }
-
-    public static <T> T cast(@NotNull Class<T> clazz, Object obj) {
-        return clazz.cast(obj);
     }
 }

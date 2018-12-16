@@ -9,8 +9,8 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 
 import com.google.common.collect.ImmutableSet;
-import com.zippeykeys.praisebe.block.AbstractPBBlock;
 import com.zippeykeys.praisebe.block.ModBlocks;
+import com.zippeykeys.praisebe.block.base.AbstractPBBlock;
 
 import org.jetbrains.annotations.NotNull;
 

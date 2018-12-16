@@ -11,12 +11,25 @@ import lombok.experimental.UtilityClass;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.common.UsernameCache;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
 @UtilityClass
 public class PlayerUtil {
     public static @NotNull EntityPlayer getPlayer(@NotNull UUID uuid) {
         return FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUUID(uuid);
+    }
+
+    public static @NotNull UUID getUUID(@NotNull EntityPlayer player) {
+        return player.getGameProfile().getId();
+    }
+
+    public static String getUsername(EntityPlayer player) {
+        return getUsername(getUUID(player));
+    }
+
+    public static String getUsername(UUID uuid) {
+        return UsernameCache.getLastKnownUsername(uuid);
     }
 
     public List<TileEntity> getBlocksNearby(@NotNull EntityPlayer player, @NotNull World world,

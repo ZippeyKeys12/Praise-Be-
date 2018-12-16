@@ -27,7 +27,7 @@ public interface IDeity extends Localize {
 
     @ToString
     @AllArgsConstructor
-    public static enum Type implements Localize {
+    enum Type implements Localize {
         TERRESTRIAL("terrestrial"), CELESTIAL("celestial"), ETHEREAL("ethereal");
 
         @Getter(onMethod_ = @Override)
@@ -35,20 +35,14 @@ public interface IDeity extends Localize {
 
         @Override
         @Contract(pure = true)
-        public @NotNull String getUnlocalizedName() {
-            return "deity.type." + name + ".name";
-        }
-
-        @Override
-        @Contract(pure = true)
-        public @NotNull String getUnlocalizedDescription() {
-            return "deity.type." + name + ".desc";
+        public @NotNull String getPrefix() {
+            return "deity.type";
         }
     }
 
     @ToString
     @AllArgsConstructor
-    public static enum Element implements Localize {
+    enum Element implements Localize {
         AIR("air"), EARTH("earth"), FIRE("fire"), WATER("water");
 
         @Getter(onMethod_ = @Override)
@@ -56,20 +50,14 @@ public interface IDeity extends Localize {
 
         @Override
         @Contract(pure = true)
-        public @NotNull String getUnlocalizedName() {
-            return "deity.element." + name + ".name";
-        }
-
-        @Override
-        @Contract(pure = true)
-        public @NotNull String getUnlocalizedDescription() {
-            return "deity.element." + name + ".desc";
+        public @NotNull String getPrefix() {
+            return "deity.element";
         }
     }
 
     @ToString
     @AllArgsConstructor
-    public static enum Alignment implements Localize {
+    enum Alignment implements Localize {
         GOOD("good"), NEUTRAL("neutral"), EVIL("evil");
 
         @Getter(onMethod_ = @Override)
@@ -77,33 +65,22 @@ public interface IDeity extends Localize {
 
         @Override
         @Contract(pure = true)
-        public @NotNull String getUnlocalizedName() {
-            return "deity.alignment." + name + ".name";
-        }
-
-        @Override
-        @Contract(pure = true)
-        public @NotNull String getUnlocalizedDescription() {
-            return "deity.alignment." + name + ".desc";
+        public @NotNull String getPrefix() {
+            return "deity.alignment";
         }
     }
 
     @ToString
     @AllArgsConstructor
-    public static enum Relationship implements Localize {
+    enum Relationship implements Localize {
         HATED("hated"), DISLIKED("disliked"), INDIFFERENT("indifferent"), LIKED("liked"), LOVED("loved");
 
         @Getter(onMethod_ = @Override)
         private final String name;
 
         @Override
-        public @NotNull String getUnlocalizedName() {
-            return "deity.relationship." + name + ".name";
-        }
-
-        @Override
-        public @NotNull String getUnlocalizedDescription() {
-            return "deity.relationship." + name + ".desc";
+        public @NotNull String getPrefix() {
+            return "deity.relationship";
         }
     }
 }

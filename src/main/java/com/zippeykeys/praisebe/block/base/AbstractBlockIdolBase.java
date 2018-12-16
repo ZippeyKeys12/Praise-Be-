@@ -1,14 +1,19 @@
-package com.zippeykeys.praisebe.block;
+package com.zippeykeys.praisebe.block.base;
+
+import com.zippeykeys.praisebe.block.tile.base.AbstractTileEntityIdolBase;
 
 import org.jetbrains.annotations.NotNull;
 
 import lombok.Getter;
+import lombok.val;
+import lombok.var;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
@@ -25,13 +30,50 @@ public abstract class AbstractBlockIdolBase extends AbstractPBBlock {
         super(Material.ROCK);
         setHardness(1.5f);
         setResistance(6000000.0F);
-        setSoundType(SoundType.STONE);
         setHarvestLevel("pickaxe", 1);
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+        setSoundType(SoundType.STONE);
     }
 
     @Getter(onMethod_ = @Override)
     private final String name = "idol";
+
+    @Override
+    public @NotNull IBlockState getStateForPlacement(@NotNull World world, @NotNull BlockPos pos,
+            @NotNull EnumFacing facing, float hitX, float hitY, float hitZ, int meta, @NotNull EntityLivingBase placer,
+            EnumHand hand) {
+        return getDefaultState().withProperty(FACING, facing);
+    }
+
+    @Override
+    public @NotNull IBlockState getActualState(@NotNull IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+        var facing = EnumFacing.NORTH;
+        val tile = worldIn.getTileEntity(pos);
+        val tileClazz = getTileEntity();
+        if (tileClazz.isInstance(tile)) {
+            facing = EnumFacing.getFront(tileClazz.cast(tile).getFacing());
+        }
+        return state.withProperty(FACING, facing);
+    }
+
+    @Override
+    public @NotNull IBlockState getStateFromMeta(int meta) {
+        var enumFacing = EnumFacing.getFront(meta);
+        if (enumFacing.getAxis() == EnumFacing.Axis.Y) {
+            enumFacing = EnumFacing.NORTH;
+        }
+        return getDefaultState().withProperty(FACING, enumFacing);
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state) {
+        return state.getValue(FACING).getIndex();
+    }
+
+    @Override
+    public int damageDropped(IBlockState state) {
+        return getMetaFromState(state);
+    }
 
     @Override
     public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos) {
@@ -54,20 +96,6 @@ public abstract class AbstractBlockIdolBase extends AbstractPBBlock {
     }
 
     @Override
-    public int getMetaFromState(IBlockState state) {
-        return state.getValue(FACING).getIndex();
-    }
-
-    @Override
-    public @NotNull IBlockState getStateFromMeta(int meta) {
-        EnumFacing enumfacing = EnumFacing.getFront(meta);
-        if (enumfacing.getAxis() == EnumFacing.Axis.Y) {
-            enumfacing = EnumFacing.NORTH;
-        }
-        return getDefaultState().withProperty(FACING, enumfacing);
-    }
-
-    @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
             EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         TileEntity self = worldIn.getTileEntity(pos);
@@ -79,6 +107,11 @@ public abstract class AbstractBlockIdolBase extends AbstractPBBlock {
 
     @Override
     protected @NotNull BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, FACING);
+        return new BlockStateContainer.Builder(this) //
+                .add(FACING) //
+                .build();
     }
+
+    @Override
+    public abstract Class<? extends AbstractTileEntityIdolBase> getTileEntity();
 }

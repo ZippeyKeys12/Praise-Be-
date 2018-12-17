@@ -1,6 +1,7 @@
 package com.zippeykeys.praisebe;
 
 import com.zippeykeys.praisebe.proxy.IProxy;
+import com.zippeykeys.praisebe.registry.DeityRegistry;
 import com.zippeykeys.praisebe.util.Reference;
 
 import org.apache.logging.log4j.Logger;
@@ -47,10 +48,13 @@ public class PraiseBe {
     }
 
     @EventHandler
+    @SuppressWarnings("deprecation")
     public void postInit(FMLPostInitializationEvent event) {
         logger.info("Starting PostInitialization");
 
         PROXY.postInit(logger, event);
+        DeityRegistry.DEITIES.getValues() //
+                .forEach(DeityRegistry.INSTANCE::register);
 
         logger.info("PostInitialization Completed");
     }

@@ -54,8 +54,10 @@ public class Deity extends IForgeRegistryEntry.Impl<Deity> implements Localize {
 
     @ToString
     @AllArgsConstructor
-    enum Type implements Localize {
-        TERRESTRIAL("terrestrial"), CELESTIAL("celestial"), ETHEREAL("ethereal");
+    public enum Type implements Localize {
+        TERRESTRIAL("terrestrial"), //
+        CELESTIAL("celestial"), //
+        ETHEREAL("ethereal");
 
         @Getter(onMethod_ = @Override)
         private final String name;
@@ -69,8 +71,11 @@ public class Deity extends IForgeRegistryEntry.Impl<Deity> implements Localize {
 
     @ToString
     @AllArgsConstructor
-    enum Element implements Localize {
-        AIR("air"), EARTH("earth"), FIRE("fire"), WATER("water");
+    public enum Element implements Localize {
+        AIR("air"), //
+        EARTH("earth"), //
+        FIRE("fire"), //
+        WATER("water");
 
         @Getter(onMethod_ = @Override)
         private final String name;
@@ -84,8 +89,10 @@ public class Deity extends IForgeRegistryEntry.Impl<Deity> implements Localize {
 
     @ToString
     @AllArgsConstructor
-    enum Alignment implements Localize {
-        GOOD("good"), NEUTRAL("neutral"), EVIL("evil");
+    public enum Alignment implements Localize {
+        GOOD("good"), //
+        NEUTRAL("neutral"), //
+        EVIL("evil");
 
         @Getter(onMethod_ = @Override)
         private final String name;
@@ -99,13 +106,18 @@ public class Deity extends IForgeRegistryEntry.Impl<Deity> implements Localize {
 
     @ToString
     @AllArgsConstructor
-    enum Relationship implements Localize {
-        HATED("hated"), DISLIKED("disliked"), INDIFFERENT("indifferent"), LIKED("liked"), LOVED("loved");
+    public enum Relationship implements Localize {
+        HATED("hated"), //
+        DISLIKED("disliked"), //
+        INDIFFERENT("indifferent"), //
+        LIKED("liked"), //
+        LOVED("loved");
 
         @Getter(onMethod_ = @Override)
         private final String name;
 
         @Override
+        @Contract(pure = true)
         public @NotNull String getPrefix() {
             return "deity.relationship";
         }

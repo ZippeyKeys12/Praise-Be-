@@ -60,13 +60,19 @@ public class ModRegistry {
                 .filter(Objects::nonNull) //
                 .map(AbstractPBBlock::getTileEntity) //
                 .filter(Objects::nonNull) //
-                .forEach(tilentity -> GameRegistry.registerTileEntity(tilentity, (ResourceLocation) Objects
-                        .requireNonNull(ClassUtil.callDeclaredMethod(tilentity, "getResource"))));
+                .forEach(tilentity -> GameRegistry.registerTileEntity(tilentity,
+                        (ResourceLocation) Objects.requireNonNull(ClassUtil.callDeclaredMethod(tilentity, "getResource",
+                                ClassUtil.newInstance(tilentity)))));
     }
 
     @SubscribeEvent
-    public static void registerItemBlocks(@NotNull Register<Item> event) {
+    public static void registerItems(@NotNull Register<Item> event) {
         register(event, BlockUtil::itemFromBlock, BLOCKS);
+    }
+
+    @SubscribeEvent
+    public static void registerDeities(@NotNull Register<Deity> event) {
+        register(event, DEITIES);
     }
 
     public static <T extends IForgeRegistryEntry<T>, R extends IForgeRegistryEntry<R>> void register(

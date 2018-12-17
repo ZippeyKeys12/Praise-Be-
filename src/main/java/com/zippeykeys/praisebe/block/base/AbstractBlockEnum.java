@@ -1,7 +1,9 @@
 package com.zippeykeys.praisebe.block.base;
 
+import com.zippeykeys.praisebe.block.tile.base.AbstractPBTileEntity;
 import com.zippeykeys.praisebe.item.block.ItemBlockEnum;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.block.material.Material;
@@ -20,6 +22,23 @@ public abstract class AbstractBlockEnum<T extends Enum<T> & IStringSerializable>
     private final T[] values;
 
     private final PropertyEnum<T> property;
+
+    @Contract(pure = true)
+    public static @NotNull <T extends Enum<T> & IStringSerializable> AbstractBlockEnum<T> of(String name,
+            Material materialIn, Class<T> clazz, Class<? extends AbstractPBTileEntity> tileClass) {
+        return of(name, materialIn, clazz, tileClass, "type");
+    }
+
+    @Contract(value = "_, _, _, _, _ -> new", pure = true)
+    public static @NotNull <T extends Enum<T> & IStringSerializable> AbstractBlockEnum<T> of(String name,
+            Material materialIn, Class<T> clazz, Class<? extends AbstractPBTileEntity> tileClass, String propertyName) {
+        return new AbstractBlockEnum<T>(name, materialIn, clazz, propertyName) {
+            @Override
+            public Class<? extends AbstractPBTileEntity> getTileEntity() {
+                return tileClass;
+            }
+        };
+    }
 
     public AbstractBlockEnum(String name, Material materialIn, Class<T> clazz) {
         this(name, materialIn, clazz, "type");

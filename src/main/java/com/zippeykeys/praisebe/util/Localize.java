@@ -5,11 +5,10 @@ import com.zippeykeys.praisebe.PraiseBe;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
 
-public interface Localize {
-    @NotNull
-    String getName();
+public interface Localize extends IStringSerializable {
 
     @NotNull
     String getPrefix();

@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
+@SuppressWarnings("deprecation")
 public class ServerProxy implements IProxy {
     @Override
     public void preInit(Logger logger, FMLPreInitializationEvent event) {
@@ -30,7 +31,6 @@ public class ServerProxy implements IProxy {
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public String localize(String key, Object... format) {
         return I18n.translateToLocalFormatted(key, format);
     }

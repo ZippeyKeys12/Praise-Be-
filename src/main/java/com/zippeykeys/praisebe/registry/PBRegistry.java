@@ -1,4 +1,4 @@
-package com.zippeykeys.praisebe.util;
+package com.zippeykeys.praisebe.registry;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.EnumMap;
@@ -11,8 +11,8 @@ import java.util.function.BiConsumer;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
-import com.zippeykeys.praisebe.deity.DeityRegistry;
 import com.zippeykeys.praisebe.deity.Deity;
+import com.zippeykeys.praisebe.util.ClassUtil;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;

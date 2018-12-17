@@ -1,4 +1,4 @@
-package com.zippeykeys.praisebe.deity;
+package com.zippeykeys.praisebe.registry;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -8,7 +8,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import com.google.common.collect.ImmutableMap;
-import com.zippeykeys.praisebe.util.PBRegistry;
+import com.zippeykeys.praisebe.deity.Deity;
 import com.zippeykeys.praisebe.util.Reference;
 import com.zippeykeys.praisebe.util.Util;
 
@@ -23,16 +23,16 @@ import net.minecraftforge.registries.RegistryBuilder;
 @EventBusSubscriber(modid = Reference.MOD_ID)
 public class DeityRegistry extends PBRegistry<Deity> {
     public static final DeityRegistry INSTANCE = new DeityRegistry();
+
     public static IForgeRegistry<Deity> DEITIES;
 
     @SubscribeEvent
     public static void registerRegistries(@NotNull RegistryEvent.NewRegistry event) {
-        new RegistryBuilder<Deity>() //
+        DEITIES = new RegistryBuilder<Deity>() //
                 .setName(Util.getResource("deities")) //
                 .setIDRange(0, Short.MAX_VALUE) //
                 .setType(Deity.class) //
-                .create().getValues().stream() //
-                .forEach(x -> INSTANCE.register(x));
+                .create();
     }
 
     public DeityRegistry() {

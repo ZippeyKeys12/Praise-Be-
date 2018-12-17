@@ -12,6 +12,7 @@ import static com.zippeykeys.praisebe.deity.Deity.Relationship.HATED;
 import static com.zippeykeys.praisebe.deity.Deity.Relationship.INDIFFERENT;
 import static com.zippeykeys.praisebe.deity.Deity.Relationship.LIKED;
 import static com.zippeykeys.praisebe.deity.Deity.Relationship.LOVED;
+import static com.zippeykeys.praisebe.deity.Deity.Relationship.SELF;
 import static com.zippeykeys.praisebe.deity.Deity.Type.CELESTIAL;
 import static com.zippeykeys.praisebe.deity.Deity.Type.ETHEREAL;
 import static com.zippeykeys.praisebe.deity.Deity.Type.TERRESTRIAL;
@@ -24,9 +25,9 @@ public class ModDeities {
         // Air //
         public static final Deity ZEUS = Deity.builder() //
                 .name("zeus") //
-                .type(CELESTIAL) //
                 .element(AIR) //
                 .alignment(EVIL) //
+                .relationship("zeus", SELF) //
                 .relationship("odin", HATED) //
                 .relationship("amun", LIKED) //
                 .relationship("tlaloc", INDIFFERENT) //
@@ -46,6 +47,7 @@ public class ModDeities {
                 .element(AIR) //
                 .alignment(GOOD) //
                 .relationship("zeus", HATED) //
+                .relationship("odin", SELF) //
                 .relationship("amun", INDIFFERENT) //
                 .relationship("tlaloc", LIKED) //
                 .relationship("huracan", DISLIKED) //
@@ -65,6 +67,7 @@ public class ModDeities {
                 .alignment(GOOD) //
                 .relationship("zeus", LIKED) //
                 .relationship("odin", INDIFFERENT) //
+                .relationship("amun", SELF) //
                 .relationship("tlaloc", DISLIKED) //
                 .relationship("huracan", INDIFFERENT) //
                 .relationship("demeter", INDIFFERENT) //
@@ -85,6 +88,7 @@ public class ModDeities {
                 .relationship("zeus", INDIFFERENT) //
                 .relationship("odin", LIKED) //
                 .relationship("amun", LIKED) //
+                .relationship("tlaloc", SELF) //
                 .relationship("huracan", INDIFFERENT) //
                 .relationship("demeter", LIKED) //
                 .relationship("ra", DISLIKED) //
@@ -104,6 +108,7 @@ public class ModDeities {
                 .relationship("odin", INDIFFERENT) //
                 .relationship("amun", HATED) //
                 .relationship("tlaloc", LIKED) //
+                .relationship("huracan", SELF) //
                 .relationship("demeter", LIKED) //
                 .relationship("ra", HATED) //
                 .relationship("apollo", INDIFFERENT) //
@@ -123,6 +128,7 @@ public class ModDeities {
                 .relationship("amun", DISLIKED) //
                 .relationship("tlaloc", HATED) //
                 .relationship("huracan", INDIFFERENT) //
+                .relationship("demeter", SELF) //
                 .relationship("ra", LIKED) //
                 .relationship("apollo", LOVED) //
                 .relationship("amaterasu", HATED) //
@@ -143,6 +149,7 @@ public class ModDeities {
                 .relationship("tlaloc", DISLIKED) //
                 .relationship("huracan", HATED) //
                 .relationship("demeter", LIKED) //
+                .relationship("ra", SELF) //
                 .relationship("apollo", LIKED) //
                 .relationship("amaterasu", LIKED) //
                 .relationship("wirnpa", INDIFFERENT) //
@@ -162,6 +169,7 @@ public class ModDeities {
                 .relationship("huracan", DISLIKED) //
                 .relationship("demeter", DISLIKED) //
                 .relationship("ra", LIKED) //
+                .relationship("apollo", SELF) //
                 .relationship("amaterasu", LIKED) //
                 .relationship("wirnpa", LIKED) //
                 .relationship("thor", HATED) //
@@ -181,6 +189,7 @@ public class ModDeities {
                 .relationship("demeter", HATED) //
                 .relationship("ra", LOVED) //
                 .relationship("apollo", DISLIKED) //
+                .relationship("amaterasu", SELF) //
                 .relationship("wirnpa", DISLIKED) //
                 .relationship("thor", LIKED) //
                 .relationship("baal", HATED) //
@@ -201,6 +210,7 @@ public class ModDeities {
                 .relationship("ra", LIKED) //
                 .relationship("apollo", DISLIKED) //
                 .relationship("amaterasu", INDIFFERENT) //
+                .relationship("wirnpa", SELF) //
                 .relationship("thor", LIKED) //
                 .relationship("baal", LIKED) //
                 .build(); //
@@ -220,6 +230,7 @@ public class ModDeities {
                 .relationship("apollo", HATED) //
                 .relationship("amaterasu", LOVED) //
                 .relationship("wirnpa", LIKED) //
+                .relationship("thor", SELF) //
                 .relationship("baal", DISLIKED) //
                 .build(); //
 
@@ -239,6 +250,7 @@ public class ModDeities {
                 .relationship("amaterasu", HATED) //
                 .relationship("wirnpa", LIKED) //
                 .relationship("thor", DISLIKED) //
+                .relationship("baal", SELF) //
                 .build(); //
     }
 

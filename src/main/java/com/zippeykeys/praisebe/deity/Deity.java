@@ -111,7 +111,8 @@ public class Deity extends IForgeRegistryEntry.Impl<Deity> implements Localize {
         DISLIKED("disliked"), //
         INDIFFERENT("indifferent"), //
         LIKED("liked"), //
-        LOVED("loved");
+        LOVED("loved"), //
+        SELF("self");
 
         @Getter(onMethod_ = @Override)
         private final String name;

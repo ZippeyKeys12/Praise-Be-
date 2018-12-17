@@ -92,6 +92,7 @@ deity.relationship.disliked.name=Disliked
 deity.relationship.indifferent.name=Neutral
 deity.relationship.liked.name=Liked
 deity.relationship.loved.name=Loved
+deity.relationship.self.name=Self
 
 ########################################
 ############# Creative Tabs ############

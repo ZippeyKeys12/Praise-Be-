@@ -2,6 +2,7 @@ package com.zippeykeys.praisebe.proxy;
 
 import org.apache.logging.log4j.Logger;
 
+import net.minecraft.world.World;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -25,4 +26,6 @@ public interface IProxy {
     String localize(String translateKey, Object... parameters);
 
     Side getPhysicalSide();
+
+    World getWorld();
 }

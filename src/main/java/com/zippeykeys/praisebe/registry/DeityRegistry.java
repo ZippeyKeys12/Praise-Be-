@@ -56,16 +56,4 @@ public class DeityRegistry extends PBRegistry<Deity> {
                 .filter(Objects::nonNull) //
                 .toArray(Deity[]::new);
     }
-
-    public Set<String> keySet() {
-        return entries().keySet();
-    }
-
-    public Collection<Deity> values() {
-        return entries().values();
-    }
-
-    public Map<String, Deity> entries() {
-        return ImmutableMap.<String, Deity>builder().putAll(classes).build();
-    }
 }

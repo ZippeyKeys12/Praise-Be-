@@ -6,10 +6,15 @@ import org.jetbrains.annotations.NotNull;
 import lombok.experimental.UtilityClass;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 
 @UtilityClass
 public class Util {
+    public static Side getEffectiveSide() {
+        return FMLCommonHandler.instance().getEffectiveSide();
+    }
+
     @Contract(pure = true)
     public static Side getLogicalSide(@NotNull World world) {
         if (world.isRemote) {
@@ -17,6 +22,10 @@ public class Util {
         } else {
             return Side.SERVER;
         }
+    }
+
+    public static World getWorld() {
+        return FMLCommonHandler.instance().getMinecraftServerInstance().getEntityWorld();
     }
 
     @Contract("_ -> new")

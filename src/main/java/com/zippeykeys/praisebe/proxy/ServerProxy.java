@@ -3,6 +3,8 @@ package com.zippeykeys.praisebe.proxy;
 import org.apache.logging.log4j.Logger;
 
 import net.minecraft.util.text.translation.I18n;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -38,5 +40,10 @@ public class ServerProxy implements IProxy {
     @Override
     public Side getPhysicalSide() {
         return Side.SERVER;
+    }
+
+    @Override
+    public World getWorld() {
+        return FMLCommonHandler.instance().getMinecraftServerInstance().getEntityWorld();
     }
 }

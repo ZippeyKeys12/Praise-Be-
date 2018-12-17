@@ -118,6 +118,18 @@ public class PBRegistry<T> {
         return ImmutableSet.<T>builder().addAll(categorized.get(key.getClass()).get(key)).build();
     }
 
+    public ImmutableMap<String, T> entries() {
+        return ImmutableMap.<String, T>builder().putAll(classes).build();
+    }
+
+    public ImmutableSet<String> keySet() {
+        return ImmutableSet.<String>builder().addAll(classes.keySet()).build();
+    }
+
+    public ImmutableSet<T> values() {
+        return ImmutableSet.<T>builder().addAll(classes.values()).build();
+    }
+
     public void forEach(BiConsumer<? super String, ? super T> action) {
         classes.forEach(action);
     }

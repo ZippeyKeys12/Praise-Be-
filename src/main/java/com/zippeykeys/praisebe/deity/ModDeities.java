@@ -1,20 +1,20 @@
 package com.zippeykeys.praisebe.deity;
 
-import static com.zippeykeys.praisebe.deity.IDeity.Alignment.EVIL;
-import static com.zippeykeys.praisebe.deity.IDeity.Alignment.GOOD;
-import static com.zippeykeys.praisebe.deity.IDeity.Alignment.NEUTRAL;
-import static com.zippeykeys.praisebe.deity.IDeity.Element.AIR;
-import static com.zippeykeys.praisebe.deity.IDeity.Element.EARTH;
-import static com.zippeykeys.praisebe.deity.IDeity.Element.FIRE;
-import static com.zippeykeys.praisebe.deity.IDeity.Element.WATER;
-import static com.zippeykeys.praisebe.deity.IDeity.Relationship.DISLIKED;
-import static com.zippeykeys.praisebe.deity.IDeity.Relationship.HATED;
-import static com.zippeykeys.praisebe.deity.IDeity.Relationship.INDIFFERENT;
-import static com.zippeykeys.praisebe.deity.IDeity.Relationship.LIKED;
-import static com.zippeykeys.praisebe.deity.IDeity.Relationship.LOVED;
-import static com.zippeykeys.praisebe.deity.IDeity.Type.CELESTIAL;
-import static com.zippeykeys.praisebe.deity.IDeity.Type.ETHEREAL;
-import static com.zippeykeys.praisebe.deity.IDeity.Type.TERRESTRIAL;
+import static com.zippeykeys.praisebe.deity.Deity.Alignment.EVIL;
+import static com.zippeykeys.praisebe.deity.Deity.Alignment.GOOD;
+import static com.zippeykeys.praisebe.deity.Deity.Alignment.NEUTRAL;
+import static com.zippeykeys.praisebe.deity.Deity.Element.AIR;
+import static com.zippeykeys.praisebe.deity.Deity.Element.EARTH;
+import static com.zippeykeys.praisebe.deity.Deity.Element.FIRE;
+import static com.zippeykeys.praisebe.deity.Deity.Element.WATER;
+import static com.zippeykeys.praisebe.deity.Deity.Relationship.DISLIKED;
+import static com.zippeykeys.praisebe.deity.Deity.Relationship.HATED;
+import static com.zippeykeys.praisebe.deity.Deity.Relationship.INDIFFERENT;
+import static com.zippeykeys.praisebe.deity.Deity.Relationship.LIKED;
+import static com.zippeykeys.praisebe.deity.Deity.Relationship.LOVED;
+import static com.zippeykeys.praisebe.deity.Deity.Type.CELESTIAL;
+import static com.zippeykeys.praisebe.deity.Deity.Type.ETHEREAL;
+import static com.zippeykeys.praisebe.deity.Deity.Type.TERRESTRIAL;
 
 import lombok.experimental.UtilityClass;
 
@@ -22,7 +22,7 @@ import lombok.experimental.UtilityClass;
 public class ModDeities {
     public static class Celestial {
         // Air //
-        public static final IDeity ZEUS = IDeityImpl.builder() //
+        public static final Deity ZEUS = Deity.builder() //
                 .name("zeus") //
                 .type(CELESTIAL) //
                 .element(AIR) //
@@ -40,7 +40,7 @@ public class ModDeities {
                 .relationship("baal", INDIFFERENT) //
                 .build(); //
 
-        public static final IDeity ODIN = IDeityImpl.builder() //
+        public static final Deity ODIN = Deity.builder() //
                 .name("odin") //
                 .type(CELESTIAL) //
                 .element(AIR) //
@@ -58,7 +58,7 @@ public class ModDeities {
                 .relationship("baal", DISLIKED) //
                 .build(); //
 
-        public static final IDeity AMUN = IDeityImpl.builder() //
+        public static final Deity AMUN = Deity.builder() //
                 .name("amun") //
                 .type(CELESTIAL) //
                 .element(AIR) //
@@ -77,7 +77,7 @@ public class ModDeities {
                 .build(); //
 
         // Earth //
-        public static final IDeity TLALOC = IDeityImpl.builder() //
+        public static final Deity TLALOC = Deity.builder() //
                 .name("tlaloc") //
                 .type(CELESTIAL) //
                 .element(EARTH) //
@@ -95,7 +95,7 @@ public class ModDeities {
                 .relationship("baal", INDIFFERENT) //
                 .build(); //
 
-        public static final IDeity HURACAN = IDeityImpl.builder() //
+        public static final Deity HURACAN = Deity.builder() //
                 .name("huracan") //
                 .type(CELESTIAL) //
                 .element(EARTH) //
@@ -113,7 +113,7 @@ public class ModDeities {
                 .relationship("baal", LOVED) //
                 .build(); //
 
-        public static final IDeity DEMETER = IDeityImpl.builder() //
+        public static final Deity DEMETER = Deity.builder() //
                 .name("demeter") //
                 .type(CELESTIAL) //
                 .element(EARTH) //
@@ -132,7 +132,7 @@ public class ModDeities {
                 .build(); //
 
         // Fire //
-        public static final IDeity RA = IDeityImpl.builder() //
+        public static final Deity RA = Deity.builder() //
                 .name("ra") //
                 .type(CELESTIAL) //
                 .element(FIRE) //
@@ -150,7 +150,7 @@ public class ModDeities {
                 .relationship("baal", DISLIKED) //
                 .build(); //
 
-        public static final IDeity APOLLO = IDeityImpl.builder() //
+        public static final Deity APOLLO = Deity.builder() //
                 .name("apollo") //
                 .type(CELESTIAL) //
                 .element(FIRE) //
@@ -168,7 +168,7 @@ public class ModDeities {
                 .relationship("baal", INDIFFERENT) //
                 .build(); //
 
-        public static final IDeity AMATERASU = IDeityImpl.builder() //
+        public static final Deity AMATERASU = Deity.builder() //
                 .name("amaterasu") //
                 .type(CELESTIAL) //
                 .element(FIRE) //
@@ -187,7 +187,7 @@ public class ModDeities {
                 .build(); //
 
         // Water //
-        public static final IDeity WIRNPA = IDeityImpl.builder() //
+        public static final Deity WIRNPA = Deity.builder() //
                 .name("wirnpa") //
                 .type(CELESTIAL) //
                 .element(WATER) //
@@ -205,7 +205,7 @@ public class ModDeities {
                 .relationship("baal", LIKED) //
                 .build(); //
 
-        public static final IDeity THOR = IDeityImpl.builder() //
+        public static final Deity THOR = Deity.builder() //
                 .name("thor") //
                 .type(CELESTIAL) //
                 .element(WATER) //
@@ -223,7 +223,7 @@ public class ModDeities {
                 .relationship("baal", DISLIKED) //
                 .build(); //
 
-        public static final IDeity BAAL = IDeityImpl.builder() //
+        public static final Deity BAAL = Deity.builder() //
                 .name("baal") //
                 .type(CELESTIAL) //
                 .element(WATER) //
@@ -244,21 +244,21 @@ public class ModDeities {
 
     public static class Terrestrial {
         // Air //
-        public static final IDeity MORRIGAN = IDeityImpl.builder() //
+        public static final Deity MORRIGAN = Deity.builder() //
                 .name("morrigan") //
                 .type(TERRESTRIAL) //
                 .element(AIR) //
                 .alignment(NEUTRAL) //
                 .build(); //
 
-        public static final IDeity NJORD = IDeityImpl.builder() //
+        public static final Deity NJORD = Deity.builder() //
                 .name("njord") //
                 .type(TERRESTRIAL) //
                 .element(AIR) //
                 .alignment(NEUTRAL) //
                 .build(); //
 
-        public static final IDeity TEZCCATLIPOCA = IDeityImpl.builder() //
+        public static final Deity TEZCCATLIPOCA = Deity.builder() //
                 .name("tezc") //
                 .type(TERRESTRIAL) //
                 .element(AIR) //
@@ -266,21 +266,21 @@ public class ModDeities {
                 .build(); //
 
         // Earth //
-        public static final IDeity DAGDA = IDeityImpl.builder() //
+        public static final Deity DAGDA = Deity.builder() //
                 .name("dagda") //
                 .type(TERRESTRIAL) //
                 .element(EARTH) //
                 .alignment(GOOD) //
                 .build(); //
 
-        public static final IDeity PAN = IDeityImpl.builder() //
+        public static final Deity PAN = Deity.builder() //
                 .name("pan") //
                 .type(TERRESTRIAL) //
                 .element(EARTH) //
                 .alignment(EVIL) //
                 .build(); //
 
-        public static final IDeity DAGON = IDeityImpl.builder() //
+        public static final Deity DAGON = Deity.builder() //
                 .name("dagon") //
                 .type(TERRESTRIAL) //
                 .element(EARTH) //
@@ -288,21 +288,21 @@ public class ModDeities {
                 .build(); //
 
         // Fire //
-        public static final IDeity HEPHAESTUS = IDeityImpl.builder() //
+        public static final Deity HEPHAESTUS = Deity.builder() //
                 .name("heph") //
                 .type(TERRESTRIAL) //
                 .element(FIRE) //
                 .alignment(NEUTRAL) //
                 .build(); //
 
-        public static final IDeity GRANNUS = IDeityImpl.builder() //
+        public static final Deity GRANNUS = Deity.builder() //
                 .name("grannus") //
                 .type(TERRESTRIAL) //
                 .element(FIRE) //
                 .alignment(GOOD) //
                 .build(); //
 
-        public static final IDeity XIUHTECUHTLI = IDeityImpl.builder() //
+        public static final Deity XIUHTECUHTLI = Deity.builder() //
                 .name("xiuh") //
                 .type(TERRESTRIAL) //
                 .element(FIRE) //
@@ -310,21 +310,21 @@ public class ModDeities {
                 .build(); //
 
         // Water //
-        public static final IDeity POSEIDON = IDeityImpl.builder() //
+        public static final Deity POSEIDON = Deity.builder() //
                 .name("poseidon") //
                 .type(TERRESTRIAL) //
                 .element(WATER) //
                 .alignment(NEUTRAL) //
                 .build(); //
 
-        public static final IDeity SIRONA = IDeityImpl.builder() //
+        public static final Deity SIRONA = Deity.builder() //
                 .name("sirona") //
                 .type(TERRESTRIAL) //
                 .element(WATER) //
                 .alignment(GOOD) //
                 .build(); //
 
-        public static final IDeity LOTAN = IDeityImpl.builder() //
+        public static final Deity LOTAN = Deity.builder() //
                 .name("lotan") //
                 .type(TERRESTRIAL) //
                 .element(WATER) //
@@ -334,21 +334,21 @@ public class ModDeities {
 
     public static class Ethereal {
         // Air //
-        public static final IDeity NYARLATHOTEP = IDeityImpl.builder() //
+        public static final Deity NYARLATHOTEP = Deity.builder() //
                 .name("nyar") //
                 .type(ETHEREAL) //
                 .element(AIR) //
                 .alignment(EVIL) //
                 .build(); //
 
-        public static final IDeity FUJIN = IDeityImpl.builder() //
+        public static final Deity FUJIN = Deity.builder() //
                 .name("fujin") //
                 .type(ETHEREAL) //
                 .element(AIR) //
                 .alignment(EVIL) //
                 .build(); //
 
-        public static final IDeity RAIJIN = IDeityImpl.builder() //
+        public static final Deity RAIJIN = Deity.builder() //
                 .name("raijin") //
                 .type(ETHEREAL) //
                 .element(AIR) //
@@ -356,21 +356,21 @@ public class ModDeities {
                 .build(); //
 
         // Earth //
-        public static final IDeity SHUB_NIGGURATH = IDeityImpl.builder() //
+        public static final Deity SHUB_NIGGURATH = Deity.builder() //
                 .name("shub") //
                 .type(ETHEREAL) //
                 .element(EARTH) //
                 .alignment(NEUTRAL) //
                 .build(); //
 
-        public static final IDeity ATUM = IDeityImpl.builder() //
+        public static final Deity ATUM = Deity.builder() //
                 .name("atum") //
                 .type(ETHEREAL) //
                 .element(EARTH) //
                 .alignment(NEUTRAL) //
                 .build(); //
 
-        public static final IDeity ANUBIS = IDeityImpl.builder() //
+        public static final Deity ANUBIS = Deity.builder() //
                 .name("anubis") //
                 .type(ETHEREAL) //
                 .element(EARTH) //
@@ -378,21 +378,21 @@ public class ModDeities {
                 .build(); //
 
         // Fire //
-        public static final IDeity HADES = IDeityImpl.builder() //
+        public static final Deity HADES = Deity.builder() //
                 .name("hades") //
                 .type(ETHEREAL) //
                 .element(FIRE) //
                 .alignment(EVIL) //
                 .build(); //
 
-        public static final IDeity MOLOCH = IDeityImpl.builder() //
+        public static final Deity MOLOCH = Deity.builder() //
                 .name("moloch") //
                 .type(ETHEREAL) //
                 .element(FIRE) //
                 .alignment(EVIL) //
                 .build(); //
 
-        public static final IDeity PEKELNYBOG = IDeityImpl.builder() //
+        public static final Deity PEKELNYBOG = Deity.builder() //
                 .name("pekel") //
                 .type(ETHEREAL) //
                 .element(FIRE) //
@@ -400,21 +400,21 @@ public class ModDeities {
                 .build(); //
 
         // Water //
-        public static final IDeity CTHULU = IDeityImpl.builder() //
+        public static final Deity CTHULU = Deity.builder() //
                 .name("cthulu") //
                 .type(ETHEREAL) //
                 .element(WATER) //
                 .alignment(EVIL) //
                 .build(); //
 
-        public static final IDeity OSIRIS = IDeityImpl.builder() //
+        public static final Deity OSIRIS = Deity.builder() //
                 .name("osiris") //
                 .type(ETHEREAL) //
                 .element(WATER) //
                 .alignment(NEUTRAL) //
                 .build(); //
 
-        public static final IDeity CHARON = IDeityImpl.builder() //
+        public static final Deity CHARON = Deity.builder() //
                 .name("charon") //
                 .type(ETHEREAL) //
                 .element(WATER) //

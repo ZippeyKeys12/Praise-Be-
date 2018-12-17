@@ -1,29 +1,56 @@
 package com.zippeykeys.praisebe.deity;
 
+import com.google.common.collect.ImmutableMap;
 import com.zippeykeys.praisebe.util.Localize;
+import com.zippeykeys.praisebe.util.Util;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.Singular;
 import lombok.ToString;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
-public interface IDeity extends Localize {
-    @NotNull
-    Type getType();
+@Builder(toBuilder = true)
+public class Deity extends IForgeRegistryEntry.Impl<Deity> implements Localize {
+    @Getter(onMethod_ = @Override)
+    private String name;
 
-    @NotNull
-    Element getElement();
+    private Type type;
 
-    @NotNull
-    Alignment getAlignment();
+    private Element element;
 
-    @NotNull
-    Relationship getRelationship(IDeity other);
+    private Alignment alignment;
 
-    @NotNull
-    Relationship getRelationship(String other);
+    @Singular
+    private ImmutableMap<String, Relationship> relationships;
+
+    public Deity(String name, Type type, Element element, Alignment alignment,
+            ImmutableMap<String, Relationship> relationships) {
+        this.name = name;
+        this.type = type;
+        this.element = element;
+        this.alignment = alignment;
+        this.relationships = relationships;
+        setRegistryName(Util.getResource(name));
+    }
+
+    @Override
+    @Contract(pure = true)
+    public @NotNull String getPrefix() {
+        return "deity";
+    }
+
+    public @NotNull Relationship getRelationship(Deity deity) {
+        return getRelationship(deity.getName());
+    }
+
+    public @NotNull Relationship getRelationship(String deity) {
+        return relationships.get(deity);
+    }
 
     @ToString
     @AllArgsConstructor

@@ -11,6 +11,8 @@ import java.util.stream.Stream;
 import com.google.common.collect.ImmutableSet;
 import com.zippeykeys.praisebe.block.ModBlocks;
 import com.zippeykeys.praisebe.block.base.AbstractPBBlock;
+import com.zippeykeys.praisebe.deity.Deity;
+import com.zippeykeys.praisebe.deity.ModDeities;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -30,24 +32,34 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
 public class ModRegistry {
     public static final Set<Block> BLOCKS;
 
+    public static final Set<Deity> DEITIES;
+
     static {
         val blocks = ImmutableSet.<Block>builder();
-        Arrays.stream(ModBlocks.class.getDeclaredFields())//
-                .filter(AccessibleObject::isAccessible)//
-                .map(x -> (Block) ClassUtil.getFieldValue(x))//
-                .filter(Objects::nonNull)//
+        Arrays.stream(ModBlocks.class.getDeclaredFields()) //
+                .filter(AccessibleObject::isAccessible) //
+                .map(x -> (Block) ClassUtil.getFieldValue(x)) //
+                .filter(Objects::nonNull) //
                 .forEach(blocks::add);
         BLOCKS = blocks.build();
+
+        val deities = ImmutableSet.<Deity>builder();
+        Arrays.stream(ClassUtil.getDeclaredFields(ModDeities.class.getDeclaredClasses())) //
+                .filter(AccessibleObject::isAccessible) //
+                .map(x -> (Deity) ClassUtil.getFieldValue(x)) //
+                .filter(Objects::nonNull) //
+                .forEach(deities::add);
+        DEITIES = deities.build();
     }
 
     @SubscribeEvent
     public static void registerBlocks(@NotNull Register<Block> event) {
         register(event, BLOCKS);
-        BLOCKS.stream()//
-                .map(b -> (AbstractPBBlock) b)//
-                .filter(Objects::nonNull)//
-                .map(AbstractPBBlock::getTileEntity)//
-                .filter(Objects::nonNull)//
+        BLOCKS.stream() //
+                .map(b -> (AbstractPBBlock) b) //
+                .filter(Objects::nonNull) //
+                .map(AbstractPBBlock::getTileEntity) //
+                .filter(Objects::nonNull) //
                 .forEach(tilentity -> GameRegistry.registerTileEntity(tilentity, (ResourceLocation) Objects
                         .requireNonNull(ClassUtil.callDeclaredMethod(tilentity, "getResource"))));
     }

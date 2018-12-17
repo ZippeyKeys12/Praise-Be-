@@ -12,7 +12,7 @@ import java.util.function.BiConsumer;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.zippeykeys.praisebe.deity.DeityRegistry;
-import com.zippeykeys.praisebe.deity.IDeity;
+import com.zippeykeys.praisebe.deity.Deity;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -22,7 +22,7 @@ import lombok.val;
 import lombok.var;
 import net.minecraft.util.ResourceLocation;
 
-public class Registry<T> {
+public class PBRegistry<T> {
     protected final ImmutableSet<Class<? extends Enum<?>>> classifiers;
 
     protected final Map<String, T> classes;
@@ -35,15 +35,15 @@ public class Registry<T> {
     @SafeVarargs
     @Contract("_, _ -> new")
     @SuppressWarnings("unchecked")
-    public static @NotNull <T> Registry<T> of(Class<T> clazzT, Class<? extends Enum<?>>... classifiers) {
-        if (clazzT == IDeity.class)
-            return (Registry<T>) new DeityRegistry();
-        return new Registry<>(clazzT, classifiers);
+    public static @NotNull <T> PBRegistry<T> of(Class<T> clazzT, Class<? extends Enum<?>>... classifiers) {
+        if (clazzT == Deity.class)
+            return (PBRegistry<T>) new DeityRegistry();
+        return new PBRegistry<>(clazzT, classifiers);
     }
 
     @SafeVarargs
     @SuppressWarnings("unchecked")
-    public Registry(Class<T> clazzT, Class<? extends Enum<?>>... classifiers) {
+    public PBRegistry(Class<T> clazzT, Class<? extends Enum<?>>... classifiers) {
         dataType = clazzT;
         this.classifiers = ImmutableSet.<Class<? extends Enum<?>>>builder().add(classifiers).build();
         classes = new HashMap<>();

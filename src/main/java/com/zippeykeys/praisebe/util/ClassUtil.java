@@ -3,9 +3,11 @@ package com.zippeykeys.praisebe.util;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import lombok.var;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
@@ -30,6 +32,14 @@ public class ClassUtil {
                 | SecurityException ignored) {
         }
         return null;
+    }
+
+    public static Field[] getDeclaredFields(Class<?>... classes) {
+        var results = new Field[0];
+        for (var clazz : classes) {
+            results = ArrayUtils.<Field>addAll(results, clazz.getDeclaredFields());
+        }
+        return results;
     }
 
     public static @Nullable Object getFieldValueByClass(@NotNull Object caller, @NotNull Class<?> gotten) {

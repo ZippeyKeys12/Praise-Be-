@@ -8,43 +8,64 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import com.google.common.collect.ImmutableMap;
-import com.zippeykeys.praisebe.util.Registry;
+import com.zippeykeys.praisebe.util.PBRegistry;
+import com.zippeykeys.praisebe.util.Reference;
 import com.zippeykeys.praisebe.util.Util;
 
-public class DeityRegistry extends Registry<IDeity> {
-    public static final DeityRegistry INSTANCE = new DeityRegistry();
+import org.jetbrains.annotations.NotNull;
 
-    public DeityRegistry() {
-        super(IDeity.class, IDeity.Type.class, IDeity.Element.class, IDeity.Alignment.class);
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.RegistryBuilder;
+
+@EventBusSubscriber(modid = Reference.MOD_ID)
+public class DeityRegistry extends PBRegistry<Deity> {
+    public static final DeityRegistry INSTANCE = new DeityRegistry();
+    public static IForgeRegistry<Deity> DEITIES;
+
+    @SubscribeEvent
+    public static void registerRegistries(@NotNull RegistryEvent.NewRegistry event) {
+        new RegistryBuilder<Deity>() //
+                .setName(Util.getResource("deities")) //
+                .setIDRange(0, Short.MAX_VALUE) //
+                .setType(Deity.class) //
+                .create().getValues().stream() //
+                .forEach(x -> INSTANCE.register(x));
     }
 
-    public IDeity register(IDeity value) {
+    public DeityRegistry() {
+        super(Deity.class, Deity.Type.class, Deity.Element.class, Deity.Alignment.class);
+    }
+
+    public Deity register(Deity value) {
         return register(Util.getResource(value.getName()), value);
     }
 
-    public IDeity[] registerAll(IDeity... values) {
+    public Deity[] registerAll(Deity... values) {
         return registerAll(Arrays.stream(values));
     }
 
-    public IDeity[] registerAll(Collection<? extends IDeity> values) {
+    public Deity[] registerAll(Collection<? extends Deity> values) {
         return registerAll(values.stream());
     }
 
-    public IDeity[] registerAll(Stream<? extends IDeity> values) {
+    public Deity[] registerAll(Stream<? extends Deity> values) {
         return values.map(this::register) //
                 .filter(Objects::nonNull) //
-                .toArray(IDeity[]::new);
+                .toArray(Deity[]::new);
     }
 
     public Set<String> keySet() {
         return entries().keySet();
     }
 
-    public Collection<IDeity> values() {
+    public Collection<Deity> values() {
         return entries().values();
     }
 
-    public Map<String, IDeity> entries() {
-        return ImmutableMap.<String, IDeity>builder().putAll(classes).build();
+    public Map<String, Deity> entries() {
+        return ImmutableMap.<String, Deity>builder().putAll(classes).build();
     }
 }

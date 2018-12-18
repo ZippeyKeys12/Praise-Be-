@@ -21,6 +21,7 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class ModDeities {
+    @UtilityClass
     public static class Celestial {
         // Air //
         public static final Deity ZEUS = Deity.builder() //
@@ -254,6 +255,7 @@ public class ModDeities {
                 .build(); //
     }
 
+    @UtilityClass
     public static class Terrestrial {
         // Air //
         public static final Deity MORRIGAN = Deity.builder() //
@@ -344,6 +346,7 @@ public class ModDeities {
                 .build(); //
     }
 
+    @UtilityClass
     public static class Ethereal {
         // Air //
         public static final Deity NYARLATHOTEP = Deity.builder() //

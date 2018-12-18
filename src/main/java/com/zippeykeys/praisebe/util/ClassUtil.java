@@ -50,10 +50,9 @@ public class ClassUtil {
         return null;
     }
 
-    public static @Nullable Object callDeclaredMethod(@NotNull Class<?> clazz, String methodName, Object instance,
-            Object... parameters) {
+    public static @Nullable Object callDeclaredMethod(@NotNull Class<?> clazz, String methodName, Object instance) {
         try {
-            return clazz.getDeclaredMethod(methodName).invoke(instance, parameters);
+            return clazz.getDeclaredMethod(methodName).invoke(instance);
         } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException
                 | SecurityException ignored) {
         }

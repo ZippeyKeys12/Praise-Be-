@@ -1,30 +1,24 @@
 package com.zippeykeys.praisebe.deity;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Objects;
-import java.util.stream.Stream;
-
 import com.google.common.collect.ImmutableMap;
 import com.zippeykeys.praisebe.registry.PBRegistry;
 import com.zippeykeys.praisebe.util.Localize;
 import com.zippeykeys.praisebe.util.Reference;
 import com.zippeykeys.praisebe.util.Util;
-
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Singular;
-import lombok.ToString;
+import lombok.*;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.minecraftforge.registries.RegistryBuilder;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Objects;
+import java.util.stream.Stream;
 
 @Builder(toBuilder = true)
 public class Deity extends IForgeRegistryEntry.Impl<Deity> implements Localize {
@@ -40,14 +34,14 @@ public class Deity extends IForgeRegistryEntry.Impl<Deity> implements Localize {
     @Singular
     private ImmutableMap<String, Relationship> relationships;
 
-    public Deity(String name, Type type, Element element, Alignment alignment,
-            ImmutableMap<String, Relationship> relationships) {
-        this.name = name;
-        this.type = type;
-        this.element = element;
-        this.alignment = alignment;
-        this.relationships = relationships;
-        setRegistryName(Util.getResource(name));
+    public Deity(String nameIn, Type typeIn, Element elementIn, Alignment alignmentIn,
+            ImmutableMap<String, Relationship> relationshipsIn) {
+        name = nameIn;
+        type = typeIn;
+        element = elementIn;
+        alignment = alignmentIn;
+        relationships = relationshipsIn;
+        setRegistryName(Util.getResource(nameIn));
     }
 
     @Override
@@ -152,7 +146,7 @@ public class Deity extends IForgeRegistryEntry.Impl<Deity> implements Localize {
         }
 
         public Registry() {
-            super(Deity.class, Deity.Type.class, Deity.Element.class, Deity.Alignment.class);
+            super(Deity.Type.class, Deity.Element.class, Deity.Alignment.class);
         }
 
         public Deity register(Deity value) {

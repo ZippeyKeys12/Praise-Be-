@@ -30,8 +30,8 @@ public class EnumUtil {
     @SafeVarargs
     public static <T extends Enum<T>> int getUniqueIndex(@NotNull T... enums) {
         int result = enums[0].ordinal();
-        enums = Arrays.copyOfRange(enums, 1, enums.length);
-        for (var enumVar : enums) {
+        T[] x = Arrays.copyOfRange(enums, 1, enums.length);
+        for (var enumVar : x) {
             result = enumVar.ordinal() + getSize(enumVar) * result;
         }
         return result;

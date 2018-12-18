@@ -25,12 +25,12 @@ import net.minecraft.world.World;
 public class BlockIdolBase extends PBBlock {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
-    public BlockIdolBase(String name) {
-        this(name, Material.ROCK);
+    public BlockIdolBase(String nameIn) {
+        this(nameIn, Material.ROCK);
     }
 
-    public BlockIdolBase(String name, Material materialIn) {
-        super(name, materialIn);
+    public BlockIdolBase(String nameIn, Material materialIn) {
+        super(nameIn, materialIn);
         setHardness(1.5f);
         setResistance(6000000.0F);
         setHarvestLevel("pickaxe", 1);

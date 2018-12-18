@@ -12,10 +12,10 @@ import net.minecraft.util.IStringSerializable;
 
 public class ItemBlockEnum<T extends Enum<T> & IStringSerializable> extends ItemBlock {
 
-    public ItemBlockEnum(BlockEnum<T> block) {
-        super(block);
+    public ItemBlockEnum(BlockEnum<T> blockIn) {
+        super(blockIn);
 
-        if (block.getValues().length != 0)
+        if (blockIn.getValues().length != 0)
             setHasSubtypes(true);
     }
 

@@ -29,8 +29,6 @@ public class PBRegistry<T> {
 
     protected final Map<Class<? extends Enum<?>>, Map<Enum<?>, Set<T>>> categorized;
 
-    private final Class<T> dataType;
-
     @Builder
     @SafeVarargs
     @Contract("_, _ -> new")
@@ -38,17 +36,16 @@ public class PBRegistry<T> {
     public static @NotNull <T> PBRegistry<T> of(Class<T> clazzT, Class<? extends Enum<?>>... classifiers) {
         if (clazzT == Deity.class)
             return (PBRegistry<T>) new Deity.Registry();
-        return new PBRegistry<>(clazzT, classifiers);
+        return new PBRegistry<>(classifiers);
     }
 
     @SafeVarargs
     @SuppressWarnings("unchecked")
-    public PBRegistry(Class<T> clazzT, Class<? extends Enum<?>>... classifiers) {
-        dataType = clazzT;
-        this.classifiers = ImmutableSet.<Class<? extends Enum<?>>>builder().add(classifiers).build();
+    public PBRegistry(Class<? extends Enum<?>>... classifiersIn) {
+        classifiers = ImmutableSet.<Class<? extends Enum<?>>>builder().add(classifiersIn).build();
         classes = new HashMap<>();
         val builder = ImmutableMap.<Class<? extends Enum<?>>, Map<Enum<?>, Set<T>>>builder();
-        for (var clazz : classifiers) {
+        for (var clazz : classifiersIn) {
             try {
                 builder.put(clazz, EnumMap.class.getConstructor(Class.class).newInstance(clazz));
             } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
@@ -88,7 +85,7 @@ public class PBRegistry<T> {
     public T unregister(String key) {
         val value = classes.remove(key);
         for (var clazz : classifiers) {
-            var type = dataType.cast(ClassUtil.getFieldValueByClass(value, clazz));
+            var type = clazz.cast(ClassUtil.getFieldValueByClass(value, clazz));
             if (type == null) {
                 continue;
             }

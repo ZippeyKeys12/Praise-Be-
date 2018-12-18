@@ -6,12 +6,12 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 
 public class BlockAltarBase extends BlockEnum<Type> {
-    public BlockAltarBase(String name) {
-        this(name, Material.ROCK);
+    public BlockAltarBase(String nameIn) {
+        this(nameIn, Material.ROCK);
     }
 
-    public BlockAltarBase(String name, Material materialIn) {
-        super(name, materialIn, Type.class);
+    public BlockAltarBase(String nameIn, Material materialIn) {
+        super(nameIn, materialIn, Type.class);
         setHardness(1.5f);
         setResistance(6000000.0F);
         setHarvestLevel("pickaxe", 1);

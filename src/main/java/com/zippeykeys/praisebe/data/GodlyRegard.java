@@ -24,13 +24,13 @@ public class GodlyRegard implements INBTSerializable<NBTTagCompound> {
 
     private Map<String, Double> regards = new HashMap<>();
 
-    public GodlyRegard(@NotNull EntityPlayer player, PBWorldData saver) {
-        this(PlayerUtil.getUUID(player), saver);
+    public GodlyRegard(@NotNull EntityPlayer player, PBWorldData saverIn) {
+        this(PlayerUtil.getUUID(player), saverIn);
     }
 
-    GodlyRegard(@NotNull UUID uuid, @Nullable PBWorldData saver) {
-        this.uuid = uuid;
-        this.saver = saver;
+    GodlyRegard(@NotNull UUID uuidIn, @Nullable PBWorldData saverIn) {
+        uuid = uuidIn;
+        saver = saverIn;
         for (var deity : Deity.Registry.INSTANCE.keySet()) {
             setRegard(deity);
         }
@@ -40,8 +40,8 @@ public class GodlyRegard implements INBTSerializable<NBTTagCompound> {
         return saver;
     }
 
-    public void setSaver(PBWorldData saver) {
-        this.saver = saver;
+    public void setSaver(PBWorldData saverIn) {
+        saver = saverIn;
         markDirty();
     }
 
@@ -61,8 +61,8 @@ public class GodlyRegard implements INBTSerializable<NBTTagCompound> {
         setPlayer(PlayerUtil.getUUID(player));
     }
 
-    public void setPlayer(UUID uuid) {
-        this.uuid = uuid;
+    public void setPlayer(UUID uuidIn) {
+        uuid = uuidIn;
         markDirty();
     }
 

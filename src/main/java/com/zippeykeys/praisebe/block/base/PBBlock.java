@@ -22,17 +22,17 @@ public class PBBlock extends BlockContainer implements Localize {
     @Getter(onMethod_ = @Override)
     protected final String name;
 
-    public PBBlock(String name) {
-        this(name, Material.ROCK);
+    public PBBlock(String nameIn) {
+        this(nameIn, Material.ROCK);
     }
 
-    public PBBlock(String name, Material materialIn) {
-        this(name, materialIn, materialIn.getMaterialMapColor());
+    public PBBlock(String nameIn, Material materialIn) {
+        this(nameIn, materialIn, materialIn.getMaterialMapColor());
     }
 
-    public PBBlock(String name, Material materialIn, MapColor color) {
+    public PBBlock(String nameIn, Material materialIn, MapColor color) {
         super(materialIn, color);
-        this.name = name;
+        name = nameIn;
         setRegistryName(getResource());
         setUnlocalizedName(Reference.MOD_ID + "." + Objects.requireNonNull(getRegistryName()).getResourcePath());
         setCreativeTab(Reference.TAB_GENERAL);

@@ -26,10 +26,7 @@ public class PBWorldData extends WorldSavedData {
 
     private Map<UUID, GodlyRegard> playerRegards = new HashMap<>();
 
-    public static PBWorldData of(@NotNull World world) {
-        if (world == null) {
-            return null;
-        }
+    public static @NotNull PBWorldData of(@NotNull World world) {
         PraiseBe.info("Loading WorldData");
         MapStorage storage = world.getMapStorage();
         PBWorldData instance = (PBWorldData) Objects.requireNonNull(storage).getOrLoadData(PBWorldData.class, ID);

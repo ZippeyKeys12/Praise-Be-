@@ -39,12 +39,12 @@ public class BlockEnum<T extends Enum<T> & IStringSerializable> extends PBBlock 
         };
     }
 
-    public BlockEnum(String name, Material materialIn, Class<T> clazz) {
-        this(name, materialIn, clazz, "type");
+    public BlockEnum(String nameIn, Material materialIn, Class<T> clazz) {
+        this(nameIn, materialIn, clazz, "type");
     }
 
-    public BlockEnum(String name, Material materialIn, @NotNull Class<T> clazz, String propertyName) {
-        super(name, materialIn);
+    public BlockEnum(String nameIn, Material materialIn, @NotNull Class<T> clazz, String propertyName) {
+        super(nameIn, materialIn);
         values = clazz.getEnumConstants();
         property = PropertyEnum.create(propertyName, clazz);
         setDefaultState(blockState.getBaseState());

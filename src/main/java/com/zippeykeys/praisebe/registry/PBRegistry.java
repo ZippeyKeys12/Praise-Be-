@@ -37,7 +37,7 @@ public class PBRegistry<T> {
     @SuppressWarnings("unchecked")
     public static @NotNull <T> PBRegistry<T> of(Class<T> clazzT, Class<? extends Enum<?>>... classifiers) {
         if (clazzT == Deity.class)
-            return (PBRegistry<T>) new DeityRegistry();
+            return (PBRegistry<T>) new Deity.Registry();
         return new PBRegistry<>(clazzT, classifiers);
     }
 

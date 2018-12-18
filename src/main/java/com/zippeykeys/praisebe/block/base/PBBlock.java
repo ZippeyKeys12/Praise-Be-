@@ -2,39 +2,45 @@ package com.zippeykeys.praisebe.block.base;
 
 import java.util.Objects;
 
-import com.zippeykeys.praisebe.block.tile.base.AbstractPBTileEntity;
-import com.zippeykeys.praisebe.util.BlockUtil;
+import com.zippeykeys.praisebe.block.tile.base.PBTileEntity;
 import com.zippeykeys.praisebe.util.Localize;
 import com.zippeykeys.praisebe.util.Reference;
+import com.zippeykeys.praisebe.util.RegistryUtil;
 
 import org.jetbrains.annotations.NotNull;
 
+import lombok.Getter;
 import lombok.val;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public abstract class AbstractPBBlock extends BlockContainer implements Localize {
-    protected AbstractPBBlock() {
-        this(Material.ROCK);
+public class PBBlock extends BlockContainer implements Localize {
+    @Getter(onMethod_ = @Override)
+    protected final String name;
+
+    public PBBlock(String name) {
+        this(name, Material.ROCK);
     }
 
-    protected AbstractPBBlock(Material materialIn) {
-        this(materialIn, materialIn.getMaterialMapColor());
+    public PBBlock(String name, Material materialIn) {
+        this(name, materialIn, materialIn.getMaterialMapColor());
     }
 
-    protected AbstractPBBlock(Material materialIn, MapColor color) {
+    public PBBlock(String name, Material materialIn, MapColor color) {
         super(materialIn, color);
+        this.name = name;
         setRegistryName(getResource());
         setUnlocalizedName(Reference.MOD_ID + "." + Objects.requireNonNull(getRegistryName()).getResourcePath());
         setCreativeTab(Reference.TAB_GENERAL);
     }
 
-    public Item getItem() {
-        return BlockUtil.itemFromBlock(this);
+    @Override
+    public @NotNull String getPrefix() {
+        return "tile";
     }
 
     public TileEntity createNewTileEntity(@NotNull World worldIn, int meta) {
@@ -48,5 +54,11 @@ public abstract class AbstractPBBlock extends BlockContainer implements Localize
         return null;
     }
 
-    public abstract Class<? extends AbstractPBTileEntity> getTileEntity();
+    public ItemBlock getItem() {
+        return RegistryUtil.transferRegistryName(new ItemBlock(this), this);
+    }
+
+    public Class<? extends PBTileEntity> getTileEntity() {
+        return null;
+    }
 }

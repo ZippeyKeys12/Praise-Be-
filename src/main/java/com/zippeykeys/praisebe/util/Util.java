@@ -24,7 +24,7 @@ public class Util {
         }
     }
 
-    public static World getWorld() {
+    public static @NotNull World getWorld() {
         return FMLCommonHandler.instance().getMinecraftServerInstance().getEntityWorld();
     }
 

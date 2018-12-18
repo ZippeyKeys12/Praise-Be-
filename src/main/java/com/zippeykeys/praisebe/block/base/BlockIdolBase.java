@@ -1,10 +1,9 @@
 package com.zippeykeys.praisebe.block.base;
 
-import com.zippeykeys.praisebe.block.tile.base.AbstractTileEntityIdolBase;
+import com.zippeykeys.praisebe.block.tile.base.TileEntityIdolBase;
 
 import org.jetbrains.annotations.NotNull;
 
-import lombok.Getter;
 import lombok.val;
 import lombok.var;
 import net.minecraft.block.BlockHorizontal;
@@ -23,20 +22,21 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public abstract class AbstractBlockIdolBase extends AbstractPBBlock {
+public class BlockIdolBase extends PBBlock {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
-    public AbstractBlockIdolBase() {
-        super(Material.ROCK);
+    public BlockIdolBase(String name) {
+        this(name, Material.ROCK);
+    }
+
+    public BlockIdolBase(String name, Material materialIn) {
+        super(name, materialIn);
         setHardness(1.5f);
         setResistance(6000000.0F);
         setHarvestLevel("pickaxe", 1);
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         setSoundType(SoundType.STONE);
     }
-
-    @Getter(onMethod_ = @Override)
-    private final String name = "idol";
 
     @Override
     public @NotNull IBlockState getStateForPlacement(@NotNull World world, @NotNull BlockPos pos,
@@ -113,5 +113,7 @@ public abstract class AbstractBlockIdolBase extends AbstractPBBlock {
     }
 
     @Override
-    public abstract Class<? extends AbstractTileEntityIdolBase> getTileEntity();
+    public Class<? extends TileEntityIdolBase> getTileEntity() {
+        return null;
+    }
 }

@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
 
-public abstract class AbstractTileEntityIdolBase extends AbstractPBTileEntity implements ITickable {
+public class TileEntityIdolBase extends PBTileEntity implements ITickable {
     private int facing;
 
     @Override
@@ -27,5 +27,10 @@ public abstract class AbstractTileEntityIdolBase extends AbstractPBTileEntity im
 
     public void setFacing(int face) {
         facing = face;
+    }
+
+    @Override
+    public void update() {
+
     }
 }

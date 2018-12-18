@@ -1,10 +1,11 @@
 package com.zippeykeys.praisebe.util;
 
+import com.zippeykeys.praisebe.block.ModBlocks;
+
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import lombok.experimental.UtilityClass;
-import net.minecraft.block.BlockStone;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -24,7 +25,7 @@ public class Reference {
         @Override
         @Contract(" -> new")
         public @NotNull ItemStack getTabIconItem() {
-            return new ItemStack(Item.getItemFromBlock(new BlockStone()));
+            return new ItemStack(Item.getItemFromBlock(ModBlocks.MARBLE));
         }
     };
 
@@ -32,7 +33,7 @@ public class Reference {
         @Override
         @Contract(" -> new")
         public @NotNull ItemStack getTabIconItem() {
-            return new ItemStack(Item.getItemFromBlock(new BlockStone()));
+            return new ItemStack(RegistryUtil.getItem("minecraft:dirt"));
         }
     };
 
@@ -40,7 +41,7 @@ public class Reference {
         @Override
         @Contract(" -> new")
         public @NotNull ItemStack getTabIconItem() {
-            return new ItemStack(Item.getItemFromBlock(new BlockStone()));
+            return new ItemStack(RegistryUtil.getItem("minecraft:tnt"));
         }
     };
 
@@ -48,7 +49,7 @@ public class Reference {
         @Override
         @Contract(" -> new")
         public @NotNull ItemStack getTabIconItem() {
-            return new ItemStack(Item.getItemFromBlock(new BlockStone()));
+            return new ItemStack(RegistryUtil.getItem("minecraft:stone"));
         }
     };
 }

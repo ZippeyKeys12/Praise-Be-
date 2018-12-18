@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import com.zippeykeys.praisebe.registry.DeityRegistry;
+import com.zippeykeys.praisebe.deity.Deity;
 import com.zippeykeys.praisebe.util.PlayerUtil;
 
 import org.jetbrains.annotations.NotNull;
@@ -31,7 +31,7 @@ public class GodlyRegard implements INBTSerializable<NBTTagCompound> {
     GodlyRegard(@NotNull UUID uuid, @Nullable PBWorldData saver) {
         this.uuid = uuid;
         this.saver = saver;
-        for (var deity : DeityRegistry.INSTANCE.keySet()) {
+        for (var deity : Deity.Registry.INSTANCE.keySet()) {
             setRegard(deity);
         }
     }

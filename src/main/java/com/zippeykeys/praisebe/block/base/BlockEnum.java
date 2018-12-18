@@ -1,7 +1,8 @@
 package com.zippeykeys.praisebe.block.base;
 
-import com.zippeykeys.praisebe.block.tile.base.AbstractPBTileEntity;
+import com.zippeykeys.praisebe.block.tile.base.PBTileEntity;
 import com.zippeykeys.praisebe.item.block.ItemBlockEnum;
+import com.zippeykeys.praisebe.util.RegistryUtil;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -16,50 +17,37 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
 
-public abstract class AbstractBlockEnum<T extends Enum<T> & IStringSerializable> extends AbstractPBBlock {
-    private final String name;
+public class BlockEnum<T extends Enum<T> & IStringSerializable> extends PBBlock {
+    protected final T[] values;
 
-    private final T[] values;
-
-    private final PropertyEnum<T> property;
+    protected final PropertyEnum<T> property;
 
     @Contract(pure = true)
-    public static @NotNull <T extends Enum<T> & IStringSerializable> AbstractBlockEnum<T> of(String name,
-            Material materialIn, Class<T> clazz, Class<? extends AbstractPBTileEntity> tileClass) {
+    public static @NotNull <T extends Enum<T> & IStringSerializable> BlockEnum<T> of(String name, Material materialIn,
+            Class<T> clazz, Class<? extends PBTileEntity> tileClass) {
         return of(name, materialIn, clazz, tileClass, "type");
     }
 
     @Contract(value = "_, _, _, _, _ -> new", pure = true)
-    public static @NotNull <T extends Enum<T> & IStringSerializable> AbstractBlockEnum<T> of(String name,
-            Material materialIn, Class<T> clazz, Class<? extends AbstractPBTileEntity> tileClass, String propertyName) {
-        return new AbstractBlockEnum<T>(name, materialIn, clazz, propertyName) {
+    public static @NotNull <T extends Enum<T> & IStringSerializable> BlockEnum<T> of(String name, Material materialIn,
+            Class<T> clazz, Class<? extends PBTileEntity> tileClass, String propertyName) {
+        return new BlockEnum<T>(name, materialIn, clazz, propertyName) {
             @Override
-            public Class<? extends AbstractPBTileEntity> getTileEntity() {
+            public Class<? extends PBTileEntity> getTileEntity() {
                 return tileClass;
             }
         };
     }
 
-    public AbstractBlockEnum(String name, Material materialIn, Class<T> clazz) {
+    public BlockEnum(String name, Material materialIn, Class<T> clazz) {
         this(name, materialIn, clazz, "type");
     }
 
-    public AbstractBlockEnum(String name, Material materialIn, @NotNull Class<T> clazz, String propertyName) {
-        super(materialIn);
-        this.name = name;
+    public BlockEnum(String name, Material materialIn, @NotNull Class<T> clazz, String propertyName) {
+        super(name, materialIn);
         values = clazz.getEnumConstants();
         property = PropertyEnum.create(propertyName, clazz);
         setDefaultState(blockState.getBaseState());
-    }
-
-    @Override
-    public @NotNull String getName() {
-        return name;
-    }
-
-    @Override
-    public @NotNull String getPrefix() {
-        return "tile";
     }
 
     @Override
@@ -89,15 +77,15 @@ public abstract class AbstractBlockEnum<T extends Enum<T> & IStringSerializable>
             subBlocks.add(new ItemStack(this, 1, value.ordinal()));
     }
 
+    @Override
+    public ItemBlock getItem() {
+        return RegistryUtil.transferRegistryName(new ItemBlockEnum<>(this), this);
+    }
+
     protected BlockStateContainer createStateContainer() {
         return new BlockStateContainer.Builder(this) //
                 .add(property) //
                 .build();
-    }
-
-    @Override
-    public ItemBlock getItem() {
-        return new ItemBlockEnum<>(this);
     }
 
     public T[] getValues() {

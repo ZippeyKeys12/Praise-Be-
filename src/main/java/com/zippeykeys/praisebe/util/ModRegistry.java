@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 import com.google.common.collect.ImmutableSet;
 import com.zippeykeys.praisebe.block.ModBlocks;
-import com.zippeykeys.praisebe.block.base.AbstractPBBlock;
+import com.zippeykeys.praisebe.block.base.PBBlock;
 import com.zippeykeys.praisebe.deity.Deity;
 import com.zippeykeys.praisebe.deity.ModDeities;
 
@@ -30,15 +30,15 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
 @UtilityClass
 @EventBusSubscriber(modid = Reference.MOD_ID)
 public class ModRegistry {
-    public static final Set<Block> BLOCKS;
+    public static final Set<PBBlock> BLOCKS;
 
     public static final Set<Deity> DEITIES;
 
     static {
-        val blocks = ImmutableSet.<Block>builder();
+        val blocks = ImmutableSet.<PBBlock>builder();
         Arrays.stream(ModBlocks.class.getDeclaredFields()) //
-                .filter(AccessibleObject::isAccessible) //
-                .map(x -> (Block) ClassUtil.getFieldValue(x)) //
+                // .filter(AccessibleObject::isAccessible) //
+                .map(x -> (PBBlock) ClassUtil.getFieldValue(x)) //
                 .filter(Objects::nonNull) //
                 .forEach(blocks::add);
         BLOCKS = blocks.build();
@@ -56,9 +56,7 @@ public class ModRegistry {
     public static void registerBlocks(@NotNull Register<Block> event) {
         register(event, BLOCKS);
         BLOCKS.stream() //
-                .map(b -> (AbstractPBBlock) b) //
-                .filter(Objects::nonNull) //
-                .map(AbstractPBBlock::getTileEntity) //
+                .map(PBBlock::getTileEntity) //
                 .filter(Objects::nonNull) //
                 .forEach(tilentity -> GameRegistry.registerTileEntity(tilentity,
                         (ResourceLocation) Objects.requireNonNull(ClassUtil.callDeclaredMethod(tilentity, "getResource",
@@ -67,7 +65,7 @@ public class ModRegistry {
 
     @SubscribeEvent
     public static void registerItems(@NotNull Register<Item> event) {
-        register(event, BlockUtil::itemFromBlock, BLOCKS);
+        register(event, PBBlock::getItem, BLOCKS);
     }
 
     @SubscribeEvent
@@ -75,29 +73,30 @@ public class ModRegistry {
         register(event, DEITIES);
     }
 
-    public static <T extends IForgeRegistryEntry<T>, R extends IForgeRegistryEntry<R>> void register(
-            @NotNull Register<R> e, Function<T, R> mapper, @NotNull Collection<T> values) {
+    public static <T extends IForgeRegistryEntry<T>, R extends IForgeRegistryEntry<R>, K extends T> void register(
+            @NotNull Register<R> e, Function<K, R> mapper, @NotNull Collection<K> values) {
         register(e, mapper, values.stream());
     }
 
     @SafeVarargs
-    public static <T extends IForgeRegistryEntry<T>, R extends IForgeRegistryEntry<R>> void register(
-            @NotNull Register<R> e, Function<T, R> mapper, T... values) {
+    public static <T extends IForgeRegistryEntry<T>, R extends IForgeRegistryEntry<R>, K extends T> void register(
+            @NotNull Register<R> e, Function<K, R> mapper, K... values) {
         register(e, mapper, Arrays.stream(values));
     }
 
-    public static <T extends IForgeRegistryEntry<T>, R extends IForgeRegistryEntry<R>> void register(
-            @NotNull Register<R> e, Function<T, R> mapper, @NotNull Stream<T> values) {
+    public static <T extends IForgeRegistryEntry<T>, R extends IForgeRegistryEntry<R>, K extends T> void register(
+            @NotNull Register<R> e, Function<K, R> mapper, @NotNull Stream<K> values) {
         register(e, values.map(mapper));
     }
 
-    public static <T extends IForgeRegistryEntry<T>> void register(@NotNull Register<T> e, @NotNull Stream<T> values) {
+    public static <T extends IForgeRegistryEntry<T>, K extends T> void register(@NotNull Register<T> e,
+            @NotNull Stream<K> values) {
         val r = e.getRegistry();
         values.forEach(r::register);
     }
 
     public static <T extends IForgeRegistryEntry<T>> void register(@NotNull Register<T> e,
-            @NotNull Collection<T> values) {
+            @NotNull Collection<? extends T> values) {
         val r = e.getRegistry();
         values.forEach(r::register);
     }

@@ -1,8 +1,8 @@
 package com.zippeykeys.praisebe.util;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.jetbrains.annotations.NotNull;
@@ -21,14 +21,19 @@ public class ClassUtil {
         return null;
     }
 
-    public static @Nullable <T> T newInstance(@NotNull Class<T> clazz, Object... parameters) {
+    public static @Nullable <T> T newInstance(@NotNull Constructor<T> constructor, Object... parameters) {
         try {
-            return clazz.getConstructor(Arrays.stream(parameters) //
-                    .map(Object::getClass) //
-                    .toArray(Class<?>[]::new)) //
-                    .newInstance(parameters);
-        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
-                | NoSuchMethodException | SecurityException ignored) {
+            return constructor.newInstance(parameters);
+        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+                | InvocationTargetException ignored) {
+        }
+        return null;
+    }
+
+    public static @Nullable <T> Constructor<T> getConstructor(@NotNull Class<T> clazz, Class<?>... parameterTypes) {
+        try {
+            return clazz.getConstructor(parameterTypes);
+        } catch (IllegalArgumentException | NoSuchMethodException | SecurityException ignored) {
         }
         return null;
     }

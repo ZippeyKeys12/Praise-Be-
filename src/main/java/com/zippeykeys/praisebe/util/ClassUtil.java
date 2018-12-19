@@ -5,7 +5,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import lombok.var;
@@ -13,7 +12,7 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class ClassUtil {
-    public static @Nullable <T> T newInstance(@NotNull Class<T> clazz) {
+    public static @Nullable <T> T newInstance(Class<T> clazz) {
         try {
             return clazz.newInstance();
         } catch (InstantiationException | IllegalAccessException ignored) {
@@ -21,7 +20,7 @@ public class ClassUtil {
         return null;
     }
 
-    public static @Nullable <T> T newInstance(@NotNull Constructor<T> constructor, Object... parameters) {
+    public static @Nullable <T> T newInstance(Constructor<T> constructor, Object... parameters) {
         try {
             return constructor.newInstance(parameters);
         } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
@@ -30,7 +29,7 @@ public class ClassUtil {
         return null;
     }
 
-    public static @Nullable <T> Constructor<T> getConstructor(@NotNull Class<T> clazz, Class<?>... parameterTypes) {
+    public static @Nullable <T> Constructor<T> getConstructor(Class<T> clazz, Class<?>... parameterTypes) {
         try {
             return clazz.getConstructor(parameterTypes);
         } catch (IllegalArgumentException | NoSuchMethodException | SecurityException ignored) {
@@ -42,7 +41,7 @@ public class ClassUtil {
         return getFieldValue(field, null);
     }
 
-    public static @Nullable Object getFieldValue(@NotNull Field field, @Nullable Object instance) {
+    public static @Nullable Object getFieldValue(Field field, @Nullable Object instance) {
         try {
             return field.get(instance);
         } catch (IllegalArgumentException | IllegalAccessException ignored) {
@@ -50,7 +49,7 @@ public class ClassUtil {
         return null;
     }
 
-    public static @Nullable Object callDeclaredMethod(@NotNull Class<?> clazz, String methodName, Object instance) {
+    public static @Nullable Object callDeclaredMethod(Class<?> clazz, String methodName, Object instance) {
         try {
             return clazz.getDeclaredMethod(methodName).invoke(instance);
         } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException
@@ -59,7 +58,7 @@ public class ClassUtil {
         return null;
     }
 
-    public static Field[] getDeclaredFields(@NotNull Class<?>... classes) {
+    public static Field[] getDeclaredFields(Class<?>... classes) {
         var results = new Field[0];
         for (var clazz : classes) {
             results = ArrayUtils.addAll(results, clazz.getDeclaredFields());
@@ -67,7 +66,7 @@ public class ClassUtil {
         return results;
     }
 
-    public static @Nullable Object getFieldValueByClass(@NotNull Object caller, @NotNull Class<?> gotten) {
+    public static @Nullable Object getFieldValueByClass(Object caller, Class<?> gotten) {
         try {
             return caller.getClass().getMethod("get" + gotten.getSimpleName()).invoke(null);
         } catch (NoSuchMethodException | IllegalAccessException | IllegalArgumentException | InvocationTargetException

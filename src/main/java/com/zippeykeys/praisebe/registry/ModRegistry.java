@@ -16,8 +16,6 @@ import com.zippeykeys.praisebe.deity.ModDeities;
 import com.zippeykeys.praisebe.util.ClassUtil;
 import com.zippeykeys.praisebe.util.Reference;
 
-import org.jetbrains.annotations.NotNull;
-
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import lombok.val;
@@ -63,7 +61,7 @@ public class ModRegistry {
     }
 
     @SubscribeEvent
-    public static void registerBlocks(@NotNull Register<Block> event) {
+    public static void registerBlocks(Register<Block> event) {
         register(event, BLOCKS);
         BLOCKS.stream() //
                 .map(PBBlock::getTileEntity) //
@@ -74,45 +72,43 @@ public class ModRegistry {
     }
 
     @SubscribeEvent
-    public static void registerItems(@NotNull Register<Item> event) {
+    public static void registerItems(Register<Item> event) {
         register(event, PBBlock::getItem, BLOCKS);
     }
 
     @SubscribeEvent
-    public static void registerDeities(@NotNull Register<Deity> event) {
+    public static void registerDeities(Register<Deity> event) {
         register(event, DEITIES);
     }
 
     public static <T extends IForgeRegistryEntry<T>, R extends IForgeRegistryEntry<R>, K extends T> void register(
-            @NotNull Register<R> e, Function<K, R> mapper, @NotNull Collection<K> values) {
+            Register<R> e, Function<K, R> mapper, Collection<K> values) {
         register(e, mapper, values.stream());
     }
 
     @SafeVarargs
     public static <T extends IForgeRegistryEntry<T>, R extends IForgeRegistryEntry<R>, K extends T> void register(
-            @NotNull Register<R> e, Function<K, R> mapper, K... values) {
+            Register<R> e, Function<K, R> mapper, K... values) {
         register(e, mapper, Arrays.stream(values));
     }
 
     public static <T extends IForgeRegistryEntry<T>, R extends IForgeRegistryEntry<R>, K extends T> void register(
-            @NotNull Register<R> e, Function<K, R> mapper, @NotNull Stream<K> values) {
+            Register<R> e, Function<K, R> mapper, Stream<K> values) {
         register(e, values.map(mapper));
     }
 
-    public static <T extends IForgeRegistryEntry<T>, K extends T> void register(@NotNull Register<T> e,
-            @NotNull Stream<K> values) {
+    public static <T extends IForgeRegistryEntry<T>, K extends T> void register(Register<T> e, Stream<K> values) {
         val r = e.getRegistry();
         values.forEach(r::register);
     }
 
-    public static <T extends IForgeRegistryEntry<T>> void register(@NotNull Register<T> e,
-            @NotNull Collection<? extends T> values) {
+    public static <T extends IForgeRegistryEntry<T>> void register(Register<T> e, Collection<? extends T> values) {
         val r = e.getRegistry();
         values.forEach(r::register);
     }
 
     @SafeVarargs
-    public static <T extends IForgeRegistryEntry<T>> void register(@NotNull Register<T> e, T... values) {
+    public static <T extends IForgeRegistryEntry<T>> void register(Register<T> e, T... values) {
         e.getRegistry().registerAll(values);
     }
 

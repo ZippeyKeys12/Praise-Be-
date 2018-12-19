@@ -1,7 +1,5 @@
 package com.zippeykeys.praisebe.util;
 
-import org.jetbrains.annotations.NotNull;
-
 import lombok.experimental.UtilityClass;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
@@ -18,7 +16,7 @@ public class PBConfig {
     }
 
     @SubscribeEvent
-    public static void onConfigChanged(@NotNull OnConfigChangedEvent event) {
+    public static void onConfigChanged(OnConfigChangedEvent event) {
         if (event.getModID().equals(Reference.MOD_ID)) {
             ConfigManager.sync(Reference.MOD_ID, Config.Type.INSTANCE);
         }

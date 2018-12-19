@@ -7,7 +7,6 @@ import java.util.UUID;
 import com.zippeykeys.praisebe.deity.Deity;
 import com.zippeykeys.praisebe.util.PlayerUtil;
 
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import lombok.var;
@@ -24,11 +23,11 @@ public class GodlyRegard implements INBTSerializable<NBTTagCompound> {
 
     private Map<String, Double> regards = new HashMap<>();
 
-    public GodlyRegard(@NotNull EntityPlayer player, PBWorldData saverIn) {
+    public GodlyRegard(EntityPlayer player, PBWorldData saverIn) {
         this(PlayerUtil.getUUID(player), saverIn);
     }
 
-    GodlyRegard(@NotNull UUID uuidIn, @Nullable PBWorldData saverIn) {
+    GodlyRegard(UUID uuidIn, @Nullable PBWorldData saverIn) {
         uuid = uuidIn;
         saver = saverIn;
         for (var deity : Deity.Registry.INSTANCE.keySet()) {
@@ -110,7 +109,7 @@ public class GodlyRegard implements INBTSerializable<NBTTagCompound> {
     }
 
     @Override
-    public void deserializeNBT(@NotNull NBTTagCompound nbt) {
+    public void deserializeNBT(NBTTagCompound nbt) {
         uuid = nbt.getUniqueId("uuid");
         NBTTagList regData = nbt.getTagList("regards", 10);
         regData.forEach((tag) -> {

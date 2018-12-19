@@ -15,7 +15,6 @@ import org.immutables.value.Value.Immutable;
 import org.immutables.value.Value.Style;
 import org.immutables.value.Value.Style.ImplementationVisibility;
 import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,7 +32,7 @@ import net.minecraftforge.registries.RegistryBuilder;
 @Immutable(copy = false)
 public abstract class Deity extends IForgeRegistryEntry.Impl<Deity> implements Localize {
     @Override
-    public abstract @NotNull String getName();
+    public abstract String getName();
 
     public abstract Type getType();
 
@@ -45,15 +44,15 @@ public abstract class Deity extends IForgeRegistryEntry.Impl<Deity> implements L
 
     @Override
     @Contract(pure = true)
-    public @NotNull String getPrefix() {
+    public String getPrefix() {
         return "deity";
     }
 
-    public @NotNull Relationship getRelationship(Deity deity) {
+    public Relationship getRelationship(Deity deity) {
         return getRelationship(deity.getName());
     }
 
-    public @NotNull Relationship getRelationship(String deity) {
+    public Relationship getRelationship(String deity) {
         return getRelationships().get(deity);
     }
 
@@ -88,7 +87,7 @@ public abstract class Deity extends IForgeRegistryEntry.Impl<Deity> implements L
 
         @Override
         @Contract(pure = true)
-        public @NotNull String getPrefix() {
+        public String getPrefix() {
             return "deity.type";
         }
     }
@@ -106,7 +105,7 @@ public abstract class Deity extends IForgeRegistryEntry.Impl<Deity> implements L
 
         @Override
         @Contract(pure = true)
-        public @NotNull String getPrefix() {
+        public String getPrefix() {
             return "deity.element";
         }
     }
@@ -123,7 +122,7 @@ public abstract class Deity extends IForgeRegistryEntry.Impl<Deity> implements L
 
         @Override
         @Contract(pure = true)
-        public @NotNull String getPrefix() {
+        public String getPrefix() {
             return "deity.alignment";
         }
     }
@@ -143,7 +142,7 @@ public abstract class Deity extends IForgeRegistryEntry.Impl<Deity> implements L
 
         @Override
         @Contract(pure = true)
-        public @NotNull String getPrefix() {
+        public String getPrefix() {
             return "deity.relationship";
         }
     }
@@ -155,7 +154,7 @@ public abstract class Deity extends IForgeRegistryEntry.Impl<Deity> implements L
         public static IForgeRegistry<Deity> DEITIES;
 
         @SubscribeEvent
-        public static void registerRegistries(@NotNull RegistryEvent.NewRegistry event) {
+        public static void registerRegistries(RegistryEvent.NewRegistry event) {
             DEITIES = new RegistryBuilder<Deity>() //
                     .setName(Util.getResource("deities")) //
                     .setIDRange(0, Integer.MAX_VALUE - 1) //

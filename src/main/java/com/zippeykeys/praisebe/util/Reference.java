@@ -1,9 +1,10 @@
 package com.zippeykeys.praisebe.util;
 
+import java.util.Objects;
+
 import com.zippeykeys.praisebe.block.ModBlocks;
 
 import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 
 import lombok.experimental.UtilityClass;
 import net.minecraft.creativetab.CreativeTabs;
@@ -24,7 +25,7 @@ public class Reference {
     public static final CreativeTabs TAB_GENERAL = new CreativeTabs("praisebe") {
         @Override
         @Contract(" -> new")
-        public @NotNull ItemStack getTabIconItem() {
+        public ItemStack getTabIconItem() {
             return new ItemStack(Item.getItemFromBlock(ModBlocks.MARBLE));
         }
     };
@@ -32,24 +33,24 @@ public class Reference {
     public static final CreativeTabs TAB_CELESTIAL = new CreativeTabs("praisebe.celestial") {
         @Override
         @Contract(" -> new")
-        public @NotNull ItemStack getTabIconItem() {
-            return new ItemStack(RegistryUtil.getItem("minecraft:dirt"));
+        public ItemStack getTabIconItem() {
+            return new ItemStack(Objects.requireNonNull(RegistryUtil.getItem("minecraft:dirt")));
         }
     };
 
     public static final CreativeTabs TAB_TERRESTRIAL = new CreativeTabs("praisebe.terrestrial") {
         @Override
         @Contract(" -> new")
-        public @NotNull ItemStack getTabIconItem() {
-            return new ItemStack(RegistryUtil.getItem("minecraft:tnt"));
+        public ItemStack getTabIconItem() {
+            return new ItemStack(Objects.requireNonNull(RegistryUtil.getItem("minecraft:tnt")));
         }
     };
 
     public static final CreativeTabs TAB_ETHEREAL = new CreativeTabs("praisebe.ethereal") {
         @Override
         @Contract(" -> new")
-        public @NotNull ItemStack getTabIconItem() {
-            return new ItemStack(RegistryUtil.getItem("minecraft:stone"));
+        public ItemStack getTabIconItem() {
+            return new ItemStack(Objects.requireNonNull(RegistryUtil.getItem("minecraft:stone")));
         }
     };
 }

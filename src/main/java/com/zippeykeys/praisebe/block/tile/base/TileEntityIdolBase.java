@@ -1,7 +1,5 @@
 package com.zippeykeys.praisebe.block.tile.base;
 
-import org.jetbrains.annotations.NotNull;
-
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
 
@@ -15,7 +13,7 @@ public class TileEntityIdolBase extends PBTileEntity implements ITickable {
     }
 
     @Override
-    public @NotNull NBTTagCompound writeToNBT(NBTTagCompound tagCompound) {
+    public NBTTagCompound writeToNBT(NBTTagCompound tagCompound) {
         super.writeToNBT(tagCompound);
         tagCompound.setInteger("facing", facing);
         return tagCompound;

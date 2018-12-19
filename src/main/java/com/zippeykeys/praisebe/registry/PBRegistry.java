@@ -15,7 +15,6 @@ import com.zippeykeys.praisebe.deity.Deity;
 import com.zippeykeys.praisebe.util.ClassUtil;
 
 import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import lombok.Builder;
@@ -34,7 +33,7 @@ public class PBRegistry<T> {
     @SafeVarargs
     @Contract("_, _ -> new")
     @SuppressWarnings("unchecked")
-    public static @NotNull <T> PBRegistry<T> of(Class<T> clazzT, Class<? extends Enum<?>>... classifiers) {
+    public static <T> PBRegistry<T> of(Class<T> clazzT, Class<? extends Enum<?>>... classifiers) {
         if (clazzT == Deity.class)
             return (PBRegistry<T>) new Deity.Registry();
         return new PBRegistry<>(classifiers);

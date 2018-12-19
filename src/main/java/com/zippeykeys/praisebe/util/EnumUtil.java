@@ -2,8 +2,6 @@ package com.zippeykeys.praisebe.util;
 
 import java.util.Arrays;
 
-import org.jetbrains.annotations.NotNull;
-
 import lombok.var;
 import lombok.experimental.UtilityClass;
 
@@ -27,7 +25,7 @@ public class EnumUtil {
     }
 
     @SafeVarargs
-    public static <T extends Enum<T>> int getUniqueIndex(@NotNull T... enums) {
+    public static <T extends Enum<T>> int getUniqueIndex(T... enums) {
         int result = enums[0].ordinal();
         T[] x = Arrays.copyOfRange(enums, 1, enums.length);
         for (var enumVar : x) {

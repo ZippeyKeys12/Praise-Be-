@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import lombok.experimental.UtilityClass;
@@ -16,11 +15,11 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 
 @UtilityClass
 public class PlayerUtil {
-    public static @NotNull EntityPlayer getPlayer(@NotNull UUID uuid) {
+    public static EntityPlayer getPlayer(UUID uuid) {
         return FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUUID(uuid);
     }
 
-    public static @NotNull UUID getUUID(@NotNull EntityPlayer player) {
+    public static UUID getUUID(EntityPlayer player) {
         return player.getGameProfile().getId();
     }
 
@@ -32,12 +31,12 @@ public class PlayerUtil {
         return UsernameCache.getLastKnownUsername(uuid);
     }
 
-    public List<TileEntity> getBlocksNearby(@NotNull EntityPlayer player, @NotNull World world,
+    public List<TileEntity> getBlocksNearby(EntityPlayer player, World world,
             @Nullable Class<? extends TileEntity> clazz) {
         return getBlocksNearby(player, world, clazz, 1);
     }
 
-    public List<TileEntity> getBlocksNearby(@NotNull EntityPlayer player, @NotNull World world,
+    public List<TileEntity> getBlocksNearby(EntityPlayer player, World world,
             @Nullable Class<? extends TileEntity> clazz, int range) {
         TileEntity tileEntity;
         List<TileEntity> tileEntities = new ArrayList<>();

@@ -3,8 +3,6 @@ package com.zippeykeys.praisebe.item.block;
 import com.zippeykeys.praisebe.block.base.PBBlock;
 import com.zippeykeys.praisebe.util.Localize;
 
-import org.jetbrains.annotations.NotNull;
-
 import lombok.Getter;
 import net.minecraft.item.ItemBlock;
 
@@ -22,7 +20,7 @@ public class PBItemBlock extends ItemBlock implements Localize {
     }
 
     @Override
-    public @NotNull String getPrefix() {
+    public String getPrefix() {
         return "item";
     }
 }

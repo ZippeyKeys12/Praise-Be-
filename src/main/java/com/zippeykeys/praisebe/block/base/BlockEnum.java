@@ -10,7 +10,6 @@ import com.zippeykeys.praisebe.util.RegistryUtil;
 import org.immutables.builder.Builder.Factory;
 import org.immutables.builder.Builder.Parameter;
 import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -42,7 +41,7 @@ public class BlockEnum<T extends Enum<T> & Localize> extends PBBlock {
         this(nameIn, materialIn, clazz, "type");
     }
 
-    public BlockEnum(String nameIn, Material materialIn, @NotNull Class<T> clazz, String propertyName) {
+    public BlockEnum(String nameIn, Material materialIn, Class<T> clazz, String propertyName) {
         super(nameIn, materialIn);
         values = clazz.getEnumConstants();
         property = PropertyEnum.create(propertyName, clazz);
@@ -50,13 +49,13 @@ public class BlockEnum<T extends Enum<T> & Localize> extends PBBlock {
     }
 
     @Override
-    protected @NotNull BlockStateContainer createBlockState() {
+    protected BlockStateContainer createBlockState() {
         return new BlockStateContainer.Builder(this) //
                 .build();
     }
 
     @Override
-    public @NotNull IBlockState getStateFromMeta(int meta) {
+    public IBlockState getStateFromMeta(int meta) {
         return getDefaultState().withProperty(property, values[meta]);
     }
 

@@ -4,8 +4,6 @@ import javax.annotation.Nullable;
 
 import com.zippeykeys.praisebe.block.tile.base.TileEntityIdolBase;
 
-import org.jetbrains.annotations.NotNull;
-
 import lombok.val;
 import lombok.var;
 import net.minecraft.block.BlockHorizontal;
@@ -41,14 +39,13 @@ public class BlockIdolBase extends PBBlock {
     }
 
     @Override
-    public @NotNull IBlockState getStateForPlacement(@NotNull World world, @NotNull BlockPos pos,
-            @NotNull EnumFacing facing, float hitX, float hitY, float hitZ, int meta, @NotNull EntityLivingBase placer,
-            EnumHand hand) {
+    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY,
+            float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
         return getDefaultState().withProperty(FACING, facing);
     }
 
     @Override
-    public @NotNull IBlockState getActualState(@NotNull IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
         var facing = EnumFacing.NORTH;
         val tile = worldIn.getTileEntity(pos);
         val tileClazz = getTileEntity();
@@ -59,7 +56,7 @@ public class BlockIdolBase extends PBBlock {
     }
 
     @Override
-    public @NotNull IBlockState getStateFromMeta(int meta) {
+    public IBlockState getStateFromMeta(int meta) {
         var enumFacing = EnumFacing.getFront(meta);
         if (enumFacing.getAxis() == EnumFacing.Axis.Y) {
             enumFacing = EnumFacing.NORTH;
@@ -93,7 +90,7 @@ public class BlockIdolBase extends PBBlock {
     }
 
     @Override
-    public @NotNull EnumBlockRenderType getRenderType(IBlockState state) {
+    public EnumBlockRenderType getRenderType(IBlockState state) {
         return EnumBlockRenderType.MODEL;
     }
 
@@ -108,7 +105,7 @@ public class BlockIdolBase extends PBBlock {
     }
 
     @Override
-    protected @NotNull BlockStateContainer createBlockState() {
+    protected BlockStateContainer createBlockState() {
         return new BlockStateContainer.Builder(this) //
                 .add(FACING) //
                 .build();

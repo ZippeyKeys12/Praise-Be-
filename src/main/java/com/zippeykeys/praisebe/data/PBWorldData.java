@@ -9,8 +9,6 @@ import com.zippeykeys.praisebe.PraiseBe;
 import com.zippeykeys.praisebe.util.PlayerUtil;
 import com.zippeykeys.praisebe.util.Reference;
 
-import org.jetbrains.annotations.NotNull;
-
 import lombok.var;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -26,7 +24,7 @@ public class PBWorldData extends WorldSavedData {
 
     private Map<UUID, GodlyRegard> playerRegards = new HashMap<>();
 
-    public static @NotNull PBWorldData of(@NotNull World world) {
+    public static PBWorldData of(World world) {
         PraiseBe.info("Loading WorldData");
         MapStorage storage = world.getMapStorage();
         PBWorldData instance = (PBWorldData) Objects.requireNonNull(storage).getOrLoadData(PBWorldData.class, ID);
@@ -57,7 +55,7 @@ public class PBWorldData extends WorldSavedData {
     }
 
     @Override
-    public void readFromNBT(@NotNull NBTTagCompound nbt) {
+    public void readFromNBT(NBTTagCompound nbt) {
         NBTTagList regards = nbt.getTagList("godlyRegards", 10);
         for (var tag : regards) {
             NBTTagCompound tagCompound = (NBTTagCompound) tag;
@@ -71,7 +69,7 @@ public class PBWorldData extends WorldSavedData {
     }
 
     @Override
-    public @NotNull NBTTagCompound writeToNBT(@NotNull NBTTagCompound compound) {
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         NBTTagList regards = new NBTTagList();
         playerRegards.forEach((key, value) -> {
             NBTTagCompound tagCompound = new NBTTagCompound();

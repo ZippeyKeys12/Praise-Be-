@@ -7,7 +7,6 @@ import com.zippeykeys.praisebe.util.Reference;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jetbrains.annotations.NotNull;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -34,7 +33,7 @@ public class PraiseBe {
             .newSimpleChannel(Reference.MOD_ID);
 
     @EventHandler
-    public void preInit(@NotNull FMLPreInitializationEvent event) {
+    public void preInit(FMLPreInitializationEvent event) {
         LOGGER.info("Starting PreInitialization");
 
         event.getModMetadata().version = Reference.MOD_VERSION;
@@ -44,7 +43,7 @@ public class PraiseBe {
     }
 
     @EventHandler
-    public void init(@NotNull FMLInitializationEvent event) {
+    public void init(FMLInitializationEvent event) {
         LOGGER.info("Starting Initialization");
 
         PROXY.init(LOGGER, event);
@@ -53,7 +52,7 @@ public class PraiseBe {
     }
 
     @EventHandler
-    public void postInit(@NotNull FMLPostInitializationEvent event) {
+    public void postInit(FMLPostInitializationEvent event) {
         LOGGER.info("Starting PostInitialization");
 
         PROXY.postInit(LOGGER, event);
@@ -64,7 +63,7 @@ public class PraiseBe {
 
     @EventHandler
     @SuppressWarnings("deprecation")
-    public void loadComplete(@NotNull FMLLoadCompleteEvent event) {
+    public void loadComplete(FMLLoadCompleteEvent event) {
         Deity.Registry.DEITIES.getValues() //
                 .forEach(Deity.Registry.INSTANCE::register);
     }

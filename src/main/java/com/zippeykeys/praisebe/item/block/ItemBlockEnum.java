@@ -4,8 +4,6 @@ import com.zippeykeys.praisebe.block.base.BlockEnum;
 import com.zippeykeys.praisebe.util.Localize;
 import com.zippeykeys.praisebe.util.MathUtil;
 
-import org.jetbrains.annotations.NotNull;
-
 import lombok.val;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -21,12 +19,12 @@ public class ItemBlockEnum<T extends Enum<T> & Localize> extends ItemBlock {
 
     @SuppressWarnings("unchecked")
     @Override
-    public @NotNull BlockEnum<T> getBlock() {
+    public BlockEnum<T> getBlock() {
         return (BlockEnum<T>) super.getBlock();
     }
 
     @Override
-    public @NotNull String getUnlocalizedName(ItemStack stack) {
+    public String getUnlocalizedName(ItemStack stack) {
         val block = getBlock();
         return block.getUnlocalizedName()
                 + block.getValues()[MathUtil.clamp(stack.getItemDamage(), 0, getBlock().getValues().length - 1)]

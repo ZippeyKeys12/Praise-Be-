@@ -1,7 +1,6 @@
 package com.zippeykeys.praisebe.util;
 
 import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import lombok.experimental.UtilityClass;
@@ -102,8 +101,8 @@ public class RegistryUtil {
     }
 
     @Contract("_, _ -> param1")
-    public static @NotNull <T extends IForgeRegistryEntry<? super T>> T transferRegistryName(@NotNull T main,
-            @NotNull IForgeRegistryEntry<?> other) {
+    public static <T extends IForgeRegistryEntry<? super T>> T transferRegistryName(T main,
+            IForgeRegistryEntry<?> other) {
         main.setRegistryName(other.getRegistryName());
         return main;
     }

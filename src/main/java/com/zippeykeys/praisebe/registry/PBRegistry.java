@@ -42,12 +42,15 @@ public class PBRegistry<T> {
     @SafeVarargs
     @SuppressWarnings("unchecked")
     public PBRegistry(Class<? extends Enum<?>>... classifiersIn) {
-        classifiers = ImmutableSet.<Class<? extends Enum<?>>>builder().add(classifiersIn).build();
+        classifiers = ImmutableSet.<Class<? extends Enum<?>>>builder() //
+                .add(classifiersIn) //
+                .build();
         classes = new HashMap<>();
         val builder = ImmutableMap.<Class<? extends Enum<?>>, Map<Enum<?>, Set<T>>>builder();
         for (var clazz : classifiersIn) {
             try {
-                builder.put(clazz, EnumMap.class.getConstructor(Class.class).newInstance(clazz));
+                builder.put(clazz, EnumMap.class.getConstructor(Class.class) //
+                        .newInstance(clazz));
             } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
                     | InvocationTargetException | NoSuchMethodException | SecurityException ignored) {
             }
@@ -106,12 +109,12 @@ public class PBRegistry<T> {
     }
 
     @SuppressWarnings("unchecked")
-    public T getRandom(Enum<?> key) {
+    public <C extends Enum<C>> T getRandom(C key) {
         val set = getSet(key);
         return ((T[]) set.toArray())[new Random().nextInt(set.size())];
     }
 
-    public Set<T> getSet(Enum<?> key) {
+    public <C extends Enum<C>> Set<T> getSet(C key) {
         return ImmutableSet.<T>builder().addAll(categorized.get(key.getClass()).get(key)).build();
     }
 

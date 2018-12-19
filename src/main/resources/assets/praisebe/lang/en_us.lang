@@ -98,4 +98,15 @@ deity.relationship.self.name=Self
 ############# Creative Tabs ############
 ########################################
 
-itemGroup.praisebe=Praise Be!
+itemGroup.praisebe=Praise Be! - General
+itemGroup.praisebe.celestial=Praise Be! - Celestial
+itemGroup.praisebe.terrestrial=Praise Be! - Terrestrial
+itemGroup.praisebe.ethereal=Praise Be! - Ethereal
+
+########################################
+################ Blocks ################
+########################################
+
+#### Building
+
+tile.praisebe.marble.name=Marble

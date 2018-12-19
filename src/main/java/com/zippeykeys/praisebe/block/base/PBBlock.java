@@ -9,6 +9,7 @@ import com.zippeykeys.praisebe.util.RegistryUtil;
 
 import org.jetbrains.annotations.NotNull;
 
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import lombok.Getter;
 import lombok.val;
 import net.minecraft.block.BlockContainer;
@@ -56,6 +57,10 @@ public class PBBlock extends BlockContainer implements Localize {
 
     public ItemBlock getItem() {
         return RegistryUtil.transferRegistryName(new ItemBlock(this), this);
+    }
+
+    public void gatherVariants(Int2ObjectMap<? super String> variants) {
+        variants.put(0, "inventory");
     }
 
     public Class<? extends PBTileEntity> getTileEntity() {

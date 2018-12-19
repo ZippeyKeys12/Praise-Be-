@@ -9,6 +9,10 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
 
 public interface Localize extends IStringSerializable {
+    @Override
+    @NotNull
+    String getName();
+
     @NotNull
     String getPrefix();
 

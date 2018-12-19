@@ -55,6 +55,10 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.4'
     apt 'org.projectlombok:lombok:1.18.4'
 
+    apt 'org.immutables:value:2.7.3'
+    compile 'org.immutables:value:2.7.3:annotations'
+    apt 'org.immutables:builder:2.7.3'
+
     compile 'com.google.dagger:dagger:2.19'
     apt 'com.google.dagger:dagger-compiler:2.19'
 

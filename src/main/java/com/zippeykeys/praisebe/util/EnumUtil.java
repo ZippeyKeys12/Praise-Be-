@@ -9,7 +9,6 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class EnumUtil {
-
     public static <T extends Enum<T>> Enum<T> byIndex(T enumType, int index) {
         return getValues(enumType)[index];
     }

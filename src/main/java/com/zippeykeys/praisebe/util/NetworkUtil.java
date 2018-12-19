@@ -5,6 +5,8 @@ import java.util.UUID;
 import com.zippeykeys.praisebe.data.GodlyRegard;
 import com.zippeykeys.praisebe.data.PBWorldData;
 
+import org.jetbrains.annotations.NotNull;
+
 import lombok.experimental.UtilityClass;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.DimensionManager;
@@ -19,7 +21,7 @@ public class NetworkUtil {
         return getWorldData().getGodlyRegard(uuid);
     }
 
-    public static PBWorldData getWorldData() {
+    public static @NotNull PBWorldData getWorldData() {
         return PBWorldData.of(DimensionManager.getWorld(0));
     }
 }

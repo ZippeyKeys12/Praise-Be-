@@ -1,6 +1,7 @@
 package com.zippeykeys.praisebe.item.block;
 
 import com.zippeykeys.praisebe.block.base.BlockEnum;
+import com.zippeykeys.praisebe.util.Localize;
 import com.zippeykeys.praisebe.util.MathUtil;
 
 import org.jetbrains.annotations.NotNull;
@@ -8,9 +9,8 @@ import org.jetbrains.annotations.NotNull;
 import lombok.val;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IStringSerializable;
 
-public class ItemBlockEnum<T extends Enum<T> & IStringSerializable> extends ItemBlock {
+public class ItemBlockEnum<T extends Enum<T> & Localize> extends ItemBlock {
 
     public ItemBlockEnum(BlockEnum<T> blockIn) {
         super(blockIn);

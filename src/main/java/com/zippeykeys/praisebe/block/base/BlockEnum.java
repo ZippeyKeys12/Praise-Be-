@@ -2,6 +2,7 @@ package com.zippeykeys.praisebe.block.base;
 
 import com.zippeykeys.praisebe.block.tile.base.PBTileEntity;
 import com.zippeykeys.praisebe.item.block.ItemBlockEnum;
+import com.zippeykeys.praisebe.util.Localize;
 import com.zippeykeys.praisebe.util.RegistryUtil;
 
 import org.jetbrains.annotations.Contract;
@@ -14,22 +15,21 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
 
-public class BlockEnum<T extends Enum<T> & IStringSerializable> extends PBBlock {
+public class BlockEnum<T extends Enum<T> & Localize> extends PBBlock {
     protected final T[] values;
 
     protected final PropertyEnum<T> property;
 
     @Contract(pure = true)
-    public static @NotNull <T extends Enum<T> & IStringSerializable> BlockEnum<T> of(String name, Material materialIn,
+    public static @NotNull <T extends Enum<T> & Localize> BlockEnum<T> of(String name, Material materialIn,
             Class<T> clazz, Class<? extends PBTileEntity> tileClass) {
         return of(name, materialIn, clazz, tileClass, "type");
     }
 
     @Contract(value = "_, _, _, _, _ -> new", pure = true)
-    public static @NotNull <T extends Enum<T> & IStringSerializable> BlockEnum<T> of(String name, Material materialIn,
+    public static @NotNull <T extends Enum<T> & Localize> BlockEnum<T> of(String name, Material materialIn,
             Class<T> clazz, Class<? extends PBTileEntity> tileClass, String propertyName) {
         return new BlockEnum<T>(name, materialIn, clazz, propertyName) {
             @Override

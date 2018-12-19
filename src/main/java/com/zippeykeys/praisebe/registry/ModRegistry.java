@@ -1,4 +1,4 @@
-package com.zippeykeys.praisebe.util;
+package com.zippeykeys.praisebe.registry;
 
 import java.lang.reflect.AccessibleObject;
 import java.util.Arrays;
@@ -13,18 +13,28 @@ import com.zippeykeys.praisebe.block.ModBlocks;
 import com.zippeykeys.praisebe.block.base.PBBlock;
 import com.zippeykeys.praisebe.deity.Deity;
 import com.zippeykeys.praisebe.deity.ModDeities;
+import com.zippeykeys.praisebe.util.ClassUtil;
+import com.zippeykeys.praisebe.util.Reference;
 
 import org.jetbrains.annotations.NotNull;
 
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import lombok.val;
 import lombok.experimental.UtilityClass;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
 @UtilityClass
@@ -37,7 +47,7 @@ public class ModRegistry {
     static {
         val blocks = ImmutableSet.<PBBlock>builder();
         Arrays.stream(ModBlocks.class.getDeclaredFields()) //
-                // .filter(AccessibleObject::isAccessible) //
+                .filter(AccessibleObject::isAccessible) //
                 .map(x -> (PBBlock) ClassUtil.getFieldValue(x)) //
                 .filter(Objects::nonNull) //
                 .forEach(blocks::add);
@@ -58,9 +68,9 @@ public class ModRegistry {
         BLOCKS.stream() //
                 .map(PBBlock::getTileEntity) //
                 .filter(Objects::nonNull) //
-                .forEach(tilentity -> GameRegistry.registerTileEntity(tilentity,
-                        (ResourceLocation) Objects.requireNonNull(ClassUtil.callDeclaredMethod(tilentity, "getResource",
-                                ClassUtil.newInstance(tilentity)))));
+                .forEach(tileEntity -> GameRegistry.registerTileEntity(tileEntity,
+                        (ResourceLocation) Objects.requireNonNull(ClassUtil.callDeclaredMethod(tileEntity,
+                                "getResource", ClassUtil.newInstance(tileEntity)))));
     }
 
     @SubscribeEvent
@@ -105,4 +115,5 @@ public class ModRegistry {
     public static <T extends IForgeRegistryEntry<T>> void register(@NotNull Register<T> e, T... values) {
         e.getRegistry().registerAll(values);
     }
+
 }

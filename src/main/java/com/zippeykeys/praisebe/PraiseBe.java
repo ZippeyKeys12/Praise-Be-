@@ -2,7 +2,7 @@ package com.zippeykeys.praisebe;
 
 import com.zippeykeys.praisebe.deity.Deity;
 import com.zippeykeys.praisebe.proxy.IProxy;
-import com.zippeykeys.praisebe.util.ModRegistry;
+import com.zippeykeys.praisebe.registry.ModRegistry;
 import com.zippeykeys.praisebe.util.Reference;
 
 import org.apache.logging.log4j.LogManager;
@@ -22,7 +22,6 @@ import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION, dependencies = Reference.MOD_DEPENDENCIES, useMetadata = true)
 public class PraiseBe {
-
     @Instance(Reference.MOD_ID)
     public static PraiseBe INSTANCE = new PraiseBe();
 

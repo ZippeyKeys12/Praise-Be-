@@ -57,6 +57,25 @@ public abstract class Deity extends IForgeRegistryEntry.Impl<Deity> implements L
         return getRelationships().get(deity);
     }
 
+    @Contract(" -> new")
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder extends ImmutableDeity.Builder {
+        @Override
+        public Deity build() {
+            val result = super.build();
+            result.setRegistryName(Util.getResource(result.getName()));
+            return result;
+        }
+
+        public Builder relationship(String deity, Relationship relationship) {
+            putRelationships(deity, relationship);
+            return this;
+        }
+    }
+
     @ToString
     @AllArgsConstructor
     public enum Type implements Localize {
@@ -126,20 +145,6 @@ public abstract class Deity extends IForgeRegistryEntry.Impl<Deity> implements L
         @Contract(pure = true)
         public @NotNull String getPrefix() {
             return "deity.relationship";
-        }
-    }
-
-    public static class Builder extends ImmutableDeity.Builder {
-        @Override
-        public Deity build() {
-            val result = super.build();
-            result.setRegistryName(Util.getResource(result.getName()));
-            return result;
-        }
-
-        public Builder relationship(String deity, Relationship relationship) {
-            putRelationships(deity, relationship);
-            return this;
         }
     }
 

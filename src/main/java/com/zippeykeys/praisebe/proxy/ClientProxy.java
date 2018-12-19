@@ -1,6 +1,7 @@
 package com.zippeykeys.praisebe.proxy;
 
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.client.resources.I18n;
 import net.minecraft.world.World;
@@ -41,7 +42,7 @@ public class ClientProxy implements IProxy {
     }
 
     @Override
-    public World getWorld() {
+    public @Nullable World getWorld() {
         return null;
     }
 }

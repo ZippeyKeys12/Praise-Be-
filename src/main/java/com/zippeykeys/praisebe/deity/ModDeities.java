@@ -24,7 +24,7 @@ public class ModDeities {
         @UtilityClass
         public static class Celestial {
                 // Air //
-                public static final Deity ZEUS = new Deity.Builder() //
+                public static final Deity ZEUS = Deity.builder() //
                                 .name("zeus") //
                                 .element(AIR) //
                                 .alignment(EVIL) //
@@ -42,7 +42,7 @@ public class ModDeities {
                                 .relationship("baal", INDIFFERENT) //
                                 .build(); //
 
-                public static final Deity ODIN = new Deity.Builder() //
+                public static final Deity ODIN = Deity.builder() //
                                 .name("odin") //
                                 .type(CELESTIAL) //
                                 .element(AIR) //
@@ -61,7 +61,7 @@ public class ModDeities {
                                 .relationship("baal", DISLIKED) //
                                 .build(); //
 
-                public static final Deity AMUN = new Deity.Builder() //
+                public static final Deity AMUN = Deity.builder() //
                                 .name("amun") //
                                 .type(CELESTIAL) //
                                 .element(AIR) //
@@ -81,7 +81,7 @@ public class ModDeities {
                                 .build(); //
 
                 // Earth //
-                public static final Deity TLALOC = new Deity.Builder() //
+                public static final Deity TLALOC = Deity.builder() //
                                 .name("tlaloc") //
                                 .type(CELESTIAL) //
                                 .element(EARTH) //
@@ -100,7 +100,7 @@ public class ModDeities {
                                 .relationship("baal", INDIFFERENT) //
                                 .build(); //
 
-                public static final Deity HURACAN = new Deity.Builder() //
+                public static final Deity HURACAN = Deity.builder() //
                                 .name("huracan") //
                                 .type(CELESTIAL) //
                                 .element(EARTH) //
@@ -119,7 +119,7 @@ public class ModDeities {
                                 .relationship("baal", LOVED) //
                                 .build(); //
 
-                public static final Deity DEMETER = new Deity.Builder() //
+                public static final Deity DEMETER = Deity.builder() //
                                 .name("demeter") //
                                 .type(CELESTIAL) //
                                 .element(EARTH) //
@@ -139,7 +139,7 @@ public class ModDeities {
                                 .build(); //
 
                 // Fire //
-                public static final Deity RA = new Deity.Builder() //
+                public static final Deity RA = Deity.builder() //
                                 .name("ra") //
                                 .type(CELESTIAL) //
                                 .element(FIRE) //
@@ -158,7 +158,7 @@ public class ModDeities {
                                 .relationship("baal", DISLIKED) //
                                 .build(); //
 
-                public static final Deity APOLLO = new Deity.Builder() //
+                public static final Deity APOLLO = Deity.builder() //
                                 .name("apollo") //
                                 .type(CELESTIAL) //
                                 .element(FIRE) //
@@ -177,7 +177,7 @@ public class ModDeities {
                                 .relationship("baal", INDIFFERENT) //
                                 .build(); //
 
-                public static final Deity AMATERASU = new Deity.Builder() //
+                public static final Deity AMATERASU = Deity.builder() //
                                 .name("amaterasu") //
                                 .type(CELESTIAL) //
                                 .element(FIRE) //
@@ -197,7 +197,7 @@ public class ModDeities {
                                 .build(); //
 
                 // Water //
-                public static final Deity WIRNPA = new Deity.Builder() //
+                public static final Deity WIRNPA = Deity.builder() //
                                 .name("wirnpa") //
                                 .type(CELESTIAL) //
                                 .element(WATER) //
@@ -216,7 +216,7 @@ public class ModDeities {
                                 .relationship("baal", LIKED) //
                                 .build(); //
 
-                public static final Deity THOR = new Deity.Builder() //
+                public static final Deity THOR = Deity.builder() //
                                 .name("thor") //
                                 .type(CELESTIAL) //
                                 .element(WATER) //
@@ -235,7 +235,7 @@ public class ModDeities {
                                 .relationship("baal", DISLIKED) //
                                 .build(); //
 
-                public static final Deity BAAL = new Deity.Builder() //
+                public static final Deity BAAL = Deity.builder() //
                                 .name("baal") //
                                 .type(CELESTIAL) //
                                 .element(WATER) //
@@ -258,21 +258,21 @@ public class ModDeities {
         @UtilityClass
         public static class Terrestrial {
                 // Air //
-                public static final Deity MORRIGAN = new Deity.Builder() //
+                public static final Deity MORRIGAN = Deity.builder() //
                                 .name("morrigan") //
                                 .type(TERRESTRIAL) //
                                 .element(AIR) //
                                 .alignment(NEUTRAL) //
                                 .build(); //
 
-                public static final Deity NJORD = new Deity.Builder() //
+                public static final Deity NJORD = Deity.builder() //
                                 .name("njord") //
                                 .type(TERRESTRIAL) //
                                 .element(AIR) //
                                 .alignment(NEUTRAL) //
                                 .build(); //
 
-                public static final Deity TEZCCATLIPOCA = new Deity.Builder() //
+                public static final Deity TEZCCATLIPOCA = Deity.builder() //
                                 .name("tezc") //
                                 .type(TERRESTRIAL) //
                                 .element(AIR) //
@@ -280,21 +280,21 @@ public class ModDeities {
                                 .build(); //
 
                 // Earth //
-                public static final Deity DAGDA = new Deity.Builder() //
+                public static final Deity DAGDA = Deity.builder() //
                                 .name("dagda") //
                                 .type(TERRESTRIAL) //
                                 .element(EARTH) //
                                 .alignment(GOOD) //
                                 .build(); //
 
-                public static final Deity PAN = new Deity.Builder() //
+                public static final Deity PAN = Deity.builder() //
                                 .name("pan") //
                                 .type(TERRESTRIAL) //
                                 .element(EARTH) //
                                 .alignment(EVIL) //
                                 .build(); //
 
-                public static final Deity DAGON = new Deity.Builder() //
+                public static final Deity DAGON = Deity.builder() //
                                 .name("dagon") //
                                 .type(TERRESTRIAL) //
                                 .element(EARTH) //
@@ -302,21 +302,21 @@ public class ModDeities {
                                 .build(); //
 
                 // Fire //
-                public static final Deity HEPHAESTUS = new Deity.Builder() //
+                public static final Deity HEPHAESTUS = Deity.builder() //
                                 .name("heph") //
                                 .type(TERRESTRIAL) //
                                 .element(FIRE) //
                                 .alignment(NEUTRAL) //
                                 .build(); //
 
-                public static final Deity GRANNUS = new Deity.Builder() //
+                public static final Deity GRANNUS = Deity.builder() //
                                 .name("grannus") //
                                 .type(TERRESTRIAL) //
                                 .element(FIRE) //
                                 .alignment(GOOD) //
                                 .build(); //
 
-                public static final Deity XIUHTECUHTLI = new Deity.Builder() //
+                public static final Deity XIUHTECUHTLI = Deity.builder() //
                                 .name("xiuh") //
                                 .type(TERRESTRIAL) //
                                 .element(FIRE) //
@@ -324,21 +324,21 @@ public class ModDeities {
                                 .build(); //
 
                 // Water //
-                public static final Deity POSEIDON = new Deity.Builder() //
+                public static final Deity POSEIDON = Deity.builder() //
                                 .name("poseidon") //
                                 .type(TERRESTRIAL) //
                                 .element(WATER) //
                                 .alignment(NEUTRAL) //
                                 .build(); //
 
-                public static final Deity SIRONA = new Deity.Builder() //
+                public static final Deity SIRONA = Deity.builder() //
                                 .name("sirona") //
                                 .type(TERRESTRIAL) //
                                 .element(WATER) //
                                 .alignment(GOOD) //
                                 .build(); //
 
-                public static final Deity LOTAN = new Deity.Builder() //
+                public static final Deity LOTAN = Deity.builder() //
                                 .name("lotan") //
                                 .type(TERRESTRIAL) //
                                 .element(WATER) //
@@ -349,21 +349,21 @@ public class ModDeities {
         @UtilityClass
         public static class Ethereal {
                 // Air //
-                public static final Deity NYARLATHOTEP = new Deity.Builder() //
+                public static final Deity NYARLATHOTEP = Deity.builder() //
                                 .name("nyar") //
                                 .type(ETHEREAL) //
                                 .element(AIR) //
                                 .alignment(EVIL) //
                                 .build(); //
 
-                public static final Deity FUJIN = new Deity.Builder() //
+                public static final Deity FUJIN = Deity.builder() //
                                 .name("fujin") //
                                 .type(ETHEREAL) //
                                 .element(AIR) //
                                 .alignment(EVIL) //
                                 .build(); //
 
-                public static final Deity RAIJIN = new Deity.Builder() //
+                public static final Deity RAIJIN = Deity.builder() //
                                 .name("raijin") //
                                 .type(ETHEREAL) //
                                 .element(AIR) //
@@ -371,21 +371,21 @@ public class ModDeities {
                                 .build(); //
 
                 // Earth //
-                public static final Deity SHUB_NIGGURATH = new Deity.Builder() //
+                public static final Deity SHUB_NIGGURATH = Deity.builder() //
                                 .name("shub") //
                                 .type(ETHEREAL) //
                                 .element(EARTH) //
                                 .alignment(NEUTRAL) //
                                 .build(); //
 
-                public static final Deity ATUM = new Deity.Builder() //
+                public static final Deity ATUM = Deity.builder() //
                                 .name("atum") //
                                 .type(ETHEREAL) //
                                 .element(EARTH) //
                                 .alignment(NEUTRAL) //
                                 .build(); //
 
-                public static final Deity ANUBIS = new Deity.Builder() //
+                public static final Deity ANUBIS = Deity.builder() //
                                 .name("anubis") //
                                 .type(ETHEREAL) //
                                 .element(EARTH) //
@@ -393,21 +393,21 @@ public class ModDeities {
                                 .build(); //
 
                 // Fire //
-                public static final Deity HADES = new Deity.Builder() //
+                public static final Deity HADES = Deity.builder() //
                                 .name("hades") //
                                 .type(ETHEREAL) //
                                 .element(FIRE) //
                                 .alignment(EVIL) //
                                 .build(); //
 
-                public static final Deity MOLOCH = new Deity.Builder() //
+                public static final Deity MOLOCH = Deity.builder() //
                                 .name("moloch") //
                                 .type(ETHEREAL) //
                                 .element(FIRE) //
                                 .alignment(EVIL) //
                                 .build(); //
 
-                public static final Deity PEKELNYBOG = new Deity.Builder() //
+                public static final Deity PEKELNYBOG = Deity.builder() //
                                 .name("pekel") //
                                 .type(ETHEREAL) //
                                 .element(FIRE) //
@@ -415,21 +415,21 @@ public class ModDeities {
                                 .build(); //
 
                 // Water //
-                public static final Deity CTHULU = new Deity.Builder() //
+                public static final Deity CTHULU = Deity.builder() //
                                 .name("cthulu") //
                                 .type(ETHEREAL) //
                                 .element(WATER) //
                                 .alignment(EVIL) //
                                 .build(); //
 
-                public static final Deity OSIRIS = new Deity.Builder() //
+                public static final Deity OSIRIS = Deity.builder() //
                                 .name("osiris") //
                                 .type(ETHEREAL) //
                                 .element(WATER) //
                                 .alignment(NEUTRAL) //
                                 .build(); //
 
-                public static final Deity CHARON = new Deity.Builder() //
+                public static final Deity CHARON = Deity.builder() //
                                 .name("charon") //
                                 .type(ETHEREAL) //
                                 .element(WATER) //

@@ -18,11 +18,11 @@ public class EnumUtil {
     }
 
     @SuppressWarnings("unchecked")
-    public static <T extends Enum<T>> Enum<T>[] getValues(@NotNull T enumVar) {
+    public static <T extends Enum<T>> Enum<T>[] getValues(T enumVar) {
         return getValues((Class<T>) enumVar.getClass());
     }
 
-    public static <T extends Enum<T>> Enum<T>[] getValues(@NotNull Class<T> enumVar) {
+    public static <T extends Enum<T>> Enum<T>[] getValues(Class<? extends T> enumVar) {
         return enumVar.getEnumConstants();
     }
 

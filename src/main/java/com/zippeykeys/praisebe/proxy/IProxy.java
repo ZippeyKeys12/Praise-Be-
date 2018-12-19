@@ -1,6 +1,7 @@
 package com.zippeykeys.praisebe.proxy;
 
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -27,5 +28,6 @@ public interface IProxy {
 
     Side getPhysicalSide();
 
+    @Nullable
     World getWorld();
 }

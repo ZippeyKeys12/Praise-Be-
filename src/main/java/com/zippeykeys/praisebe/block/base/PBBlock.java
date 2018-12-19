@@ -7,7 +7,7 @@ import com.zippeykeys.praisebe.util.Localize;
 import com.zippeykeys.praisebe.util.Reference;
 import com.zippeykeys.praisebe.util.RegistryUtil;
 
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import lombok.Getter;
@@ -40,11 +40,11 @@ public class PBBlock extends BlockContainer implements Localize {
     }
 
     @Override
-    public @NotNull String getPrefix() {
+    public String getPrefix() {
         return "tile";
     }
 
-    public TileEntity createNewTileEntity(@NotNull World worldIn, int meta) {
+    public TileEntity createNewTileEntity(World worldIn, int meta) {
         val tile = getTileEntity();
         if (tile != null) {
             try {
@@ -63,7 +63,7 @@ public class PBBlock extends BlockContainer implements Localize {
         variants.put(0, "inventory");
     }
 
-    public Class<? extends PBTileEntity> getTileEntity() {
+    public @Nullable Class<? extends PBTileEntity> getTileEntity() {
         return null;
     }
 }

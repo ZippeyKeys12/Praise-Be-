@@ -16,6 +16,7 @@ import com.zippeykeys.praisebe.util.ClassUtil;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import lombok.Builder;
 import lombok.val;
@@ -63,11 +64,11 @@ public class PBRegistry<T> {
         });
     }
 
-    public T register(ResourceLocation key, T value) {
+    public @Nullable T register(ResourceLocation key, T value) {
         return register(key.toString(), value);
     }
 
-    public T register(String key, T value) {
+    public @Nullable T register(String key, T value) {
         val previousValue = classes.put(key, value);
         for (var clazz : classifiers) {
             var type = clazz.cast(ClassUtil.getFieldValueByClass(value, clazz));

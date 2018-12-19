@@ -28,7 +28,7 @@ public class PlayerUtil {
         return getUsername(getUUID(player));
     }
 
-    public static String getUsername(UUID uuid) {
+    public static @Nullable String getUsername(UUID uuid) {
         return UsernameCache.getLastKnownUsername(uuid);
     }
 

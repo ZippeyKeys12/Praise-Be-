@@ -1,7 +1,6 @@
 package com.zippeykeys.praisebe.util;
 
 import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 
 import lombok.experimental.UtilityClass;
 import net.minecraft.util.ResourceLocation;
@@ -16,7 +15,7 @@ public class Util {
     }
 
     @Contract(pure = true)
-    public static Side getLogicalSide(@NotNull World world) {
+    public static Side getLogicalSide(World world) {
         if (world.isRemote) {
             return Side.CLIENT;
         } else {
@@ -24,12 +23,12 @@ public class Util {
         }
     }
 
-    public static @NotNull World getWorld() {
+    public static World getWorld() {
         return FMLCommonHandler.instance().getMinecraftServerInstance().getEntityWorld();
     }
 
     @Contract("_ -> new")
-    public static @NotNull ResourceLocation getResource(String resourcePathIn) {
+    public static ResourceLocation getResource(String resourcePathIn) {
         return new ResourceLocation(Reference.MOD_ID, resourcePathIn);
     }
 }

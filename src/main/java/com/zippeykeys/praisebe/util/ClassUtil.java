@@ -42,7 +42,7 @@ public class ClassUtil {
         return getFieldValue(field, null);
     }
 
-    public static @Nullable Object getFieldValue(@NotNull Field field, Object instance) {
+    public static @Nullable Object getFieldValue(@NotNull Field field, @Nullable Object instance) {
         try {
             return field.get(instance);
         } catch (IllegalArgumentException | IllegalAccessException ignored) {

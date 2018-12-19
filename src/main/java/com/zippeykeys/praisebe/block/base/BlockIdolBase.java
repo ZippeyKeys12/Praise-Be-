@@ -1,5 +1,7 @@
 package com.zippeykeys.praisebe.block.base;
 
+import javax.annotation.Nullable;
+
 import com.zippeykeys.praisebe.block.tile.base.TileEntityIdolBase;
 
 import org.jetbrains.annotations.NotNull;
@@ -50,7 +52,7 @@ public class BlockIdolBase extends PBBlock {
         var facing = EnumFacing.NORTH;
         val tile = worldIn.getTileEntity(pos);
         val tileClazz = getTileEntity();
-        if (tileClazz.isInstance(tile)) {
+        if (tileClazz != null && tileClazz.isInstance(tile)) {
             facing = EnumFacing.getFront(tileClazz.cast(tile).getFacing());
         }
         return state.withProperty(FACING, facing);
@@ -113,6 +115,7 @@ public class BlockIdolBase extends PBBlock {
     }
 
     @Override
+    @Nullable
     public Class<? extends TileEntityIdolBase> getTileEntity() {
         return null;
     }

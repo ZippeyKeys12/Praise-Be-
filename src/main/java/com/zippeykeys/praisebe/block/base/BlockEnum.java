@@ -1,10 +1,14 @@
 package com.zippeykeys.praisebe.block.base;
 
+import java.util.Optional;
+
 import com.zippeykeys.praisebe.block.tile.base.PBTileEntity;
 import com.zippeykeys.praisebe.item.block.ItemBlockEnum;
 import com.zippeykeys.praisebe.util.Localize;
 import com.zippeykeys.praisebe.util.RegistryUtil;
 
+import org.immutables.builder.Builder.Factory;
+import org.immutables.builder.Builder.Parameter;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -22,16 +26,11 @@ public class BlockEnum<T extends Enum<T> & Localize> extends PBBlock {
 
     protected final PropertyEnum<T> property;
 
-    @Contract(pure = true)
-    public static @NotNull <T extends Enum<T> & Localize> BlockEnum<T> of(String name, Material materialIn,
-            Class<T> clazz, Class<? extends PBTileEntity> tileClass) {
-        return of(name, materialIn, clazz, tileClass, "type");
-    }
-
+    @Factory
     @Contract(value = "_, _, _, _, _ -> new", pure = true)
-    public static @NotNull <T extends Enum<T> & Localize> BlockEnum<T> of(String name, Material materialIn,
-            Class<T> clazz, Class<? extends PBTileEntity> tileClass, String propertyName) {
-        return new BlockEnum<T>(name, materialIn, clazz, propertyName) {
+    public static <T extends Enum<T> & Localize> BlockEnum<T> blockEnum(String name, Material materialIn,
+            @Parameter Class<T> clazz, Class<? extends PBTileEntity> tileClass, Optional<String> propertyName) {
+        return new BlockEnum<T>(name, materialIn, clazz, propertyName.orElse("type")) {
             @Override
             public Class<? extends PBTileEntity> getTileEntity() {
                 return tileClass;

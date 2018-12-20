@@ -35,9 +35,9 @@ public class BlockEnum<T extends Enum<T> & Localize> extends PBBlock {
     @Factory
     @Contract(value = "_, _, _, _, _ -> new", pure = true)
     public static <T extends Enum<T> & Localize> BlockEnum<T> blockEnum(String name, Material material,
-            @Parameter Class<T> clazz, Optional<Class<? extends PBTileEntity>> tileClass,
-            Optional<String> propertyName) {
-        return new BlockEnum<T>(name, material, clazz, propertyName.orElse("type")) {
+            @Parameter Class<T> clazz, Optional<Class<? extends PBTileEntity>> tileClass, Optional<String> propertyName,
+            CreativeTabs... creativeTabs) {
+        return new BlockEnum<T>(name, material, clazz, propertyName.orElse("type"), creativeTabs) {
             @Override
             @Nullable
             public Class<? extends PBTileEntity> getTileEntity() {
@@ -50,8 +50,13 @@ public class BlockEnum<T extends Enum<T> & Localize> extends PBBlock {
         this(nameIn, materialIn, clazz, "type");
     }
 
-    public BlockEnum(String nameIn, Material materialIn, Class<T> clazz, String propertyName) {
-        super(nameIn, materialIn);
+    public BlockEnum(String nameIn, Material materialIn, Class<T> clazz, CreativeTabs... creativeTabs) {
+        this(nameIn, materialIn, clazz, "type", creativeTabs);
+    }
+
+    public BlockEnum(String nameIn, Material materialIn, Class<T> clazz, String propertyName,
+            CreativeTabs... creativeTabs) {
+        super(nameIn, materialIn, creativeTabs);
         DATA_PROPERTY = PropertyEnum.create(propertyName, clazz);
         blockState = new BlockStateContainer.Builder(this) //
                 .add(DATA_PROPERTY) //

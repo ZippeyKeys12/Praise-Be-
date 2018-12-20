@@ -1,5 +1,7 @@
 package com.zippeykeys.praisebe.block.base;
 
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.Optional;
 
 import com.zippeykeys.praisebe.block.tile.base.PBTileEntity;
@@ -18,6 +20,7 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
@@ -28,20 +31,27 @@ public class PBBlock extends BlockContainer implements Localize {
     protected final String name;
 
     @Factory
-    public static PBBlock block(String name, Material material, Optional<MapColor> color) {
-        return new PBBlock(name, material, color.orElse(material.getMaterialMapColor()));
+    public static PBBlock block(String name, Material material, Optional<MapColor> color,
+            CreativeTabs... creativeTabs) {
+        return new PBBlock(name, material, color.orElse(material.getMaterialMapColor()), creativeTabs);
     }
 
     public PBBlock(String nameIn, Material materialIn) {
         this(nameIn, materialIn, materialIn.getMaterialMapColor());
     }
 
-    public PBBlock(String nameIn, Material materialIn, MapColor color) {
+    public PBBlock(String nameIn, Material materialIn, CreativeTabs... creativeTabs) {
+        this(nameIn, materialIn, materialIn.getMaterialMapColor(), creativeTabs);
+    }
+
+    public PBBlock(String nameIn, Material materialIn, MapColor color, CreativeTabs... creativeTabs) {
         super(materialIn, color);
         name = nameIn;
         setRegistryName(getResource());
         setUnlocalizedName(Reference.MOD_ID + "." + getRegistryName().getResourcePath());
-        setCreativeTab(Reference.TAB_GENERAL);
+        Arrays.stream(creativeTabs) //
+                .filter(Objects::nonNull) //
+                .forEach(this::setCreativeTab);
     }
 
     @Override

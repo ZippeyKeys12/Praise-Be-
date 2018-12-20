@@ -108,23 +108,19 @@ public class ModRegistry {
         e.getRegistry().registerAll(values);
     }
 
-    @UtilityClass
+    @SubscribeEvent
     @SideOnly(Side.CLIENT)
-    @EventBusSubscriber(modid = Reference.MOD_ID, value = Side.CLIENT)
-    public static class Models {
-        @SubscribeEvent
-        public static void registerModels(ModelRegistryEvent event) {
-            BLOCKS.forEach(block -> {
-                val identifier = block.getRegistryName();
-                val item = Item.getItemFromBlock(block);
-                if (identifier == null || item == Items.AIR) {
-                    return;
-                }
-                for (var entry : block.getVariants().int2ObjectEntrySet()) {
-                    ModelLoader.setCustomModelResourceLocation(item, entry.getIntKey(),
-                            new ModelResourceLocation(identifier, entry.getValue()));
-                }
-            });
-        }
+    public static void registerModels(ModelRegistryEvent event) {
+        BLOCKS.forEach(block -> {
+            val identifier = block.getRegistryName();
+            val item = Item.getItemFromBlock(block);
+            if (identifier == null || item == Items.AIR) {
+                return;
+            }
+            for (var entry : block.getVariants().int2ObjectEntrySet()) {
+                ModelLoader.setCustomModelResourceLocation(item, entry.getIntKey(),
+                        new ModelResourceLocation(identifier, entry.getValue()));
+            }
+        });
     }
 }

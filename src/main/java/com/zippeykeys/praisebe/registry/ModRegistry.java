@@ -1,6 +1,5 @@
 package com.zippeykeys.praisebe.registry;
 
-import java.lang.reflect.AccessibleObject;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Objects;
@@ -9,7 +8,6 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 
 import com.google.common.collect.ImmutableSet;
-import com.zippeykeys.praisebe.PraiseBe;
 import com.zippeykeys.praisebe.block.ModBlocks;
 import com.zippeykeys.praisebe.block.base.PBBlock;
 import com.zippeykeys.praisebe.deity.Deity;

@@ -26,7 +26,7 @@ public class Reference {
         @Override
         @Contract(" -> new")
         public ItemStack getTabIconItem() {
-            return new ItemStack(Item.getItemFromBlock(ModBlocks.MARBLE));
+            return new ItemStack(Item.getItemFromBlock(ModBlocks.BUILDING_BLOCK));
         }
     };
 

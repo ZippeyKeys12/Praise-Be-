@@ -1,6 +1,5 @@
 package com.zippeykeys.praisebe.block.base;
 
-import java.util.Objects;
 import java.util.Optional;
 
 import com.zippeykeys.praisebe.block.tile.base.PBTileEntity;
@@ -29,7 +28,7 @@ public class PBBlock extends BlockContainer implements Localize {
     protected final String name;
 
     @Factory
-    public static PBBlock pBBlock(String name, Material material, Optional<MapColor> color) {
+    public static PBBlock block(String name, Material material, Optional<MapColor> color) {
         return new PBBlock(name, material, color.orElse(material.getMaterialMapColor()));
     }
 
@@ -41,7 +40,7 @@ public class PBBlock extends BlockContainer implements Localize {
         super(materialIn, color);
         name = nameIn;
         setRegistryName(getResource());
-        setUnlocalizedName(Reference.MOD_ID + "." + Objects.requireNonNull(getRegistryName()).getResourcePath());
+        setUnlocalizedName(Reference.MOD_ID + "." + getRegistryName().getResourcePath());
         setCreativeTab(Reference.TAB_GENERAL);
     }
 
@@ -81,7 +80,7 @@ public class PBBlock extends BlockContainer implements Localize {
         return null;
     }
 
-    public static PBBlockBuilder builder() {
-        return new PBBlockBuilder();
+    public static BlockBuilder builder() {
+        return new BlockBuilder();
     }
 }

@@ -12,6 +12,9 @@ import org.immutables.builder.Builder.Parameter;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.Nullable;
 
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
+import lombok.val;
 import lombok.var;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -26,6 +29,8 @@ public class BlockEnum<T extends Enum<T> & Localize> extends PBBlock {
     protected final T[] values;
 
     protected final PropertyEnum<T> DATA_PROPERTY;
+
+    protected final BlockStateContainer blockState;
 
     @Factory
     @Contract(value = "_, _, _, _, _ -> new", pure = true)
@@ -47,15 +52,22 @@ public class BlockEnum<T extends Enum<T> & Localize> extends PBBlock {
 
     public BlockEnum(String nameIn, Material materialIn, Class<T> clazz, String propertyName) {
         super(nameIn, materialIn);
-        values = clazz.getEnumConstants();
         DATA_PROPERTY = PropertyEnum.create(propertyName, clazz);
-        setDefaultState(blockState.getBaseState().withProperty(DATA_PROPERTY, values[0]));
+        blockState = new BlockStateContainer.Builder(this) //
+                .add(DATA_PROPERTY) //
+                .build();
+        values = clazz.getEnumConstants();
+        setDefaultState(blockState.getBaseState());
     }
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer.Builder(this) //
-                .build();
+        return new BlockStateContainer(this);
+    }
+
+    @Override
+    public final BlockStateContainer getBlockState() {
+        return blockState;
     }
 
     @Override
@@ -83,6 +95,15 @@ public class BlockEnum<T extends Enum<T> & Localize> extends PBBlock {
     @Override
     public ItemBlock getItem() {
         return RegistryUtil.transferRegistryName(new ItemBlockEnum<>(this), this);
+    }
+
+    @Override
+    public Int2ObjectMap<String> getVariants() {
+        val variants = new Int2ObjectOpenHashMap<String>();
+        for (var i = 0; i < values.length; i++) {
+            variants.put(i, "type=" + values[i].name());
+        }
+        return variants;
     }
 
     protected BlockStateContainer createStateContainer() {

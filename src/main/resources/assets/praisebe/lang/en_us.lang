@@ -109,4 +109,5 @@ itemGroup.praisebe.ethereal=Praise Be! - Ethereal
 
 #### Building
 
-tile.praisebe.marble.name=Marble
+tile.praisebe.buildingstonemarble.name=Marble
+tile.praisebe.buildingstonebasalt.name=Basalt

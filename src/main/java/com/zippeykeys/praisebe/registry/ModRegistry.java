@@ -15,8 +15,8 @@ import com.zippeykeys.praisebe.deity.ModDeities;
 import com.zippeykeys.praisebe.util.ClassUtil;
 import com.zippeykeys.praisebe.util.Reference;
 
-import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import lombok.val;
+import lombok.var;
 import lombok.experimental.UtilityClass;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -115,12 +115,12 @@ public class ModRegistry {
         @SubscribeEvent
         public static void registerModels(ModelRegistryEvent event) {
             BLOCKS.forEach(block -> {
-                ResourceLocation identifier = block.getRegistryName();
-                Item item = Item.getItemFromBlock(block);
+                val identifier = block.getRegistryName();
+                val item = Item.getItemFromBlock(block);
                 if (identifier == null || item == Items.AIR) {
                     return;
                 }
-                for (Int2ObjectMap.Entry<String> entry : block.getVariants().int2ObjectEntrySet()) {
+                for (var entry : block.getVariants().int2ObjectEntrySet()) {
                     ModelLoader.setCustomModelResourceLocation(item, entry.getIntKey(),
                             new ModelResourceLocation(identifier, entry.getValue()));
                 }

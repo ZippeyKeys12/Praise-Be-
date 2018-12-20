@@ -14,7 +14,6 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -24,10 +23,6 @@ import net.minecraft.world.World;
 
 public class BlockIdolBase extends PBBlock {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
-
-    public BlockIdolBase(String nameIn) {
-        this(nameIn, Material.ROCK);
-    }
 
     public BlockIdolBase(String nameIn, Material materialIn) {
         super(nameIn, materialIn);
@@ -97,7 +92,7 @@ public class BlockIdolBase extends PBBlock {
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
             EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        TileEntity self = worldIn.getTileEntity(pos);
+        val self = worldIn.getTileEntity(pos);
         if (self == null || playerIn.isSneaking())
             return false;
         worldIn.notifyBlockUpdate(pos, state, state, 3);

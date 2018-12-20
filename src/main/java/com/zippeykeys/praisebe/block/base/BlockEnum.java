@@ -10,7 +10,9 @@ import com.zippeykeys.praisebe.util.RegistryUtil;
 import org.immutables.builder.Builder.Factory;
 import org.immutables.builder.Builder.Parameter;
 import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.Nullable;
 
+import lombok.var;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -23,16 +25,18 @@ import net.minecraft.util.NonNullList;
 public class BlockEnum<T extends Enum<T> & Localize> extends PBBlock {
     protected final T[] values;
 
-    protected final PropertyEnum<T> property;
+    protected final PropertyEnum<T> DATA_PROPERTY;
 
     @Factory
     @Contract(value = "_, _, _, _, _ -> new", pure = true)
-    public static <T extends Enum<T> & Localize> BlockEnum<T> blockEnum(String name, Material materialIn,
-            @Parameter Class<T> clazz, Class<? extends PBTileEntity> tileClass, Optional<String> propertyName) {
-        return new BlockEnum<T>(name, materialIn, clazz, propertyName.orElse("type")) {
+    public static <T extends Enum<T> & Localize> BlockEnum<T> blockEnum(String name, Material material,
+            @Parameter Class<T> clazz, Optional<Class<? extends PBTileEntity>> tileClass,
+            Optional<String> propertyName) {
+        return new BlockEnum<T>(name, material, clazz, propertyName.orElse("type")) {
             @Override
+            @Nullable
             public Class<? extends PBTileEntity> getTileEntity() {
-                return tileClass;
+                return tileClass.orElse(null);
             }
         };
     }
@@ -44,8 +48,8 @@ public class BlockEnum<T extends Enum<T> & Localize> extends PBBlock {
     public BlockEnum(String nameIn, Material materialIn, Class<T> clazz, String propertyName) {
         super(nameIn, materialIn);
         values = clazz.getEnumConstants();
-        property = PropertyEnum.create(propertyName, clazz);
-        setDefaultState(blockState.getBaseState());
+        DATA_PROPERTY = PropertyEnum.create(propertyName, clazz);
+        setDefaultState(blockState.getBaseState().withProperty(DATA_PROPERTY, values[0]));
     }
 
     @Override
@@ -56,12 +60,12 @@ public class BlockEnum<T extends Enum<T> & Localize> extends PBBlock {
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        return getDefaultState().withProperty(property, values[meta]);
+        return getDefaultState().withProperty(DATA_PROPERTY, values[meta]);
     }
 
     @Override
     public int getMetaFromState(IBlockState state) {
-        return state.getValue(property).ordinal();
+        return state.getValue(DATA_PROPERTY).ordinal();
     }
 
     @Override
@@ -71,8 +75,9 @@ public class BlockEnum<T extends Enum<T> & Localize> extends PBBlock {
 
     @Override
     public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> subBlocks) {
-        for (T value : values)
+        for (var value : values) {
             subBlocks.add(new ItemStack(this, 1, value.ordinal()));
+        }
     }
 
     @Override
@@ -82,11 +87,15 @@ public class BlockEnum<T extends Enum<T> & Localize> extends PBBlock {
 
     protected BlockStateContainer createStateContainer() {
         return new BlockStateContainer.Builder(this) //
-                .add(property) //
+                .add(DATA_PROPERTY) //
                 .build();
     }
 
     public T[] getValues() {
         return values;
+    }
+
+    public static <C extends Enum<C> & Localize> BlockEnumBuilder<C> builder(Class<C> clazz) {
+        return new BlockEnumBuilder<C>(clazz);
     }
 }

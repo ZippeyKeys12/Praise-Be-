@@ -26,6 +26,7 @@ public class ModDeities {
                 // Air //
                 public static final Deity ZEUS = Deity.builder() //
                                 .name("zeus") //
+                                .type(CELESTIAL) //
                                 .element(AIR) //
                                 .alignment(EVIL) //
                                 .relationship("zeus", SELF) //

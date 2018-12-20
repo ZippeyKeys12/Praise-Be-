@@ -9,6 +9,7 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 
 import com.google.common.collect.ImmutableSet;
+import com.zippeykeys.praisebe.PraiseBe;
 import com.zippeykeys.praisebe.block.ModBlocks;
 import com.zippeykeys.praisebe.block.base.PBBlock;
 import com.zippeykeys.praisebe.deity.Deity;
@@ -17,7 +18,6 @@ import com.zippeykeys.praisebe.util.ClassUtil;
 import com.zippeykeys.praisebe.util.Reference;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import lombok.val;
 import lombok.experimental.UtilityClass;
 import net.minecraft.block.Block;
@@ -45,7 +45,6 @@ public class ModRegistry {
     static {
         val blocks = ImmutableSet.<PBBlock>builder();
         Arrays.stream(ModBlocks.class.getDeclaredFields()) //
-                .filter(AccessibleObject::isAccessible) //
                 .map(x -> (PBBlock) ClassUtil.getFieldValue(x)) //
                 .filter(Objects::nonNull) //
                 .forEach(blocks::add);
@@ -53,7 +52,6 @@ public class ModRegistry {
 
         val deities = ImmutableSet.<Deity>builder();
         Arrays.stream(ClassUtil.getDeclaredFields(ModDeities.class.getDeclaredClasses())) //
-                .filter(AccessibleObject::isAccessible) //
                 .map(x -> (Deity) ClassUtil.getFieldValue(x)) //
                 .filter(Objects::nonNull) //
                 .forEach(deities::add);
@@ -112,4 +110,23 @@ public class ModRegistry {
         e.getRegistry().registerAll(values);
     }
 
+    @UtilityClass
+    @SideOnly(Side.CLIENT)
+    @EventBusSubscriber(modid = Reference.MOD_ID, value = Side.CLIENT)
+    public static class Models {
+        @SubscribeEvent
+        public static void registerModels(ModelRegistryEvent event) {
+            BLOCKS.forEach(block -> {
+                ResourceLocation identifier = block.getRegistryName();
+                Item item = Item.getItemFromBlock(block);
+                if (identifier == null || item == Items.AIR) {
+                    return;
+                }
+                for (Int2ObjectMap.Entry<String> entry : block.getVariants().int2ObjectEntrySet()) {
+                    ModelLoader.setCustomModelResourceLocation(item, entry.getIntKey(),
+                            new ModelResourceLocation(identifier, entry.getValue()));
+                }
+            });
+        }
+    }
 }

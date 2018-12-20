@@ -10,13 +10,16 @@ import com.zippeykeys.praisebe.util.RegistryUtil;
 import org.jetbrains.annotations.Nullable;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import lombok.Getter;
 import lombok.val;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.world.World;
 
 public class PBBlock extends BlockContainer implements Localize {
@@ -44,6 +47,7 @@ public class PBBlock extends BlockContainer implements Localize {
         return "tile";
     }
 
+    @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         val tile = getTileEntity();
         if (tile != null) {
@@ -55,12 +59,19 @@ public class PBBlock extends BlockContainer implements Localize {
         return null;
     }
 
+    @Override
+    public EnumBlockRenderType getRenderType(IBlockState state) {
+        return EnumBlockRenderType.MODEL;
+    }
+
     public ItemBlock getItem() {
         return RegistryUtil.transferRegistryName(new ItemBlock(this), this);
     }
 
-    public void gatherVariants(Int2ObjectMap<? super String> variants) {
+    public Int2ObjectMap<String> getVariants() {
+        Int2ObjectMap<String> variants = new Int2ObjectOpenHashMap<>();
         variants.put(0, "inventory");
+        return variants;
     }
 
     public @Nullable Class<? extends PBTileEntity> getTileEntity() {

@@ -30,17 +30,16 @@ public class BlockEnum<T extends Enum<T> & Localize> extends PBBlock {
 
     protected final PropertyEnum<T> DATA_PROPERTY;
 
-    protected final BlockStateContainer blockState;
+    protected final BlockStateContainer newBlockState;
 
     @Factory
-    @Contract(value = "_, _, _, _, _ -> new", pure = true)
+    @Contract(value = "_, _, _, _, _, _ -> new", pure = true)
     public static <T extends Enum<T> & Localize> BlockEnum<T> blockEnum(String name, Material material,
             @Parameter Class<T> clazz, Optional<Class<? extends PBTileEntity>> tileClass, Optional<String> propertyName,
             CreativeTabs... creativeTabs) {
         return new BlockEnum<T>(name, material, clazz, propertyName.orElse("type"), creativeTabs) {
             @Override
-            @Nullable
-            public Class<? extends PBTileEntity> getTileEntity() {
+            public @Nullable Class<? extends PBTileEntity> getTileEntity() {
                 return tileClass.orElse(null);
             }
         };
@@ -58,11 +57,11 @@ public class BlockEnum<T extends Enum<T> & Localize> extends PBBlock {
             CreativeTabs... creativeTabs) {
         super(nameIn, materialIn, creativeTabs);
         DATA_PROPERTY = PropertyEnum.create(propertyName, clazz);
-        blockState = new BlockStateContainer.Builder(this) //
+        newBlockState = new BlockStateContainer.Builder(this) //
                 .add(DATA_PROPERTY) //
                 .build();
         values = clazz.getEnumConstants();
-        setDefaultState(blockState.getBaseState());
+        setDefaultState(newBlockState.getBaseState());
     }
 
     @Override
@@ -70,9 +69,8 @@ public class BlockEnum<T extends Enum<T> & Localize> extends PBBlock {
         return new BlockStateContainer(this);
     }
 
-    @Override
-    public final BlockStateContainer getBlockState() {
-        return blockState;
+    public final BlockStateContainer getNewBlockState() {
+        return newBlockState;
     }
 
     @Override

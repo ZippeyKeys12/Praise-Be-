@@ -23,7 +23,7 @@ public class PlayerUtil {
         return player.getGameProfile().getId();
     }
 
-    public static String getUsername(EntityPlayer player) {
+    public static @Nullable String getUsername(EntityPlayer player) {
         return getUsername(getUUID(player));
     }
 

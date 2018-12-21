@@ -52,7 +52,7 @@ public class GodlyRegard implements INBTSerializable<NBTTagCompound> {
         return PlayerUtil.getPlayer(uuid);
     }
 
-    public String getUsername() {
+    public @Nullable String getUsername() {
         return PlayerUtil.getUsername(uuid);
     }
 

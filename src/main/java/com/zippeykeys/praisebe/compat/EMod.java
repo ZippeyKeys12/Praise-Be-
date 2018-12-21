@@ -2,6 +2,9 @@ package com.zippeykeys.praisebe.compat;
 
 import com.zippeykeys.praisebe.util.Localize;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -13,7 +16,8 @@ public enum EMod implements Localize {
     private final String name;
 
     @Override
-    public String getPrefix() {
+    @Contract(pure = true)
+    public @NotNull String getPrefix() {
         return "mod";
     }
 }

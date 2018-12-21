@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.zippeykeys.praisebe.util.Localize;
+import com.zippeykeys.praisebe.util.Util;
 
 import org.apache.logging.log4j.util.TriConsumer;
 import org.immutables.builder.Builder.Factory;
@@ -13,14 +14,16 @@ import org.jetbrains.annotations.Nullable;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.val;
 import lombok.var;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 @AllArgsConstructor
-public class Multiblock implements Localize {
+public class Multiblock extends IForgeRegistryEntry.Impl<Multiblock> implements Localize {
     @Getter(onMethod_ = @Override)
     private final String name;
 
@@ -39,7 +42,9 @@ public class Multiblock implements Localize {
     @Contract("_, _, _, _, _ -> new")
     public static Multiblock multiblock(String name, Optional<EMBActivator> activator, IBlockState trigger,
             List<MultiblockPart> parts, @Parameter TriConsumer<Multiblock, World, BlockPos> structureBuilder) {
-        return new Multiblock(name, activator.orElse(EMBActivator.values()[0]), trigger, parts, structureBuilder);
+        val result = new Multiblock(name, activator.orElse(EMBActivator.values()[0]), trigger, parts, structureBuilder);
+        result.setRegistryName(Util.getResource(result.getName()));
+        return result;
     }
 
     public boolean isValid(World world, BlockPos pos, EntityPlayer player) {

@@ -10,13 +10,13 @@ public class PBItemBlock extends ItemBlock implements Localize {
     @Getter(onMethod_ = @Override)
     protected final String name;
 
-    public PBItemBlock(PBBlock block) {
-        this(block, block.getName());
+    public PBItemBlock(PBBlock blockIn) {
+        this(blockIn, blockIn.getName());
     }
 
-    public PBItemBlock(PBBlock block, String name) {
-        super(block);
-        this.name = name;
+    public PBItemBlock(PBBlock blockIn, String nameIn) {
+        super(blockIn);
+        this.name = nameIn;
     }
 
     @Override

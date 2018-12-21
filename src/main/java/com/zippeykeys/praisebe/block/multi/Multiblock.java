@@ -57,6 +57,13 @@ public class Multiblock extends IForgeRegistryEntry.Impl<Multiblock> implements 
         return false;
     }
 
+    public boolean addPart(MultiblockPart part) {
+        if (part == null || getPartAt(part.getPos()) != null) {
+            return false;
+        }
+        return parts.add(part);
+    }
+
     public @Nullable MultiblockPart getPartAt(BlockPos pos) {
         return getParts() //
                 .stream() //

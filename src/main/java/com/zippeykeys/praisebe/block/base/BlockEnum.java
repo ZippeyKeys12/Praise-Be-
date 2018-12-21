@@ -61,7 +61,7 @@ public class BlockEnum<T extends Enum<T> & Localize> extends PBBlock {
                 .add(DATA_PROPERTY) //
                 .build();
         values = clazz.getEnumConstants();
-        setDefaultState(newBlockState.getBaseState());
+        setDefaultState(getBlockState().getBaseState());
     }
 
     @Override
@@ -69,7 +69,8 @@ public class BlockEnum<T extends Enum<T> & Localize> extends PBBlock {
         return new BlockStateContainer(this);
     }
 
-    public final BlockStateContainer getNewBlockState() {
+    @Override
+    public final BlockStateContainer getBlockState() {
         return newBlockState;
     }
 

@@ -86,4 +86,8 @@ public class Multiblock extends IForgeRegistryEntry.Impl<Multiblock> implements 
     public String getPrefix() {
         return "multiblock";
     }
+
+    public static MultiblockBuilder builder(TriConsumer<Multiblock, World, BlockPos> structureBuilder) {
+        return new MultiblockBuilder(structureBuilder);
+    }
 }

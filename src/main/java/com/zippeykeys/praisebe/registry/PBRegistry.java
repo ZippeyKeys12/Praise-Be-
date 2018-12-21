@@ -1,9 +1,11 @@
 package com.zippeykeys.praisebe.registry;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
@@ -14,13 +16,16 @@ import com.google.common.collect.ImmutableSet;
 import com.zippeykeys.praisebe.deity.Deity;
 import com.zippeykeys.praisebe.util.ClassUtil;
 
+import org.immutables.builder.Builder.Factory;
+import org.immutables.value.Value.Style;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.Nullable;
 
-import lombok.Builder;
 import lombok.val;
 import lombok.var;
 import net.minecraft.util.ResourceLocation;
+
+@Style(depluralize = true, strictBuilder = true)
 
 public class PBRegistry<T> {
     protected final ImmutableSet<Class<? extends Enum<?>>> classifiers;
@@ -29,21 +34,24 @@ public class PBRegistry<T> {
 
     protected final Map<Class<? extends Enum<?>>, Map<Enum<?>, Set<T>>> categorized;
 
-    @Builder
-    @SafeVarargs
+    @Factory
     @Contract("_, _ -> new")
     @SuppressWarnings("unchecked")
-    public static <T> PBRegistry<T> of(Class<T> clazzT, Class<? extends Enum<?>>... classifiers) {
+    public static <T> PBRegistry<T> pBRegistry(Class<T> clazzT, List<Class<? extends Enum<?>>> classifiers) {
         if (clazzT == Deity.class)
             return (PBRegistry<T>) new Deity.Registry();
         return new PBRegistry<>(classifiers);
     }
 
     @SafeVarargs
-    @SuppressWarnings("unchecked")
     public PBRegistry(Class<? extends Enum<?>>... classifiersIn) {
+        this(Arrays.asList(classifiersIn));
+    }
+
+    @SuppressWarnings("unchecked")
+    public PBRegistry(List<Class<? extends Enum<?>>> classifiersIn) {
         classifiers = ImmutableSet.<Class<? extends Enum<?>>>builder() //
-                .add(classifiersIn) //
+                .addAll(classifiersIn) //
                 .build();
         classes = new HashMap<>();
         val builder = ImmutableMap.<Class<? extends Enum<?>>, Map<Enum<?>, Set<T>>>builder();
@@ -132,5 +140,9 @@ public class PBRegistry<T> {
 
     public void forEach(BiConsumer<? super String, ? super T> action) {
         classes.forEach(action);
+    }
+
+    public static <T> PBRegistryBuilder<T> builder() {
+        return new PBRegistryBuilder<T>();
     }
 }

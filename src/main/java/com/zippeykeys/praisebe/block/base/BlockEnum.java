@@ -106,7 +106,7 @@ public class BlockEnum<T extends Enum<T> & Localize> extends PBBlock {
     public Int2ObjectMap<String> getVariants() {
         val variants = new Int2ObjectOpenHashMap<String>();
         for (var i = 0; i < values.length; i++) {
-            variants.put(i, "type=" + values[i].name());
+            variants.put(i, DATA_PROPERTY.getName() + "=" + values[i].name());
         }
         return variants;
     }

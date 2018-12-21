@@ -29,18 +29,18 @@ public class ModDeities {
                                 .type(CELESTIAL) //
                                 .element(AIR) //
                                 .alignment(EVIL) //
-                                .relationship("zeus", SELF) //
-                                .relationship("odin", HATED) //
-                                .relationship("amun", LIKED) //
-                                .relationship("tlaloc", INDIFFERENT) //
-                                .relationship("huracan", LIKED) //
-                                .relationship("demeter", LOVED) //
-                                .relationship("ra", INDIFFERENT) //
-                                .relationship("apollo", LIKED) //
-                                .relationship("amaterasu", LOVED) //
-                                .relationship("wirnpa", INDIFFERENT) //
-                                .relationship("thor", DISLIKED) //
-                                .relationship("baal", INDIFFERENT) //
+                                .putRelationship("zeus", SELF) //
+                                .putRelationship("odin", HATED) //
+                                .putRelationship("amun", LIKED) //
+                                .putRelationship("tlaloc", INDIFFERENT) //
+                                .putRelationship("huracan", LIKED) //
+                                .putRelationship("demeter", LOVED) //
+                                .putRelationship("ra", INDIFFERENT) //
+                                .putRelationship("apollo", LIKED) //
+                                .putRelationship("amaterasu", LOVED) //
+                                .putRelationship("wirnpa", INDIFFERENT) //
+                                .putRelationship("thor", DISLIKED) //
+                                .putRelationship("baal", INDIFFERENT) //
                                 .build(); //
 
                 public static final Deity ODIN = Deity.builder() //
@@ -48,18 +48,18 @@ public class ModDeities {
                                 .type(CELESTIAL) //
                                 .element(AIR) //
                                 .alignment(GOOD) //
-                                .relationship("zeus", HATED) //
-                                .relationship("odin", SELF) //
-                                .relationship("amun", INDIFFERENT) //
-                                .relationship("tlaloc", LIKED) //
-                                .relationship("huracan", DISLIKED) //
-                                .relationship("demeter", INDIFFERENT) //
-                                .relationship("ra", LIKED) //
-                                .relationship("apollo", DISLIKED) //
-                                .relationship("amaterasu", LOVED) //
-                                .relationship("wirnpa", INDIFFERENT) //
-                                .relationship("thor", LOVED) //
-                                .relationship("baal", DISLIKED) //
+                                .putRelationship("zeus", HATED) //
+                                .putRelationship("odin", SELF) //
+                                .putRelationship("amun", INDIFFERENT) //
+                                .putRelationship("tlaloc", LIKED) //
+                                .putRelationship("huracan", DISLIKED) //
+                                .putRelationship("demeter", INDIFFERENT) //
+                                .putRelationship("ra", LIKED) //
+                                .putRelationship("apollo", DISLIKED) //
+                                .putRelationship("amaterasu", LOVED) //
+                                .putRelationship("wirnpa", INDIFFERENT) //
+                                .putRelationship("thor", LOVED) //
+                                .putRelationship("baal", DISLIKED) //
                                 .build(); //
 
                 public static final Deity AMUN = Deity.builder() //
@@ -67,18 +67,18 @@ public class ModDeities {
                                 .type(CELESTIAL) //
                                 .element(AIR) //
                                 .alignment(GOOD) //
-                                .relationship("zeus", LIKED) //
-                                .relationship("odin", INDIFFERENT) //
-                                .relationship("amun", SELF) //
-                                .relationship("tlaloc", DISLIKED) //
-                                .relationship("huracan", INDIFFERENT) //
-                                .relationship("demeter", INDIFFERENT) //
-                                .relationship("ra", LIKED) //
-                                .relationship("apollo", LIKED) //
-                                .relationship("amaterasu", INDIFFERENT) //
-                                .relationship("wirnpa", LIKED) //
-                                .relationship("thor", DISLIKED) //
-                                .relationship("baal", DISLIKED) //
+                                .putRelationship("zeus", LIKED) //
+                                .putRelationship("odin", INDIFFERENT) //
+                                .putRelationship("amun", SELF) //
+                                .putRelationship("tlaloc", DISLIKED) //
+                                .putRelationship("huracan", INDIFFERENT) //
+                                .putRelationship("demeter", INDIFFERENT) //
+                                .putRelationship("ra", LIKED) //
+                                .putRelationship("apollo", LIKED) //
+                                .putRelationship("amaterasu", INDIFFERENT) //
+                                .putRelationship("wirnpa", LIKED) //
+                                .putRelationship("thor", DISLIKED) //
+                                .putRelationship("baal", DISLIKED) //
                                 .build(); //
 
                 // Earth //
@@ -87,18 +87,18 @@ public class ModDeities {
                                 .type(CELESTIAL) //
                                 .element(EARTH) //
                                 .alignment(NEUTRAL) //
-                                .relationship("zeus", INDIFFERENT) //
-                                .relationship("odin", LIKED) //
-                                .relationship("amun", LIKED) //
-                                .relationship("tlaloc", SELF) //
-                                .relationship("huracan", INDIFFERENT) //
-                                .relationship("demeter", LIKED) //
-                                .relationship("ra", DISLIKED) //
-                                .relationship("apollo", LIKED) //
-                                .relationship("amaterasu", DISLIKED) //
-                                .relationship("wirnpa", DISLIKED) //
-                                .relationship("thor", HATED) //
-                                .relationship("baal", INDIFFERENT) //
+                                .putRelationship("zeus", INDIFFERENT) //
+                                .putRelationship("odin", LIKED) //
+                                .putRelationship("amun", LIKED) //
+                                .putRelationship("tlaloc", SELF) //
+                                .putRelationship("huracan", INDIFFERENT) //
+                                .putRelationship("demeter", LIKED) //
+                                .putRelationship("ra", DISLIKED) //
+                                .putRelationship("apollo", LIKED) //
+                                .putRelationship("amaterasu", DISLIKED) //
+                                .putRelationship("wirnpa", DISLIKED) //
+                                .putRelationship("thor", HATED) //
+                                .putRelationship("baal", INDIFFERENT) //
                                 .build(); //
 
                 public static final Deity HURACAN = Deity.builder() //
@@ -106,18 +106,18 @@ public class ModDeities {
                                 .type(CELESTIAL) //
                                 .element(EARTH) //
                                 .alignment(EVIL) //
-                                .relationship("zeus", DISLIKED) //
-                                .relationship("odin", INDIFFERENT) //
-                                .relationship("amun", HATED) //
-                                .relationship("tlaloc", LIKED) //
-                                .relationship("huracan", SELF) //
-                                .relationship("demeter", LIKED) //
-                                .relationship("ra", HATED) //
-                                .relationship("apollo", INDIFFERENT) //
-                                .relationship("amaterasu", LIKED) //
-                                .relationship("wirnpa", LIKED) //
-                                .relationship("thor", LIKED) //
-                                .relationship("baal", LOVED) //
+                                .putRelationship("zeus", DISLIKED) //
+                                .putRelationship("odin", INDIFFERENT) //
+                                .putRelationship("amun", HATED) //
+                                .putRelationship("tlaloc", LIKED) //
+                                .putRelationship("huracan", SELF) //
+                                .putRelationship("demeter", LIKED) //
+                                .putRelationship("ra", HATED) //
+                                .putRelationship("apollo", INDIFFERENT) //
+                                .putRelationship("amaterasu", LIKED) //
+                                .putRelationship("wirnpa", LIKED) //
+                                .putRelationship("thor", LIKED) //
+                                .putRelationship("baal", LOVED) //
                                 .build(); //
 
                 public static final Deity DEMETER = Deity.builder() //
@@ -125,18 +125,18 @@ public class ModDeities {
                                 .type(CELESTIAL) //
                                 .element(EARTH) //
                                 .alignment(GOOD) //
-                                .relationship("zeus", LOVED) //
-                                .relationship("odin", LOVED) //
-                                .relationship("amun", DISLIKED) //
-                                .relationship("tlaloc", HATED) //
-                                .relationship("huracan", INDIFFERENT) //
-                                .relationship("demeter", SELF) //
-                                .relationship("ra", LIKED) //
-                                .relationship("apollo", LOVED) //
-                                .relationship("amaterasu", HATED) //
-                                .relationship("wirnpa", LIKED) //
-                                .relationship("thor", HATED) //
-                                .relationship("baal", INDIFFERENT) //
+                                .putRelationship("zeus", LOVED) //
+                                .putRelationship("odin", LOVED) //
+                                .putRelationship("amun", DISLIKED) //
+                                .putRelationship("tlaloc", HATED) //
+                                .putRelationship("huracan", INDIFFERENT) //
+                                .putRelationship("demeter", SELF) //
+                                .putRelationship("ra", LIKED) //
+                                .putRelationship("apollo", LOVED) //
+                                .putRelationship("amaterasu", HATED) //
+                                .putRelationship("wirnpa", LIKED) //
+                                .putRelationship("thor", HATED) //
+                                .putRelationship("baal", INDIFFERENT) //
                                 .build(); //
 
                 // Fire //
@@ -145,18 +145,18 @@ public class ModDeities {
                                 .type(CELESTIAL) //
                                 .element(FIRE) //
                                 .alignment(GOOD) //
-                                .relationship("zeus", DISLIKED) //
-                                .relationship("odin", LIKED) //
-                                .relationship("amun", LOVED) //
-                                .relationship("tlaloc", DISLIKED) //
-                                .relationship("huracan", HATED) //
-                                .relationship("demeter", LIKED) //
-                                .relationship("ra", SELF) //
-                                .relationship("apollo", LIKED) //
-                                .relationship("amaterasu", LIKED) //
-                                .relationship("wirnpa", INDIFFERENT) //
-                                .relationship("thor", INDIFFERENT) //
-                                .relationship("baal", DISLIKED) //
+                                .putRelationship("zeus", DISLIKED) //
+                                .putRelationship("odin", LIKED) //
+                                .putRelationship("amun", LOVED) //
+                                .putRelationship("tlaloc", DISLIKED) //
+                                .putRelationship("huracan", HATED) //
+                                .putRelationship("demeter", LIKED) //
+                                .putRelationship("ra", SELF) //
+                                .putRelationship("apollo", LIKED) //
+                                .putRelationship("amaterasu", LIKED) //
+                                .putRelationship("wirnpa", INDIFFERENT) //
+                                .putRelationship("thor", INDIFFERENT) //
+                                .putRelationship("baal", DISLIKED) //
                                 .build(); //
 
                 public static final Deity APOLLO = Deity.builder() //
@@ -164,18 +164,18 @@ public class ModDeities {
                                 .type(CELESTIAL) //
                                 .element(FIRE) //
                                 .alignment(NEUTRAL) //
-                                .relationship("zeus", LOVED) //
-                                .relationship("odin", HATED) //
-                                .relationship("amun", LIKED) //
-                                .relationship("tlaloc", INDIFFERENT) //
-                                .relationship("huracan", DISLIKED) //
-                                .relationship("demeter", DISLIKED) //
-                                .relationship("ra", LIKED) //
-                                .relationship("apollo", SELF) //
-                                .relationship("amaterasu", LIKED) //
-                                .relationship("wirnpa", LIKED) //
-                                .relationship("thor", HATED) //
-                                .relationship("baal", INDIFFERENT) //
+                                .putRelationship("zeus", LOVED) //
+                                .putRelationship("odin", HATED) //
+                                .putRelationship("amun", LIKED) //
+                                .putRelationship("tlaloc", INDIFFERENT) //
+                                .putRelationship("huracan", DISLIKED) //
+                                .putRelationship("demeter", DISLIKED) //
+                                .putRelationship("ra", LIKED) //
+                                .putRelationship("apollo", SELF) //
+                                .putRelationship("amaterasu", LIKED) //
+                                .putRelationship("wirnpa", LIKED) //
+                                .putRelationship("thor", HATED) //
+                                .putRelationship("baal", INDIFFERENT) //
                                 .build(); //
 
                 public static final Deity AMATERASU = Deity.builder() //
@@ -183,18 +183,18 @@ public class ModDeities {
                                 .type(CELESTIAL) //
                                 .element(FIRE) //
                                 .alignment(GOOD) //
-                                .relationship("zeus", HATED) //
-                                .relationship("odin", LIKED) //
-                                .relationship("amun", LIKED) //
-                                .relationship("tlaloc", DISLIKED) //
-                                .relationship("huracan", HATED) //
-                                .relationship("demeter", HATED) //
-                                .relationship("ra", LOVED) //
-                                .relationship("apollo", DISLIKED) //
-                                .relationship("amaterasu", SELF) //
-                                .relationship("wirnpa", DISLIKED) //
-                                .relationship("thor", LIKED) //
-                                .relationship("baal", HATED) //
+                                .putRelationship("zeus", HATED) //
+                                .putRelationship("odin", LIKED) //
+                                .putRelationship("amun", LIKED) //
+                                .putRelationship("tlaloc", DISLIKED) //
+                                .putRelationship("huracan", HATED) //
+                                .putRelationship("demeter", HATED) //
+                                .putRelationship("ra", LOVED) //
+                                .putRelationship("apollo", DISLIKED) //
+                                .putRelationship("amaterasu", SELF) //
+                                .putRelationship("wirnpa", DISLIKED) //
+                                .putRelationship("thor", LIKED) //
+                                .putRelationship("baal", HATED) //
                                 .build(); //
 
                 // Water //
@@ -203,18 +203,18 @@ public class ModDeities {
                                 .type(CELESTIAL) //
                                 .element(WATER) //
                                 .alignment(NEUTRAL) //
-                                .relationship("zeus", DISLIKED) //
-                                .relationship("odin", DISLIKED) //
-                                .relationship("amun", LIKED) //
-                                .relationship("tlaloc", DISLIKED) //
-                                .relationship("huracan", DISLIKED) //
-                                .relationship("demeter", INDIFFERENT) //
-                                .relationship("ra", LIKED) //
-                                .relationship("apollo", DISLIKED) //
-                                .relationship("amaterasu", INDIFFERENT) //
-                                .relationship("wirnpa", SELF) //
-                                .relationship("thor", LIKED) //
-                                .relationship("baal", LIKED) //
+                                .putRelationship("zeus", DISLIKED) //
+                                .putRelationship("odin", DISLIKED) //
+                                .putRelationship("amun", LIKED) //
+                                .putRelationship("tlaloc", DISLIKED) //
+                                .putRelationship("huracan", DISLIKED) //
+                                .putRelationship("demeter", INDIFFERENT) //
+                                .putRelationship("ra", LIKED) //
+                                .putRelationship("apollo", DISLIKED) //
+                                .putRelationship("amaterasu", INDIFFERENT) //
+                                .putRelationship("wirnpa", SELF) //
+                                .putRelationship("thor", LIKED) //
+                                .putRelationship("baal", LIKED) //
                                 .build(); //
 
                 public static final Deity THOR = Deity.builder() //
@@ -222,18 +222,18 @@ public class ModDeities {
                                 .type(CELESTIAL) //
                                 .element(WATER) //
                                 .alignment(GOOD) //
-                                .relationship("zeus", HATED) //
-                                .relationship("odin", LOVED) //
-                                .relationship("amun", DISLIKED) //
-                                .relationship("tlaloc", HATED) //
-                                .relationship("huracan", DISLIKED) //
-                                .relationship("demeter", DISLIKED) //
-                                .relationship("ra", LIKED) //
-                                .relationship("apollo", HATED) //
-                                .relationship("amaterasu", LOVED) //
-                                .relationship("wirnpa", LIKED) //
-                                .relationship("thor", SELF) //
-                                .relationship("baal", DISLIKED) //
+                                .putRelationship("zeus", HATED) //
+                                .putRelationship("odin", LOVED) //
+                                .putRelationship("amun", DISLIKED) //
+                                .putRelationship("tlaloc", HATED) //
+                                .putRelationship("huracan", DISLIKED) //
+                                .putRelationship("demeter", DISLIKED) //
+                                .putRelationship("ra", LIKED) //
+                                .putRelationship("apollo", HATED) //
+                                .putRelationship("amaterasu", LOVED) //
+                                .putRelationship("wirnpa", LIKED) //
+                                .putRelationship("thor", SELF) //
+                                .putRelationship("baal", DISLIKED) //
                                 .build(); //
 
                 public static final Deity BAAL = Deity.builder() //
@@ -241,18 +241,18 @@ public class ModDeities {
                                 .type(CELESTIAL) //
                                 .element(WATER) //
                                 .alignment(EVIL) //
-                                .relationship("zeus", INDIFFERENT) //
-                                .relationship("odin", INDIFFERENT) //
-                                .relationship("amun", LIKED) //
-                                .relationship("tlaloc", DISLIKED) //
-                                .relationship("huracan", LIKED) //
-                                .relationship("demeter", INDIFFERENT) //
-                                .relationship("ra", HATED) //
-                                .relationship("apollo", DISLIKED) //
-                                .relationship("amaterasu", HATED) //
-                                .relationship("wirnpa", LIKED) //
-                                .relationship("thor", DISLIKED) //
-                                .relationship("baal", SELF) //
+                                .putRelationship("zeus", INDIFFERENT) //
+                                .putRelationship("odin", INDIFFERENT) //
+                                .putRelationship("amun", LIKED) //
+                                .putRelationship("tlaloc", DISLIKED) //
+                                .putRelationship("huracan", LIKED) //
+                                .putRelationship("demeter", INDIFFERENT) //
+                                .putRelationship("ra", HATED) //
+                                .putRelationship("apollo", DISLIKED) //
+                                .putRelationship("amaterasu", HATED) //
+                                .putRelationship("wirnpa", LIKED) //
+                                .putRelationship("thor", DISLIKED) //
+                                .putRelationship("baal", SELF) //
                                 .build(); //
         }
 

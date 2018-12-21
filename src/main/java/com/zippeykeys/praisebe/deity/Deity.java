@@ -27,7 +27,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.minecraftforge.registries.RegistryBuilder;
 
-@Style(visibility = ImplementationVisibility.PACKAGE, overshadowImplementation = true)
+@Style(visibility = ImplementationVisibility.PACKAGE, overshadowImplementation = true, depluralize = true, strictBuilder = true)
 
 @Immutable(copy = false)
 public abstract class Deity extends IForgeRegistryEntry.Impl<Deity> implements Localize {
@@ -67,11 +67,6 @@ public abstract class Deity extends IForgeRegistryEntry.Impl<Deity> implements L
             val result = super.build();
             result.setRegistryName(Util.getResource(result.getName()));
             return result;
-        }
-
-        public Builder relationship(String deity, Relationship relationship) {
-            putRelationships(deity, relationship);
-            return this;
         }
     }
 

@@ -9,6 +9,7 @@ import com.zippeykeys.praisebe.util.Util;
 import org.apache.logging.log4j.util.TriConsumer;
 import org.immutables.builder.Builder.Factory;
 import org.immutables.builder.Builder.Parameter;
+import org.immutables.value.Value.Style;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.Nullable;
 
@@ -21,6 +22,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.IForgeRegistryEntry;
+
+@Style(depluralize = true, strictBuilder = true)
 
 @AllArgsConstructor
 public class Multiblock extends IForgeRegistryEntry.Impl<Multiblock> implements Localize {

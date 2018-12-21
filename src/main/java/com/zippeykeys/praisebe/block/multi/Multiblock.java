@@ -13,7 +13,6 @@ import org.jetbrains.annotations.Nullable;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Singular;
 import lombok.var;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,7 +31,6 @@ public class Multiblock implements Localize {
     private final IBlockState trigger;
 
     @Getter
-    @Singular
     public final List<MultiblockPart> parts;
 
     private final TriConsumer<Multiblock, World, BlockPos> structureBuilder;

@@ -1,10 +1,8 @@
 package com.zippeykeys.praisebe.proxy;
 
 import org.apache.logging.log4j.Logger;
-import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.client.resources.I18n;
-import net.minecraft.world.World;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -39,10 +37,5 @@ public class ClientProxy implements IProxy {
     @Override
     public Side getPhysicalSide() {
         return Side.CLIENT;
-    }
-
-    @Override
-    public @Nullable World getWorld() {
-        return null;
     }
 }

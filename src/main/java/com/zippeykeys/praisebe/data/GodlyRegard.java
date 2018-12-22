@@ -4,12 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import com.zippeykeys.praisebe.deity.Deity;
+import com.zippeykeys.praisebe.Reference;
 import com.zippeykeys.praisebe.util.PlayerUtil;
 
 import org.jetbrains.annotations.Nullable;
 
-import lombok.var;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -30,7 +29,7 @@ public class GodlyRegard implements INBTSerializable<NBTTagCompound> {
     GodlyRegard(UUID uuidIn, @Nullable PBWorldData saverIn) {
         uuid = uuidIn;
         saver = saverIn;
-        for (var deity : Deity.Registry.INSTANCE.keySet()) {
+        for (String deity : Reference.INSTANCE.deityRegistry().keySet()) {
             setRegard(deity);
         }
     }

@@ -1,13 +1,6 @@
 package com.zippeykeys.praisebe.deity;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Objects;
-import java.util.stream.Stream;
-
 import com.google.common.collect.ImmutableMap;
-import com.zippeykeys.praisebe.Reference;
-import com.zippeykeys.praisebe.registry.PBRegistry;
 import com.zippeykeys.praisebe.pattern.ILocalize;
 import com.zippeykeys.praisebe.util.Util;
 
@@ -20,12 +13,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.val;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
-import net.minecraftforge.registries.RegistryBuilder;
 
 @Style(visibility = ImplementationVisibility.PACKAGE, overshadowImplementation = true, depluralize = true, strictBuilder = true)
 
@@ -139,44 +127,6 @@ public abstract class Deity extends IForgeRegistryEntry.Impl<Deity> implements I
         @Contract(pure = true)
         public String getPrefix() {
             return "deity.relationship";
-        }
-    }
-
-    @EventBusSubscriber(modid = Reference.MOD_ID)
-    public static class Registry extends PBRegistry<Deity> {
-        public static final Registry INSTANCE = new Registry();
-
-        public static IForgeRegistry<Deity> DEITIES;
-
-        @SubscribeEvent
-        public static void registerRegistries(RegistryEvent.NewRegistry event) {
-            DEITIES = new RegistryBuilder<Deity>() //
-                    .setName(Util.getResource("deities")) //
-                    .setIDRange(0, Integer.MAX_VALUE - 1) //
-                    .setType(Deity.class) //
-                    .create();
-        }
-
-        public Registry() {
-            super(Deity.Type.class, Deity.Element.class, Deity.Alignment.class);
-        }
-
-        public Deity register(Deity value) {
-            return register(Util.getResource(value.getName()), value);
-        }
-
-        public Deity[] registerAll(Deity... values) {
-            return registerAll(Arrays.stream(values));
-        }
-
-        public Deity[] registerAll(Collection<? extends Deity> values) {
-            return registerAll(values.stream());
-        }
-
-        public Deity[] registerAll(Stream<? extends Deity> values) {
-            return values.map(this::register) //
-                    .filter(Objects::nonNull) //
-                    .toArray(Deity[]::new);
         }
     }
 }

@@ -14,9 +14,6 @@ import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 
 @Module
 public class PraiseBeModule {
-    private static final SimpleNetworkWrapper packetHandler = NetworkRegistry.INSTANCE
-            .newSimpleChannel(Reference.MOD_ID);
-
     @Provides
     @Singleton
     public static PraiseBe provideInstance() {
@@ -32,7 +29,7 @@ public class PraiseBeModule {
     @Provides
     @Singleton
     public static SimpleNetworkWrapper providePacketHandler() {
-        return packetHandler;
+        return NetworkRegistry.INSTANCE.newSimpleChannel(Reference.MOD_ID);
     }
 
     @Provides

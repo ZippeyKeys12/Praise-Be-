@@ -13,12 +13,9 @@ import java.util.function.BiConsumer;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
-import com.zippeykeys.praisebe.deity.Deity;
 import com.zippeykeys.praisebe.util.ClassUtil;
 
-import org.immutables.builder.Builder.Factory;
 import org.immutables.value.Value.Style;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.Nullable;
 
 import lombok.val;
@@ -33,15 +30,6 @@ public class PBRegistry<T> {
     protected final Map<String, T> classes;
 
     protected final Map<Class<? extends Enum<?>>, Map<Enum<?>, Set<T>>> categorized;
-
-    @Factory
-    @Contract("_, _ -> new")
-    @SuppressWarnings("unchecked")
-    public static <T> PBRegistry<T> pBRegistry(Class<T> clazzT, List<Class<? extends Enum<?>>> classifiers) {
-        if (clazzT == Deity.class)
-            return (PBRegistry<T>) new Deity.Registry();
-        return new PBRegistry<>(classifiers);
-    }
 
     @SafeVarargs
     public PBRegistry(Class<? extends Enum<?>>... classifiersIn) {
@@ -140,9 +128,5 @@ public class PBRegistry<T> {
 
     public void forEach(BiConsumer<? super String, ? super T> action) {
         classes.forEach(action);
-    }
-
-    public static <T> PBRegistryBuilder<T> builder() {
-        return new PBRegistryBuilder<T>();
     }
 }

@@ -1,18 +1,15 @@
 package com.zippeykeys.praisebe.proxy;
 
 import org.apache.logging.log4j.Logger;
-import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.util.text.translation.I18n;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
 @SuppressWarnings("deprecation")
-public class ServerProxy implements IProxy {
+public class CommonProxy implements IProxy {
     @Override
     public void preInit(Logger logger, FMLPreInitializationEvent event) {
         IProxy.super.preInit(logger, event);
@@ -41,10 +38,5 @@ public class ServerProxy implements IProxy {
     @Override
     public Side getPhysicalSide() {
         return Side.SERVER;
-    }
-
-    @Override
-    public @Nullable World getWorld() {
-        return FMLCommonHandler.instance().getMinecraftServerInstance().getEntityWorld();
     }
 }

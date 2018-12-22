@@ -1,5 +1,7 @@
 package com.zippeykeys.praisebe.util;
 
+import com.zippeykeys.praisebe.Reference;
+
 import lombok.experimental.UtilityClass;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;

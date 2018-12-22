@@ -8,12 +8,12 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 
 import com.google.common.collect.ImmutableSet;
+import com.zippeykeys.praisebe.Reference;
 import com.zippeykeys.praisebe.block.ModBlocks;
 import com.zippeykeys.praisebe.block.base.PBBlock;
 import com.zippeykeys.praisebe.deity.Deity;
 import com.zippeykeys.praisebe.deity.ModDeities;
 import com.zippeykeys.praisebe.util.ClassUtil;
-import com.zippeykeys.praisebe.util.Reference;
 
 import lombok.val;
 import lombok.var;

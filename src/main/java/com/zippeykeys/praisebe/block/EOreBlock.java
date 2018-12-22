@@ -1,12 +1,12 @@
 package com.zippeykeys.praisebe.block;
 
-import com.zippeykeys.praisebe.util.Localize;
+import com.zippeykeys.praisebe.pattern.ILocalize;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
-public enum EOreBlock implements Localize {
+public enum EOreBlock implements ILocalize {
     // Normal //
     GALLIUM("gallium"), //
     PLATINUM("platinum"), //

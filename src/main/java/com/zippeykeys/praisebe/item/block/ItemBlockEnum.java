@@ -1,14 +1,14 @@
 package com.zippeykeys.praisebe.item.block;
 
 import com.zippeykeys.praisebe.block.base.BlockEnum;
-import com.zippeykeys.praisebe.util.Localize;
+import com.zippeykeys.praisebe.pattern.ILocalize;
 import com.zippeykeys.praisebe.util.MathUtil;
 
 import lombok.val;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-public class ItemBlockEnum<T extends Enum<T> & Localize> extends ItemBlock {
+public class ItemBlockEnum<T extends Enum<T> & ILocalize> extends ItemBlock {
 
     public ItemBlockEnum(BlockEnum<T> blockIn) {
         super(blockIn);

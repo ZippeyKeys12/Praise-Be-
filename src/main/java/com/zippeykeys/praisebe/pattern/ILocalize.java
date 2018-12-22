@@ -1,13 +1,14 @@
-package com.zippeykeys.praisebe.util;
+package com.zippeykeys.praisebe.pattern;
 
-import com.zippeykeys.praisebe.PraiseBe;
+import com.zippeykeys.praisebe.Reference;
+import com.zippeykeys.praisebe.util.Util;
 
 import org.jetbrains.annotations.Contract;
 
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
 
-public interface Localize extends IStringSerializable {
+public interface ILocalize extends IStringSerializable {
     @Override
     String getName();
 
@@ -20,12 +21,12 @@ public interface Localize extends IStringSerializable {
 
     @Contract(pure = true)
     default String getLocalizedName() {
-        return PraiseBe.PROXY.localize(getUnlocalizedName() + ".name");
+        return Reference.INSTANCE.proxy().localize(getUnlocalizedName() + ".name");
     }
 
     @Contract(pure = true)
     default String getLocalizedDescription() {
-        return PraiseBe.PROXY.localize(getUnlocalizedName() + ".desc");
+        return Reference.INSTANCE.proxy().localize(getUnlocalizedName() + ".desc");
     }
 
     default ResourceLocation getResource() {

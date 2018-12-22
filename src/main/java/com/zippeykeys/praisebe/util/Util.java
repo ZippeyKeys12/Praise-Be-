@@ -1,5 +1,7 @@
 package com.zippeykeys.praisebe.util;
 
+import com.zippeykeys.praisebe.Reference;
+
 import org.jetbrains.annotations.Contract;
 
 import lombok.experimental.UtilityClass;
@@ -21,10 +23,6 @@ public class Util {
         } else {
             return Side.SERVER;
         }
-    }
-
-    public static World getWorld() {
-        return FMLCommonHandler.instance().getMinecraftServerInstance().getEntityWorld();
     }
 
     @Contract("_ -> new")

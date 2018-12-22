@@ -1,6 +1,6 @@
 package com.zippeykeys.praisebe.compat;
 
-import com.zippeykeys.praisebe.util.Localize;
+import com.zippeykeys.praisebe.pattern.ILocalize;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
-public enum EMod implements Localize {
+public enum EMod implements ILocalize {
     ;
 
     @Getter(onMethod_ = @Override)

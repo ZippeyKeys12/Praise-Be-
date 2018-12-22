@@ -3,7 +3,7 @@ package com.zippeykeys.praisebe.block.multi;
 import java.util.List;
 import java.util.Optional;
 
-import com.zippeykeys.praisebe.util.Localize;
+import com.zippeykeys.praisebe.pattern.ILocalize;
 import com.zippeykeys.praisebe.util.Util;
 
 import org.apache.logging.log4j.util.TriConsumer;
@@ -26,7 +26,7 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
 @Style(depluralize = true, strictBuilder = true)
 
 @AllArgsConstructor
-public class Multiblock extends IForgeRegistryEntry.Impl<Multiblock> implements Localize {
+public class Multiblock extends IForgeRegistryEntry.Impl<Multiblock> implements ILocalize {
     @Getter(onMethod_ = @Override)
     private final String name;
 

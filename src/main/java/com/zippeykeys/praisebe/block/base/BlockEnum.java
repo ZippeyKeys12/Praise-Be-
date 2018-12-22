@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import com.zippeykeys.praisebe.block.tile.base.PBTileEntity;
 import com.zippeykeys.praisebe.item.block.ItemBlockEnum;
-import com.zippeykeys.praisebe.util.Localize;
+import com.zippeykeys.praisebe.pattern.ILocalize;
 import com.zippeykeys.praisebe.util.RegistryUtil;
 
 import org.immutables.builder.Builder.Factory;
@@ -25,7 +25,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
-public class BlockEnum<T extends Enum<T> & Localize> extends PBBlock {
+public class BlockEnum<T extends Enum<T> & ILocalize> extends PBBlock {
     protected final T[] values;
 
     protected final PropertyEnum<T> DATA_PROPERTY;
@@ -34,7 +34,7 @@ public class BlockEnum<T extends Enum<T> & Localize> extends PBBlock {
 
     @Factory
     @Contract(value = "_, _, _, _, _, _ -> new", pure = true)
-    public static <T extends Enum<T> & Localize> BlockEnum<T> blockEnum(String name, Material material,
+    public static <T extends Enum<T> & ILocalize> BlockEnum<T> blockEnum(String name, Material material,
             @Parameter Class<T> clazz, Optional<Class<? extends PBTileEntity>> tileClass, Optional<String> propertyName,
             CreativeTabs... creativeTabs) {
         return new BlockEnum<T>(name, material, clazz, propertyName.orElse("type"), creativeTabs) {
@@ -120,7 +120,7 @@ public class BlockEnum<T extends Enum<T> & Localize> extends PBBlock {
         return values;
     }
 
-    public static <C extends Enum<C> & Localize> BlockEnumBuilder<C> builder(Class<C> clazz) {
+    public static <C extends Enum<C> & ILocalize> BlockEnumBuilder<C> builder(Class<C> clazz) {
         return new BlockEnumBuilder<C>(clazz);
     }
 }

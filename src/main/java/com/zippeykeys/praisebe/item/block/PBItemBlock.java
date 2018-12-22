@@ -1,12 +1,12 @@
 package com.zippeykeys.praisebe.item.block;
 
 import com.zippeykeys.praisebe.block.base.PBBlock;
-import com.zippeykeys.praisebe.util.Localize;
+import com.zippeykeys.praisebe.pattern.ILocalize;
 
 import lombok.Getter;
 import net.minecraft.item.ItemBlock;
 
-public class PBItemBlock extends ItemBlock implements Localize {
+public class PBItemBlock extends ItemBlock implements ILocalize {
     @Getter(onMethod_ = @Override)
     protected final String name;
 

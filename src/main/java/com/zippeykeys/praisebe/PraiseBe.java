@@ -2,63 +2,63 @@ package com.zippeykeys.praisebe;
 
 import com.zippeykeys.praisebe.deity.Deity;
 import com.zippeykeys.praisebe.proxy.IProxy;
-import com.zippeykeys.praisebe.registry.ModRegistry;
-import com.zippeykeys.praisebe.util.Reference;
 
-import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import lombok.experimental.Delegate;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.Mod.Instance;
-import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION, dependencies = Reference.MOD_DEPENDENCIES, useMetadata = true)
 public class PraiseBe {
-    @Instance(Reference.MOD_ID)
-    public static PraiseBe INSTANCE = new PraiseBe();
+    @Delegate
+    private final PraiseBeComponent content;
 
-    @SidedProxy(clientSide = Reference.PROXY_CLIENT, serverSide = Reference.PROXY_SERVER)
-    public static IProxy PROXY;
+    Logger logger;
+    IProxy proxy;
 
-    public static final Logger LOGGER = LogManager.getLogger(Reference.MOD_NAME);
+    public PraiseBe() {
+        content = DaggerPraiseBeComponent.create();
+    }
 
-    public static final SimpleNetworkWrapper PACKET_HANDLER = NetworkRegistry.INSTANCE
-            .newSimpleChannel(Reference.MOD_ID);
+    public PraiseBe inject(Logger loggerIn, IProxy proxyIn) {
+        this.logger = loggerIn;
+        this.proxy = proxyIn;
+        return this;
+    }
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        LOGGER.info("Starting PreInitialization");
+        inject(this);
+
+        logger.info("Starting PreInitialization");
 
         event.getModMetadata().version = Reference.MOD_VERSION;
-        PROXY.preInit(LOGGER, event);
+        proxy.preInit(logger, event);
 
-        LOGGER.info("PreInitialization Completed");
+        logger.info("PreInitialization Completed");
     }
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
-        LOGGER.info("Starting Initialization");
+        logger.info("Starting Initialization");
 
-        PROXY.init(LOGGER, event);
+        proxy.init(logger, event);
 
-        LOGGER.info("Initialization Completed");
+        logger.info("Initialization Completed");
     }
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        LOGGER.info("Starting PostInitialization");
+        logger.info("Starting PostInitialization");
 
-        PROXY.postInit(LOGGER, event);
-        info(ModRegistry.BLOCKS.toString());
+        proxy.postInit(logger, event);
 
-        LOGGER.info("PostInitialization Completed");
+        logger.info("PostInitialization Completed");
     }
 
     @EventHandler
@@ -66,25 +66,5 @@ public class PraiseBe {
     public void loadComplete(FMLLoadCompleteEvent event) {
         Deity.Registry.DEITIES.getValues() //
                 .forEach(Deity.Registry.INSTANCE::register);
-    }
-
-    public static void debug(String messages) {
-        LOGGER.debug(messages);
-    }
-
-    public static void info(String messages) {
-        LOGGER.info(messages);
-    }
-
-    public static void warn(String messages) {
-        LOGGER.warn(messages);
-    }
-
-    public static void error(String messages) {
-        LOGGER.error(messages);
-    }
-
-    public static void fatal(String messages) {
-        LOGGER.fatal(messages);
     }
 }

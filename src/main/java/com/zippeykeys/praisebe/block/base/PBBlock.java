@@ -4,9 +4,9 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
 
+import com.zippeykeys.praisebe.Reference;
 import com.zippeykeys.praisebe.block.tile.base.PBTileEntity;
-import com.zippeykeys.praisebe.util.Localize;
-import com.zippeykeys.praisebe.util.Reference;
+import com.zippeykeys.praisebe.pattern.ILocalize;
 import com.zippeykeys.praisebe.util.RegistryUtil;
 
 import org.immutables.builder.Builder.Factory;
@@ -26,7 +26,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.world.World;
 
-public class PBBlock extends BlockContainer implements Localize {
+public class PBBlock extends BlockContainer implements ILocalize {
     @Getter(onMethod_ = @Override)
     protected final String name;
 

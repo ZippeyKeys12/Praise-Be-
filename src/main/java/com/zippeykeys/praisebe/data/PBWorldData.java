@@ -5,44 +5,25 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
-import com.zippeykeys.praisebe.PraiseBe;
+import com.zippeykeys.praisebe.Reference;
 import com.zippeykeys.praisebe.util.PlayerUtil;
-import com.zippeykeys.praisebe.util.Reference;
 
 import lombok.var;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.world.World;
-import net.minecraft.world.storage.MapStorage;
 import net.minecraft.world.storage.WorldSavedData;
 
 public class PBWorldData extends WorldSavedData {
     public static final String ID = Reference.MOD_ID + "_Regards";
 
-    public static final PBWorldData INSTANCE = of(PraiseBe.PROXY.getWorld());
-
     private Map<UUID, GodlyRegard> playerRegards = new HashMap<>();
 
-    public static PBWorldData of(World world) {
-        PraiseBe.info("Loading WorldData");
-        MapStorage storage = world.getMapStorage();
-        PBWorldData instance = (PBWorldData) Objects.requireNonNull(storage).getOrLoadData(PBWorldData.class, ID);
-        if (instance == null) {
-            PraiseBe.info("No Existing WorldData");
-            instance = new PBWorldData();
-            storage.setData(ID, instance);
-            PraiseBe.info("Created New WorldData");
-        }
-        PraiseBe.info("WorldData Loaded");
-        return instance;
-    }
-
-    private PBWorldData() {
+    public PBWorldData() {
         this(ID);
     }
 
-    private PBWorldData(String id) {
+    public PBWorldData(String id) {
         super(id);
     }
 

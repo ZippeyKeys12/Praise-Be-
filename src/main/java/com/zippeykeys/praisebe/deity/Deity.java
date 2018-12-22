@@ -6,9 +6,9 @@ import java.util.Objects;
 import java.util.stream.Stream;
 
 import com.google.common.collect.ImmutableMap;
+import com.zippeykeys.praisebe.Reference;
 import com.zippeykeys.praisebe.registry.PBRegistry;
-import com.zippeykeys.praisebe.util.Localize;
-import com.zippeykeys.praisebe.util.Reference;
+import com.zippeykeys.praisebe.pattern.ILocalize;
 import com.zippeykeys.praisebe.util.Util;
 
 import org.immutables.value.Value.Immutable;
@@ -30,7 +30,7 @@ import net.minecraftforge.registries.RegistryBuilder;
 @Style(visibility = ImplementationVisibility.PACKAGE, overshadowImplementation = true, depluralize = true, strictBuilder = true)
 
 @Immutable(copy = false)
-public abstract class Deity extends IForgeRegistryEntry.Impl<Deity> implements Localize {
+public abstract class Deity extends IForgeRegistryEntry.Impl<Deity> implements ILocalize {
     @Override
     public abstract String getName();
 
@@ -72,7 +72,7 @@ public abstract class Deity extends IForgeRegistryEntry.Impl<Deity> implements L
 
     @ToString
     @AllArgsConstructor
-    public enum Type implements Localize {
+    public enum Type implements ILocalize {
         TERRESTRIAL("terrestrial"), //
         CELESTIAL("celestial"), //
         ETHEREAL("ethereal");
@@ -89,7 +89,7 @@ public abstract class Deity extends IForgeRegistryEntry.Impl<Deity> implements L
 
     @ToString
     @AllArgsConstructor
-    public enum Element implements Localize {
+    public enum Element implements ILocalize {
         AIR("air"), //
         EARTH("earth"), //
         FIRE("fire"), //
@@ -107,7 +107,7 @@ public abstract class Deity extends IForgeRegistryEntry.Impl<Deity> implements L
 
     @ToString
     @AllArgsConstructor
-    public enum Alignment implements Localize {
+    public enum Alignment implements ILocalize {
         GOOD("good"), //
         NEUTRAL("neutral"), //
         EVIL("evil");
@@ -124,7 +124,7 @@ public abstract class Deity extends IForgeRegistryEntry.Impl<Deity> implements L
 
     @ToString
     @AllArgsConstructor
-    public enum Relationship implements Localize {
+    public enum Relationship implements ILocalize {
         HATED("hated"), //
         DISLIKED("disliked"), //
         INDIFFERENT("indifferent"), //

@@ -1,8 +1,10 @@
-package com.zippeykeys.praisebe.util;
+package com.zippeykeys.praisebe;
 
 import java.util.Objects;
 
 import com.zippeykeys.praisebe.block.ModBlocks;
+import com.zippeykeys.praisebe.proxy.IProxy;
+import com.zippeykeys.praisebe.util.RegistryUtil;
 
 import org.jetbrains.annotations.Contract;
 
@@ -10,6 +12,8 @@ import lombok.experimental.UtilityClass;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.SidedProxy;
 
 @UtilityClass
 public class Reference {
@@ -21,6 +25,12 @@ public class Reference {
 
     public static final String PROXY_SERVER = MOD_PACKAGE + ".proxy.ServerProxy";
     public static final String PROXY_CLIENT = MOD_PACKAGE + ".proxy.ClientProxy";
+
+    @Instance(Reference.MOD_ID)
+    public static PraiseBe INSTANCE;
+
+    @SidedProxy(clientSide = Reference.PROXY_CLIENT, serverSide = Reference.PROXY_SERVER)
+    public static IProxy PROXY;
 
     public static final CreativeTabs TAB_GENERAL = new CreativeTabs("praisebe") {
         @Override

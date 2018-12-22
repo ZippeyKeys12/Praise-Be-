@@ -1,8 +1,8 @@
 package com.zippeykeys.praisebe.block;
 
+import com.zippeykeys.praisebe.Reference;
 import com.zippeykeys.praisebe.block.base.BlockEnum;
 import com.zippeykeys.praisebe.block.base.PBBlock;
-import com.zippeykeys.praisebe.util.Reference;
 
 import lombok.experimental.UtilityClass;
 import net.minecraft.block.material.Material;

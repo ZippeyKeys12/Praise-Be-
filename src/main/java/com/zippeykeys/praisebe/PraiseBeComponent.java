@@ -20,13 +20,11 @@ import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
         DataModule.class //
 })
 public interface PraiseBeComponent {
-    PraiseBe mod();
-
     SimpleNetworkWrapper packetHandler();
 
-    Logger logger();
-
     IProxy proxy();
+
+    Logger logger();
 
     World world();
 

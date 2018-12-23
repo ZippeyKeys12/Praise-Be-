@@ -17,6 +17,8 @@ import com.zippeykeys.praisebe.deity.Affinity;
 import com.zippeykeys.praisebe.deity.Deity;
 import com.zippeykeys.praisebe.deity.ModAffinities;
 import com.zippeykeys.praisebe.deity.ModDeities;
+import com.zippeykeys.praisebe.item.ModItems;
+import com.zippeykeys.praisebe.item.base.PBItem;
 import com.zippeykeys.praisebe.util.ClassUtil;
 
 import lombok.val;
@@ -45,6 +47,8 @@ public class ModRegistry {
 
     public static final Set<Multiblock> MULTIBLOCKS;
 
+    public static final Set<PBItem> ITEMS;
+
     public static final Set<Deity> DEITIES;
 
     public static final Set<Affinity> AFFINITIES;
@@ -63,6 +67,13 @@ public class ModRegistry {
                 .filter(Objects::nonNull) //
                 .forEach(multiblocks::add);
         MULTIBLOCKS = multiblocks.build();
+
+        val items = ImmutableSet.<PBItem>builder();
+        Arrays.stream(ModItems.class.getDeclaredFields()) //
+                .map(x -> (PBItem) ClassUtil.getFieldValue(x)) //
+                .filter(Objects::nonNull) //
+                .forEach(items::add);
+        ITEMS = items.build();
 
         val deities = ImmutableSet.<Deity>builder();
         Arrays.stream(ClassUtil.getDeclaredFields(ModDeities.class.getDeclaredClasses())) //
@@ -97,9 +108,16 @@ public class ModRegistry {
 
     @SubscribeEvent
     public static void registerItems(Register<Item> event) {
+        // Blocks //
         register(event, PBBlock::getItem, BLOCKS);
         BLOCKS.stream() //
                 .map(PBBlock::getOreDictEntries) //
+                .forEach(entries -> entries.forEach(OreDictionary::registerOre));
+
+        // Items //
+        register(event, ITEMS);
+        ITEMS.stream() //
+                .map(PBItem::getOreDictEntries) //
                 .forEach(entries -> entries.forEach(OreDictionary::registerOre));
     }
 

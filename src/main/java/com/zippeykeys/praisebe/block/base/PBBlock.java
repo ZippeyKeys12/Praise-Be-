@@ -12,6 +12,7 @@ import com.zippeykeys.praisebe.factory.BlockBuilder;
 import com.zippeykeys.praisebe.iface.ILocalize;
 import com.zippeykeys.praisebe.util.RegistryUtil;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.Nullable;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -102,6 +103,7 @@ public class PBBlock extends BlockContainer implements ILocalize {
         return null;
     }
 
+    @Contract(" -> new")
     public static BlockBuilder builder() {
         return new BlockBuilder();
     }

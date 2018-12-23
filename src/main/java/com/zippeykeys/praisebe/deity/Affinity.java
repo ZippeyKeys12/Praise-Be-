@@ -6,6 +6,7 @@ import com.zippeykeys.praisebe.util.Util;
 import org.immutables.value.Value.Immutable;
 import org.immutables.value.Value.Style;
 import org.immutables.value.Value.Style.ImplementationVisibility;
+import org.jetbrains.annotations.Contract;
 
 import lombok.val;
 import net.minecraftforge.registries.IForgeRegistryEntry;
@@ -26,6 +27,7 @@ public abstract class Affinity extends IForgeRegistryEntry.Impl<Affinity> implem
         return "deity.affinity";
     }
 
+    @Contract(" -> new")
     public static Builder builder() {
         return new Builder();
     }

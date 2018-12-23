@@ -1,6 +1,6 @@
 package com.zippeykeys.praisebe.block;
 
-import com.zippeykeys.praisebe.pattern.ILocalize;
+import com.zippeykeys.praisebe.iface.ILocalize;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

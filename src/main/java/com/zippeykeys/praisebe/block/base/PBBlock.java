@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import com.zippeykeys.praisebe.Reference;
 import com.zippeykeys.praisebe.block.tile.base.PBTileEntity;
-import com.zippeykeys.praisebe.pattern.ILocalize;
+import com.zippeykeys.praisebe.iface.ILocalize;
 import com.zippeykeys.praisebe.util.RegistryUtil;
 
 import org.immutables.builder.Builder.Factory;

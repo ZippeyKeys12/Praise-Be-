@@ -1,4 +1,4 @@
-package com.zippeykeys.praisebe.pattern;
+package com.zippeykeys.praisebe.iface;
 
 import com.zippeykeys.praisebe.Reference;
 import com.zippeykeys.praisebe.util.Util;

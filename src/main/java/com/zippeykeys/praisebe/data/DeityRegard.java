@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import com.zippeykeys.praisebe.Reference;
+import com.zippeykeys.praisebe.util.MathUtil;
 import com.zippeykeys.praisebe.util.PlayerUtil;
 
 import org.jetbrains.annotations.Nullable;
@@ -15,23 +16,23 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.INBTSerializable;
 
-public class GodlyRegard implements INBTSerializable<NBTTagCompound> {
+public class DeityRegard implements INBTSerializable<NBTTagCompound> {
     private PBWorldData saver;
 
     private UUID uuid;
 
     private Map<String, Double> regards = new HashMap<>();
 
-    public GodlyRegard(EntityPlayer player, PBWorldData saverIn) {
+    public DeityRegard(EntityPlayer player, PBWorldData saverIn) {
         this(PlayerUtil.getUUID(player), saverIn);
     }
 
-    GodlyRegard(UUID uuidIn, @Nullable PBWorldData saverIn) {
+    DeityRegard(UUID uuidIn, @Nullable PBWorldData saverIn) {
         uuid = uuidIn;
         saver = saverIn;
-        for (String deity : Reference.INSTANCE.deityRegistry().keySet()) {
-            setRegard(deity);
-        }
+        Reference.INSTANCE.deityRegistry() //
+                .keySet() //
+                .forEach(this::addRegard);
     }
 
     public PBWorldData getSaver() {
@@ -72,20 +73,20 @@ public class GodlyRegard implements INBTSerializable<NBTTagCompound> {
         return regards.get(deity);
     }
 
-    public void setRegard(ResourceLocation deity) {
-        setRegard(deity.toString());
+    public void addRegard(ResourceLocation deity) {
+        addRegard(deity.toString());
     }
 
-    public void setRegard(ResourceLocation deity, double change) {
-        setRegard(deity.toString(), change);
+    public void addRegard(ResourceLocation deity, double change) {
+        addRegard(deity.toString(), change);
     }
 
-    public void setRegard(String deity) {
-        setRegard(deity, 0);
+    public void addRegard(String deity) {
+        addRegard(deity, 0);
     }
 
-    public void setRegard(String deity, double change) {
-        regards.put(deity, regards.get(deity) + change);
+    public void addRegard(String deity, double change) {
+        regards.put(deity, MathUtil.clamp(regards.get(deity) + change, -1, 1));
     }
 
     private void markDirty() {

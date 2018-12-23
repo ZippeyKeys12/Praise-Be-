@@ -1,7 +1,7 @@
 package com.zippeykeys.praisebe.deity;
 
 import com.google.common.collect.ImmutableMap;
-import com.zippeykeys.praisebe.pattern.ILocalize;
+import com.zippeykeys.praisebe.iface.ILocalize;
 import com.zippeykeys.praisebe.util.Util;
 
 import org.immutables.value.Value.Immutable;

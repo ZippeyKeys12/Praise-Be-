@@ -1,6 +1,4 @@
-package com.zippeykeys.praisebe.util;
-
-import com.zippeykeys.praisebe.Reference;
+package com.zippeykeys.praisebe;
 
 import lombok.experimental.UtilityClass;
 import net.minecraftforge.common.config.Config;
@@ -10,7 +8,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @UtilityClass
 @Config(modid = Reference.MOD_ID)
-public class PBConfig {
+public class PraiseBeConfig {
     @Config.Comment("Compatibility Settings")
     public static final Compatibility COMPATIBILITY = new Compatibility();
 

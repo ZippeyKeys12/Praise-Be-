@@ -1,6 +1,6 @@
 package com.zippeykeys.praisebe.compat;
 
-import com.zippeykeys.praisebe.pattern.ILocalize;
+import com.zippeykeys.praisebe.iface.ILocalize;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;

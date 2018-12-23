@@ -1,7 +1,7 @@
 package com.zippeykeys.praisebe.item.block;
 
 import com.zippeykeys.praisebe.block.base.BlockEnum;
-import com.zippeykeys.praisebe.pattern.ILocalize;
+import com.zippeykeys.praisebe.iface.ILocalize;
 import com.zippeykeys.praisebe.util.MathUtil;
 
 import lombok.val;

@@ -1,7 +1,7 @@
 package com.zippeykeys.praisebe.item.block;
 
 import com.zippeykeys.praisebe.block.base.PBBlock;
-import com.zippeykeys.praisebe.pattern.ILocalize;
+import com.zippeykeys.praisebe.iface.ILocalize;
 
 import lombok.Getter;
 import net.minecraft.item.ItemBlock;

@@ -17,7 +17,7 @@ import net.minecraft.world.storage.WorldSavedData;
 public class PBWorldData extends WorldSavedData {
     public static final String ID = Reference.MOD_ID + "_Regards";
 
-    private Map<UUID, GodlyRegard> playerRegards = new HashMap<>();
+    private Map<UUID, DeityRegard> playerRegards = new HashMap<>();
 
     public PBWorldData() {
         this(ID);
@@ -27,11 +27,11 @@ public class PBWorldData extends WorldSavedData {
         super(id);
     }
 
-    public GodlyRegard getGodlyRegard(EntityPlayer player) {
-        return getGodlyRegard(PlayerUtil.getUUID(player));
+    public DeityRegard getDeityRegard(EntityPlayer player) {
+        return getDeityRegard(PlayerUtil.getUUID(player));
     }
 
-    public GodlyRegard getGodlyRegard(UUID uuid) {
+    public DeityRegard getDeityRegard(UUID uuid) {
         return playerRegards.get(uuid);
     }
 
@@ -43,7 +43,7 @@ public class PBWorldData extends WorldSavedData {
             if (tagCompound == null)
                 return;
             UUID uuid = tagCompound.getUniqueId("playerID");
-            GodlyRegard regard = new GodlyRegard(Objects.requireNonNull(uuid), this);
+            DeityRegard regard = new DeityRegard(Objects.requireNonNull(uuid), this);
             regard.deserializeNBT(tagCompound.getCompoundTag("regards"));
             playerRegards.put(uuid, regard);
         }

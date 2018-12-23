@@ -12,12 +12,21 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class ClassUtil {
+    @SuppressWarnings("unchecked")
+    public static @Nullable <T> T newInstance(String className) {
+        try {
+            return newInstance((Class<T>) Class.forName(className));
+        } catch (ClassNotFoundException ignored) {
+            return null;
+        }
+    }
+
     public static @Nullable <T> T newInstance(Class<T> clazz) {
         try {
             return clazz.newInstance();
         } catch (InstantiationException | IllegalAccessException ignored) {
+            return null;
         }
-        return null;
     }
 
     public static @Nullable <T> T newInstance(Constructor<T> constructor, Object... parameters) {
@@ -25,16 +34,16 @@ public class ClassUtil {
             return constructor.newInstance(parameters);
         } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
                 | InvocationTargetException ignored) {
+            return null;
         }
-        return null;
     }
 
     public static @Nullable <T> Constructor<T> getConstructor(Class<T> clazz, Class<?>... parameterTypes) {
         try {
             return clazz.getConstructor(parameterTypes);
         } catch (IllegalArgumentException | NoSuchMethodException | SecurityException ignored) {
+            return null;
         }
-        return null;
     }
 
     public static @Nullable Object getFieldValue(Field field) {
@@ -45,8 +54,8 @@ public class ClassUtil {
         try {
             return field.get(instance);
         } catch (IllegalArgumentException | IllegalAccessException ignored) {
+            return null;
         }
-        return null;
     }
 
     public static @Nullable Object callDeclaredMethod(Class<?> clazz, String methodName, Object instance) {
@@ -54,8 +63,8 @@ public class ClassUtil {
             return clazz.getDeclaredMethod(methodName).invoke(instance);
         } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException
                 | SecurityException ignored) {
+            return null;
         }
-        return null;
     }
 
     public static Field[] getDeclaredFields(Class<?>... classes) {
@@ -71,7 +80,7 @@ public class ClassUtil {
             return caller.getClass().getMethod("get" + gotten.getSimpleName()).invoke(null);
         } catch (NoSuchMethodException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
                 | SecurityException ignored) {
+            return null;
         }
-        return null;
     }
 }

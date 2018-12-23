@@ -3,7 +3,7 @@ package com.zippeykeys.praisebe.block.multi;
 import java.util.List;
 import java.util.Optional;
 
-import com.zippeykeys.praisebe.pattern.ILocalize;
+import com.zippeykeys.praisebe.iface.ILocalize;
 import com.zippeykeys.praisebe.util.Util;
 
 import org.apache.logging.log4j.util.TriConsumer;

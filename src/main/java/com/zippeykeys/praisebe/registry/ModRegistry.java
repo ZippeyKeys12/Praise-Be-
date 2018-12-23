@@ -11,6 +11,7 @@ import com.google.common.collect.ImmutableSet;
 import com.zippeykeys.praisebe.Reference;
 import com.zippeykeys.praisebe.block.ModBlocks;
 import com.zippeykeys.praisebe.block.base.PBBlock;
+import com.zippeykeys.praisebe.deity.Affinity;
 import com.zippeykeys.praisebe.deity.Deity;
 import com.zippeykeys.praisebe.deity.ModDeities;
 import com.zippeykeys.praisebe.util.ClassUtil;
@@ -41,6 +42,8 @@ public class ModRegistry {
 
     public static final Set<Deity> DEITIES;
 
+    public static final Set<Affinity> AFFINITIES;
+
     static {
         val blocks = ImmutableSet.<PBBlock>builder();
         Arrays.stream(ModBlocks.class.getDeclaredFields()) //
@@ -55,6 +58,13 @@ public class ModRegistry {
                 .filter(Objects::nonNull) //
                 .forEach(deities::add);
         DEITIES = deities.build();
+
+        val affinities = ImmutableSet.<Affinity>builder();
+        Arrays.stream(ModBlocks.class.getDeclaredFields()) //
+                .map(x -> (PBBlock) ClassUtil.getFieldValue(x)) //
+                .filter(Objects::nonNull) //
+                .forEach(blocks::add);
+        AFFINITIES = affinities.build();
     }
 
     @SubscribeEvent
@@ -79,6 +89,11 @@ public class ModRegistry {
     @SubscribeEvent
     public static void registerDeities(Register<Deity> event) {
         register(event, DEITIES);
+    }
+
+    @SubscribeEvent
+    public static void registerAffinities(Register<Affinity> event) {
+        register(event, AFFINITIES);
     }
 
     public static <T extends IForgeRegistryEntry<T>, R extends IForgeRegistryEntry<R>, K extends T> void register(

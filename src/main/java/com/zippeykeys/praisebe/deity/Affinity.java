@@ -4,15 +4,16 @@ import com.zippeykeys.praisebe.iface.ILocalize;
 import com.zippeykeys.praisebe.util.Util;
 
 import org.immutables.value.Value.Immutable;
+import org.immutables.value.Value.Style;
+import org.immutables.value.Value.Style.ImplementationVisibility;
 
+import lombok.val;
 import net.minecraftforge.registries.IForgeRegistryEntry;
+
+@Style(visibility = ImplementationVisibility.PACKAGE, overshadowImplementation = true, depluralize = true, strictBuilder = true)
 
 @Immutable
 public abstract class Affinity extends IForgeRegistryEntry.Impl<Affinity> implements ILocalize {
-    {
-        setRegistryName(Util.getResource(getName()));
-    }
-
     @Override
     public abstract String getName();
 
@@ -23,5 +24,18 @@ public abstract class Affinity extends IForgeRegistryEntry.Impl<Affinity> implem
     @Override
     public String getPrefix() {
         return "deity.affinity";
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder extends ImmutableAffinity.Builder {
+        @Override
+        public Affinity build() {
+            val result = super.build();
+            result.setRegistryName(Util.getResource(result.getName()));
+            return result;
+        }
     }
 }

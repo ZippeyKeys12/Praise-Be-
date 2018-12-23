@@ -63,7 +63,7 @@ public class ModRegistry {
         Arrays.stream(ModBlocks.class.getDeclaredFields()) //
                 .map(x -> (Affinity) ClassUtil.getFieldValue(x)) //
                 .filter(Objects::nonNull) //
-                .forEach(blocks::add);
+                .forEach(affinities::add);
         AFFINITIES = affinities.build();
     }
 

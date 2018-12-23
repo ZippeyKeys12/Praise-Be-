@@ -23,11 +23,16 @@ public class DeityRegard implements INBTSerializable<NBTTagCompound> {
 
     private Map<String, Double> regards = new HashMap<>();
 
+    public DeityRegard(NBTTagCompound nbt, PBWorldData saverIn) {
+        this.saver = saverIn;
+        deserializeNBT(nbt);
+    }
+
     public DeityRegard(EntityPlayer player, PBWorldData saverIn) {
         this(PlayerUtil.getUUID(player), saverIn);
     }
 
-    DeityRegard(UUID uuidIn, @Nullable PBWorldData saverIn) {
+    public DeityRegard(UUID uuidIn, @Nullable PBWorldData saverIn) {
         uuid = uuidIn;
         saver = saverIn;
         Reference.INSTANCE.deityRegistry() //

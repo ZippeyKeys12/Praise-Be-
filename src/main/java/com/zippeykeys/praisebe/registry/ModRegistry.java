@@ -31,6 +31,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
 @UtilityClass
@@ -70,6 +71,9 @@ public class ModRegistry {
     @SubscribeEvent
     public static void registerItems(Register<Item> event) {
         register(event, PBBlock::getItem, BLOCKS);
+        BLOCKS.stream() //
+                .map(PBBlock::getOreDictEntries) //
+                .forEach(entries -> entries.forEach(OreDictionary::registerOre));
     }
 
     @SubscribeEvent

@@ -7,6 +7,7 @@ import javax.inject.Singleton;
 import com.zippeykeys.praisebe.PraiseBeModule;
 import com.zippeykeys.praisebe.Reference;
 import com.zippeykeys.praisebe.data.PBWorldData;
+import com.zippeykeys.praisebe.deity.Affinity;
 import com.zippeykeys.praisebe.deity.Deity;
 import com.zippeykeys.praisebe.util.Util;
 
@@ -29,12 +30,20 @@ import net.minecraftforge.registries.RegistryBuilder;
 public class DataModule {
     private static IForgeRegistry<Deity> DEITIES;
 
+    private static IForgeRegistry<Affinity> AFFINITIES;
+
     @SubscribeEvent
     public static void registerRegistries(RegistryEvent.NewRegistry event) {
         DEITIES = new RegistryBuilder<Deity>() //
                 .setName(Util.getResource("deities")) //
                 .setIDRange(0, Integer.MAX_VALUE - 1) //
                 .setType(Deity.class) //
+                .create();
+
+        AFFINITIES = new RegistryBuilder<Affinity>() //
+                .setName(Util.getResource("affinities")) //
+                .setIDRange(0, Integer.MAX_VALUE - 1) //
+                .setType(Affinity.class) //
                 .create();
     }
 
@@ -58,8 +67,13 @@ public class DataModule {
 
     @Provides
     @Singleton
-    @SideOnly(Side.SERVER)
     public static IForgeRegistry<Deity> provideDeityForgeRegistry() {
         return DEITIES;
+    }
+
+    @Provides
+    @Singleton
+    public static IForgeRegistry<Affinity> provideAffinityForgeRegistry() {
+        return AFFINITIES;
     }
 }

@@ -94,6 +94,11 @@ deity.relationship.liked.name=Liked
 deity.relationship.loved.name=Loved
 deity.relationship.self.name=Self
 
+#### Affinities
+deity.affinity.apollogrannus=Apollo Grannus
+deity.affinity.amunra=Amun-Ra
+deity.affinity.zeusammon=Zeus Ammon
+
 ########################################
 ############# Creative Tabs ############
 ########################################
@@ -111,3 +116,27 @@ itemGroup.praisebe.ethereal=Praise Be! - Ethereal
 
 tile.praisebe.buildingstonemarble.name=Marble
 tile.praisebe.buildingstonebasalt.name=Basalt
+
+tile.praisebe.rockoregallium.name=Gallium Ore
+tile.praisebe.rockoreplatinum.name=Platinum Ore
+tile.praisebe.rockoretitanium.name=Titanium Ore
+tile.praisebe.rockoretungsten.name=Tungsten Ore
+tile.praisebe.rockorechromium.name=Chromium Ore
+
+tile.praisebe.rockoregalvorn.name=Galvorn Ore
+tile.praisebe.rockoremithril.name=Mithril Ore
+tile.praisebe.rockoreorichalcum.name=Orichalcum Ore
+tile.praisebe.rockoreadamantite.name=Adamantite Ore
+tile.praisebe.rockorescarletite.name=Scarletite Ore
+
+tile.praisebe.sandoregallium.name=Gallium Ore
+tile.praisebe.sandoreplatinum.name=Platinum Ore
+tile.praisebe.sandoretitanium.name=Titanium Ore
+tile.praisebe.sandoretungsten.name=Tungsten Ore
+tile.praisebe.sandorechromium.name=Chromium Ore
+
+tile.praisebe.sandoregalvorn.name=Galvorn Ore
+tile.praisebe.sandoremithril.name=Mithril Ore
+tile.praisebe.sandoreorichalcum.name=Orichalcum Ore
+tile.praisebe.sandoreadamantite.name=Adamantite Ore
+tile.praisebe.sandorescarletite.name=Scarletite Ore

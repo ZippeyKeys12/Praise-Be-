@@ -11,20 +11,23 @@ import net.minecraft.block.material.Material;
 public class ModBlocks {
         // Building //
         public static final PBBlock BUILDING_BLOCK = BlockEnum.builder(EBuildingBlock.class) //
-                        .name("buildingstone") //
+                        .name("buildingStone") //
                         .material(Material.ROCK) //
-                        .creativeTabs(Reference.TAB_GENERAL) //
+                        .addCreativeTab(Reference.TAB_GENERAL) //
+                        .addOreDictEntry("block") //
                         .build();
 
         public static final PBBlock ROCK_ORE = BlockEnum.builder(EOreBlock.class) //
                         .name("rockOre") //
                         .material(Material.ROCK) //
-                        .creativeTabs(Reference.TAB_GENERAL) //
+                        .addCreativeTab(Reference.TAB_GENERAL) //
+                        .addOreDictEntry("ore") //
                         .build();
 
         public static final PBBlock SAND_ORE = BlockEnum.builder(EOreBlock.class) //
                         .name("sandOre") //
                         .material(Material.SAND) //
-                        .creativeTabs(Reference.TAB_GENERAL) //
+                        .addCreativeTab(Reference.TAB_GENERAL) //
+                        .addOreDictEntry("ore") //
                         .build();
 }

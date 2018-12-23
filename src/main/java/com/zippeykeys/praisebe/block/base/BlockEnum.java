@@ -1,16 +1,11 @@
 package com.zippeykeys.praisebe.block.base;
 
-import java.util.Optional;
+import java.util.Collection;
 
-import com.zippeykeys.praisebe.block.tile.base.PBTileEntity;
-import com.zippeykeys.praisebe.item.block.ItemBlockEnum;
+import com.zippeykeys.praisebe.factory.BlockEnumBuilder;
 import com.zippeykeys.praisebe.iface.ILocalize;
+import com.zippeykeys.praisebe.item.block.ItemBlockEnum;
 import com.zippeykeys.praisebe.util.RegistryUtil;
-
-import org.immutables.builder.Builder.Factory;
-import org.immutables.builder.Builder.Parameter;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.Nullable;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
@@ -32,19 +27,6 @@ public class BlockEnum<T extends Enum<T> & ILocalize> extends PBBlock {
 
     protected final BlockStateContainer newBlockState;
 
-    @Factory
-    @Contract(value = "_, _, _, _, _, _ -> new", pure = true)
-    public static <T extends Enum<T> & ILocalize> BlockEnum<T> blockEnum(String name, Material material,
-            @Parameter Class<T> clazz, Optional<Class<? extends PBTileEntity>> tileClass, Optional<String> propertyName,
-            CreativeTabs... creativeTabs) {
-        return new BlockEnum<T>(name, material, clazz, propertyName.orElse("type"), creativeTabs) {
-            @Override
-            public @Nullable Class<? extends PBTileEntity> getTileEntity() {
-                return tileClass.orElse(null);
-            }
-        };
-    }
-
     public BlockEnum(String nameIn, Material materialIn, Class<T> clazz) {
         this(nameIn, materialIn, clazz, "type");
     }
@@ -62,6 +44,20 @@ public class BlockEnum<T extends Enum<T> & ILocalize> extends PBBlock {
                 .build();
         values = clazz.getEnumConstants();
         setDefaultState(getBlockState().getBaseState());
+    }
+
+    @Override
+    public void addOreDictEntry(String entry) {
+        for (var value : values) {
+            oreDictEntries.put(entry + value.name(), new ItemStack(this, 1, value.ordinal()));
+        }
+    }
+
+    @Override
+    public void addAllOreDictEntry(Collection<String> entriesIn) {
+        for (var entry : entriesIn) {
+            addOreDictEntry(entry);
+        }
     }
 
     @Override
@@ -90,9 +86,9 @@ public class BlockEnum<T extends Enum<T> & ILocalize> extends PBBlock {
     }
 
     @Override
-    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> subBlocks) {
+    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> items) {
         for (var value : values) {
-            subBlocks.add(new ItemStack(this, 1, value.ordinal()));
+            items.add(new ItemStack(this, 1, value.ordinal()));
         }
     }
 

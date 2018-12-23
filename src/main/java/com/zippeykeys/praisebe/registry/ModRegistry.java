@@ -60,7 +60,7 @@ public class ModRegistry {
         DEITIES = deities.build();
 
         val affinities = ImmutableSet.<Affinity>builder();
-        Arrays.stream(ModBlocks.class.getDeclaredFields()) //
+        Arrays.stream(ModAffinities.class.getDeclaredFields()) //
                 .map(x -> (Affinity) ClassUtil.getFieldValue(x)) //
                 .filter(Objects::nonNull) //
                 .forEach(affinities::add);

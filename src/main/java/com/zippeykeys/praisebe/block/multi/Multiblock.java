@@ -1,5 +1,6 @@
 package com.zippeykeys.praisebe.block.multi;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.zippeykeys.praisebe.factory.MultiblockBuilder;
@@ -29,7 +30,7 @@ public class Multiblock extends IForgeRegistryEntry.Impl<Multiblock> implements 
     private final IBlockState trigger;
 
     @Getter
-    public final List<MultiblockPart> parts;
+    public final List<MultiblockPart> parts = new ArrayList<>();
 
     private final TriConsumer<Multiblock, World, BlockPos> structureBuilder;
 

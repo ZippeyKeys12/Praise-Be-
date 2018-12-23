@@ -6,6 +6,7 @@ import javax.inject.Singleton;
 
 import com.zippeykeys.praisebe.PraiseBeModule;
 import com.zippeykeys.praisebe.Reference;
+import com.zippeykeys.praisebe.block.multi.Multiblock;
 import com.zippeykeys.praisebe.data.PBWorldData;
 import com.zippeykeys.praisebe.deity.Affinity;
 import com.zippeykeys.praisebe.deity.Deity;
@@ -32,8 +33,16 @@ public class DataModule {
 
     private static IForgeRegistry<Affinity> AFFINITIES;
 
+    private static IForgeRegistry<Multiblock> MULTIBLOCKS;
+
     @SubscribeEvent
     public static void registerRegistries(RegistryEvent.NewRegistry event) {
+        MULTIBLOCKS = new RegistryBuilder<Multiblock>() //
+                .setName(Util.getResource("multiblocks")) //
+                .setIDRange(0, Integer.MAX_VALUE - 1) //
+                .setType(Multiblock.class) //
+                .create();
+
         DEITIES = new RegistryBuilder<Deity>() //
                 .setName(Util.getResource("deities")) //
                 .setIDRange(0, Integer.MAX_VALUE - 1) //
@@ -63,6 +72,12 @@ public class DataModule {
         }
         logger.info("WorldData Loaded");
         return instance;
+    }
+
+    @Provides
+    @Singleton
+    public static IForgeRegistry<Multiblock> provideMultiblockForgeRegistry() {
+        return MULTIBLOCKS;
     }
 
     @Provides

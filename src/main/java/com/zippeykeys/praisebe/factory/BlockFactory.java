@@ -20,6 +20,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.Nullable;
 
 import lombok.val;
+import lombok.var;
 import lombok.experimental.UtilityClass;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -33,7 +34,7 @@ import net.minecraft.world.World;
 @UtilityClass
 public class BlockFactory {
     @Factory
-    public static PBBlock Block(String name, Material material, Optional<MapColor> color,
+    public static PBBlock PBBlock(String name, Material material, Optional<MapColor> color,
             List<CreativeTabs> creativeTabs, List<String> oreDictEntries) {
         val result = new PBBlock(name, material, color.orElse(material.getMaterialMapColor()),
                 creativeTabs.toArray(new CreativeTabs[0]));
@@ -61,8 +62,11 @@ public class BlockFactory {
     @Contract("_, _, _, _, _ -> new")
     public static Multiblock multiblock(String name, Optional<EMBActivator> activator, IBlockState trigger,
             List<MultiblockPart> parts, @Parameter TriConsumer<Multiblock, World, BlockPos> structureBuilder) {
-        val result = new Multiblock(name, activator.orElse(EMBActivator.values()[0]), trigger, parts, structureBuilder);
+        val result = new Multiblock(name, activator.orElse(EMBActivator.values()[0]), trigger, structureBuilder);
         result.setRegistryName(Util.getResource(result.getName()));
+        for (var part : parts) {
+            result.addPart(part);
+        }
         return result;
     }
 }

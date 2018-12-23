@@ -8,7 +8,7 @@ import java.util.Objects;
 
 import com.zippeykeys.praisebe.Reference;
 import com.zippeykeys.praisebe.block.tile.base.PBTileEntity;
-import com.zippeykeys.praisebe.factory.BlockBuilder;
+import com.zippeykeys.praisebe.factory.PBBlockBuilder;
 import com.zippeykeys.praisebe.iface.ILocalize;
 import com.zippeykeys.praisebe.util.RegistryUtil;
 
@@ -104,7 +104,7 @@ public class PBBlock extends BlockContainer implements ILocalize {
     }
 
     @Contract(" -> new")
-    public static BlockBuilder builder() {
-        return new BlockBuilder();
+    public static PBBlockBuilder builder() {
+        return new PBBlockBuilder();
     }
 }

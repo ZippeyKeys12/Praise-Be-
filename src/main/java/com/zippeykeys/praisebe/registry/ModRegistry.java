@@ -10,9 +10,12 @@ import java.util.stream.Stream;
 import com.google.common.collect.ImmutableSet;
 import com.zippeykeys.praisebe.Reference;
 import com.zippeykeys.praisebe.block.ModBlocks;
+import com.zippeykeys.praisebe.block.ModMultiblocks;
 import com.zippeykeys.praisebe.block.base.PBBlock;
+import com.zippeykeys.praisebe.block.multi.Multiblock;
 import com.zippeykeys.praisebe.deity.Affinity;
 import com.zippeykeys.praisebe.deity.Deity;
+import com.zippeykeys.praisebe.deity.ModAffinities;
 import com.zippeykeys.praisebe.deity.ModDeities;
 import com.zippeykeys.praisebe.util.ClassUtil;
 
@@ -40,6 +43,8 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
 public class ModRegistry {
     public static final Set<PBBlock> BLOCKS;
 
+    public static final Set<Multiblock> MULTIBLOCKS;
+
     public static final Set<Deity> DEITIES;
 
     public static final Set<Affinity> AFFINITIES;
@@ -51,6 +56,13 @@ public class ModRegistry {
                 .filter(Objects::nonNull) //
                 .forEach(blocks::add);
         BLOCKS = blocks.build();
+
+        val multiblocks = ImmutableSet.<Multiblock>builder();
+        Arrays.stream(ModMultiblocks.class.getDeclaredFields()) //
+                .map(x -> (Multiblock) ClassUtil.getFieldValue(x)) //
+                .filter(Objects::nonNull) //
+                .forEach(multiblocks::add);
+        MULTIBLOCKS = multiblocks.build();
 
         val deities = ImmutableSet.<Deity>builder();
         Arrays.stream(ClassUtil.getDeclaredFields(ModDeities.class.getDeclaredClasses())) //
@@ -76,6 +88,11 @@ public class ModRegistry {
                 .forEach(tileEntity -> GameRegistry.registerTileEntity(tileEntity,
                         (ResourceLocation) Objects.requireNonNull(ClassUtil.callDeclaredMethod(tileEntity,
                                 "getResource", ClassUtil.newInstance(tileEntity)))));
+    }
+
+    @SubscribeEvent
+    public static void registerMultiblocks(Register<Multiblock> event) {
+        register(event, MULTIBLOCKS);
     }
 
     @SubscribeEvent

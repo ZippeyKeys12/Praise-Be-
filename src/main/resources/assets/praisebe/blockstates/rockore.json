@@ -1,0 +1,62 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {},
+        "model": "cube_all",
+        "uvlock": true
+    },
+    "variants": {
+        "type": {
+            "gallium": {
+                "textures": {
+                    "all": "praisebe:blocks/rock_ore_gallium"
+                }
+            },
+            "platinum": {
+                "textures": {
+                    "all": "praisebe:blocks/rock_ore_platinum"
+                }
+            },
+            "titanium": {
+                "textures": {
+                    "all": "praisebe:blocks/rock_ore_titanium"
+                }
+            },
+            "tungsten": {
+                "textures": {
+                    "all": "praisebe:blocks/rock_ore_tungsten"
+                }
+            },
+            "chromium": {
+                "textures": {
+                    "all": "praisebe:blocks/rock_ore_chromium"
+                }
+            },
+            "galvorn": {
+                "textures": {
+                    "all": "praisebe:blocks/rock_ore_galvorn"
+                }
+            },
+            "mithril": {
+                "textures": {
+                    "all": "praisebe:blocks/rock_ore_mithril"
+                }
+            },
+            "orichalcum": {
+                "textures": {
+                    "all": "praisebe:blocks/rock_ore_orichalcum"
+                }
+            },
+            "adamantite": {
+                "textures": {
+                    "all": "praisebe:blocks/rock_ore_adamantite"
+                }
+            },
+            "scarletite": {
+                "textures": {
+                    "all": "praisebe:blocks/rock_ore_scarletite"
+                }
+            }
+        }
+    }
+}

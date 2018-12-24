@@ -14,7 +14,7 @@
             },
             "basalt": {
                 "textures": {
-                    "all": "praisebe:blocks/marble"
+                    "all": "praisebe:blocks/basalt"
                 }
             }
         }

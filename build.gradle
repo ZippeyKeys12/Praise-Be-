@@ -10,10 +10,10 @@ buildscript {
 }
 
 plugins {
-    id 'io.franzbecker.gradle-lombok' version '1.14'
     id "net.ltgt.apt" version "0.10"
     id 'java'
 }
+
 apply plugin: 'net.minecraftforge.gradle.forge'
 
 repositories{

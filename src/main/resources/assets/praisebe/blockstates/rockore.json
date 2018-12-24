@@ -9,52 +9,52 @@
         "type": {
             "gallium": {
                 "textures": {
-                    "all": "praisebe:blocks/rock_ore_gallium"
+                    "all": "praisebe:blocks/ore/rock/gallium"
                 }
             },
             "platinum": {
                 "textures": {
-                    "all": "praisebe:blocks/rock_ore_platinum"
+                    "all": "praisebe:blocks/ore/rock/platinum"
                 }
             },
             "titanium": {
                 "textures": {
-                    "all": "praisebe:blocks/rock_ore_titanium"
+                    "all": "praisebe:blocks/ore/rock/titanium"
                 }
             },
             "tungsten": {
                 "textures": {
-                    "all": "praisebe:blocks/rock_ore_tungsten"
+                    "all": "praisebe:blocks/ore/rock/tungsten"
                 }
             },
             "chromium": {
                 "textures": {
-                    "all": "praisebe:blocks/rock_ore_chromium"
+                    "all": "praisebe:blocks/ore/rock/chromium"
                 }
             },
             "galvorn": {
                 "textures": {
-                    "all": "praisebe:blocks/rock_ore_galvorn"
+                    "all": "praisebe:blocks/ore/rock/galvorn"
                 }
             },
             "mithril": {
                 "textures": {
-                    "all": "praisebe:blocks/rock_ore_mithril"
+                    "all": "praisebe:blocks/ore/rock/mithril"
                 }
             },
             "orichalcum": {
                 "textures": {
-                    "all": "praisebe:blocks/rock_ore_orichalcum"
+                    "all": "praisebe:blocks/ore/rock/orichalcum"
                 }
             },
             "adamantite": {
                 "textures": {
-                    "all": "praisebe:blocks/rock_ore_adamantite"
+                    "all": "praisebe:blocks/ore/rock/adamantite"
                 }
             },
             "scarletite": {
                 "textures": {
-                    "all": "praisebe:blocks/rock_ore_scarletite"
+                    "all": "praisebe:blocks/ore/rock/scarletite"
                 }
             }
         }

@@ -16,6 +16,14 @@ plugins {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
+repositories{
+    mavenCentral()
+    maven {
+        name 'ModMaven'
+        url "http://modmaven.k-4u.nl/"
+    }
+}
+
 version = "1.0"
 group = "com.zippeykeys.praisebe" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "PraiseBe"

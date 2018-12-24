@@ -3,10 +3,10 @@ package com.zippeykeys.praisebe.compat;
 import com.zippeykeys.praisebe.iface.ILocalize;
 
 import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import net.minecraftforge.fml.common.Loader;
 
 @AllArgsConstructor
 public enum EMod implements ILocalize {
@@ -17,7 +17,11 @@ public enum EMod implements ILocalize {
 
     @Override
     @Contract(pure = true)
-    public @NotNull String getPrefix() {
+    public String getPrefix() {
         return "mod";
+    }
+
+    public boolean exists() {
+        return Loader.isModLoaded(name);
     }
 }

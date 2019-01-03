@@ -21,9 +21,10 @@ import com.zippeykeys.praisebe.item.ModItems;
 import com.zippeykeys.praisebe.item.base.PBItem;
 import com.zippeykeys.praisebe.util.ClassUtil;
 
+import lombok.experimental.UtilityClass;
 import lombok.val;
 import lombok.var;
-import lombok.experimental.UtilityClass;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Items;
@@ -40,9 +41,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
+
 @UtilityClass
 @EventBusSubscriber(modid = Reference.MOD_ID)
-public class ModRegistry {
+public class ModRegistry{
     public static final Set<PBBlock> BLOCKS;
 
     public static final Set<Multiblock> MULTIBLOCKS;
@@ -53,127 +55,128 @@ public class ModRegistry {
 
     public static final Set<Affinity> AFFINITIES;
 
-    static {
-        val blocks = ImmutableSet.<PBBlock>builder();
+    static{
+        val blocks = ImmutableSet.<PBBlock> builder();
         Arrays.stream(ModBlocks.class.getDeclaredFields()) //
-                .map(x -> (PBBlock) ClassUtil.getFieldValue(x)) //
-                .filter(Objects::nonNull) //
-                .forEach(blocks::add);
+          .map(x -> (PBBlock) ClassUtil.getFieldValue(x)) //
+          .filter(Objects::nonNull) //
+          .forEach(blocks::add);
         BLOCKS = blocks.build();
-
-        val multiblocks = ImmutableSet.<Multiblock>builder();
+        val multiblocks = ImmutableSet.<Multiblock> builder();
         Arrays.stream(ModMultiblocks.class.getDeclaredFields()) //
-                .map(x -> (Multiblock) ClassUtil.getFieldValue(x)) //
-                .filter(Objects::nonNull) //
-                .forEach(multiblocks::add);
+          .map(x -> (Multiblock) ClassUtil.getFieldValue(x)) //
+          .filter(Objects::nonNull) //
+          .forEach(multiblocks::add);
         MULTIBLOCKS = multiblocks.build();
-
-        val items = ImmutableSet.<PBItem>builder();
+        val items = ImmutableSet.<PBItem> builder();
         Arrays.stream(ModItems.class.getDeclaredFields()) //
-                .map(x -> (PBItem) ClassUtil.getFieldValue(x)) //
-                .filter(Objects::nonNull) //
-                .forEach(items::add);
+          .map(x -> (PBItem) ClassUtil.getFieldValue(x)) //
+          .filter(Objects::nonNull) //
+          .forEach(items::add);
         ITEMS = items.build();
-
-        val deities = ImmutableSet.<Deity>builder();
+        val deities = ImmutableSet.<Deity> builder();
         Arrays.stream(ClassUtil.getDeclaredFields(ModDeities.class.getDeclaredClasses())) //
-                .map(x -> (Deity) ClassUtil.getFieldValue(x)) //
-                .filter(Objects::nonNull) //
-                .forEach(deities::add);
+          .map(x -> (Deity) ClassUtil.getFieldValue(x)) //
+          .filter(Objects::nonNull) //
+          .forEach(deities::add);
         DEITIES = deities.build();
-
-        val affinities = ImmutableSet.<Affinity>builder();
+        val affinities = ImmutableSet.<Affinity> builder();
         Arrays.stream(ModAffinities.class.getDeclaredFields()) //
-                .map(x -> (Affinity) ClassUtil.getFieldValue(x)) //
-                .filter(Objects::nonNull) //
-                .forEach(affinities::add);
+          .map(x -> (Affinity) ClassUtil.getFieldValue(x)) //
+          .filter(Objects::nonNull) //
+          .forEach(affinities::add);
         AFFINITIES = affinities.build();
     }
 
     @SubscribeEvent
-    public static void registerBlocks(Register<Block> event) {
+    public static void registerBlocks(Register<Block> event){
         register(event, BLOCKS);
         BLOCKS.stream() //
-                .map(PBBlock::getTileEntity) //
-                .filter(Objects::nonNull) //
-                .forEach(tileEntity -> GameRegistry.registerTileEntity(tileEntity,
-                        (ResourceLocation) Objects.requireNonNull(ClassUtil.callDeclaredMethod(tileEntity,
-                                "getResource", ClassUtil.newInstance(tileEntity)))));
+          .map(PBBlock::getTileEntity) //
+          .filter(Objects::nonNull) //
+          .forEach(tileEntity -> GameRegistry.registerTileEntity(
+            tileEntity,
+            (ResourceLocation) Objects.requireNonNull(ClassUtil.callDeclaredMethod(tileEntity,
+              "getResource", ClassUtil.newInstance(tileEntity)
+            ))
+          ));
     }
 
     @SubscribeEvent
-    public static void registerMultiblocks(Register<Multiblock> event) {
+    public static void registerMultiblocks(Register<Multiblock> event){
         register(event, MULTIBLOCKS);
     }
 
     @SubscribeEvent
-    public static void registerItems(Register<Item> event) {
+    public static void registerItems(Register<Item> event){
         // Blocks //
         register(event, PBBlock::getItem, BLOCKS);
         BLOCKS.stream() //
-                .map(PBBlock::getOreDictEntries) //
-                .forEach(entries -> entries.forEach(OreDictionary::registerOre));
-
+          .map(PBBlock::getOreDictEntries) //
+          .forEach(entries -> entries.forEach(OreDictionary::registerOre));
         // Items //
         register(event, ITEMS);
         ITEMS.stream() //
-                .map(PBItem::getOreDictEntries) //
-                .forEach(entries -> entries.forEach(OreDictionary::registerOre));
+          .map(PBItem::getOreDictEntries) //
+          .forEach(entries -> entries.forEach(OreDictionary::registerOre));
     }
 
     @SubscribeEvent
-    public static void registerDeities(Register<Deity> event) {
+    public static void registerDeities(Register<Deity> event){
         register(event, DEITIES);
     }
 
     @SubscribeEvent
-    public static void registerAffinities(Register<Affinity> event) {
+    public static void registerAffinities(Register<Affinity> event){
         register(event, AFFINITIES);
     }
 
     public static <T extends IForgeRegistryEntry<T>, R extends IForgeRegistryEntry<R>, K extends T> void register(
-            Register<R> e, Function<K, R> mapper, Collection<K> values) {
+      Register<R> e, Function<K, R> mapper, Collection<K> values){
         register(e, mapper, values.stream());
     }
 
     @SafeVarargs
     public static <T extends IForgeRegistryEntry<T>, R extends IForgeRegistryEntry<R>, K extends T> void register(
-            Register<R> e, Function<K, R> mapper, K... values) {
+      Register<R> e, Function<K, R> mapper, K... values){
         register(e, mapper, Arrays.stream(values));
     }
 
     public static <T extends IForgeRegistryEntry<T>, R extends IForgeRegistryEntry<R>, K extends T> void register(
-            Register<R> e, Function<K, R> mapper, Stream<K> values) {
+      Register<R> e, Function<K, R> mapper, Stream<K> values){
         register(e, values.map(mapper));
     }
 
-    public static <T extends IForgeRegistryEntry<T>, K extends T> void register(Register<T> e, Stream<K> values) {
+    public static <T extends IForgeRegistryEntry<T>, K extends T> void register(Register<T> e, Stream<K> values){
         val r = e.getRegistry();
         values.forEach(r::register);
     }
 
-    public static <T extends IForgeRegistryEntry<T>> void register(Register<T> e, Collection<? extends T> values) {
+    public static <T extends IForgeRegistryEntry<T>> void register(Register<T> e, Collection<? extends T> values){
         val r = e.getRegistry();
         values.forEach(r::register);
     }
 
     @SafeVarargs
-    public static <T extends IForgeRegistryEntry<T>> void register(Register<T> e, T... values) {
-        e.getRegistry().registerAll(values);
+    public static <T extends IForgeRegistryEntry<T>> void register(Register<T> e, T... values){
+        e.getRegistry()
+          .registerAll(values);
     }
 
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
-    public static void registerModels(ModelRegistryEvent event) {
+    public static void registerModels(ModelRegistryEvent event){
         BLOCKS.forEach(block -> {
             val identifier = block.getRegistryName();
             val item = Item.getItemFromBlock(block);
-            if (identifier == null || item == Items.AIR) {
+            if(identifier == null || item == Items.AIR){
                 return;
             }
-            for (var entry : block.getVariants().int2ObjectEntrySet()) {
+            for(var entry : block.getVariants()
+              .int2ObjectEntrySet()){
                 ModelLoader.setCustomModelResourceLocation(item, entry.getIntKey(),
-                        new ModelResourceLocation(identifier, entry.getValue()));
+                  new ModelResourceLocation(identifier, entry.getValue())
+                );
             }
         });
     }

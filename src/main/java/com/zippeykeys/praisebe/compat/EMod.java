@@ -6,10 +6,12 @@ import org.jetbrains.annotations.Contract;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+
 import net.minecraftforge.fml.common.Loader;
 
+
 @AllArgsConstructor
-public enum EMod implements ILocalize {
+public enum EMod implements ILocalize{
     ;
 
     @Getter(onMethod_ = @Override)
@@ -17,11 +19,11 @@ public enum EMod implements ILocalize {
 
     @Override
     @Contract(pure = true)
-    public String getPrefix() {
+    public String getPrefix(){
         return "mod";
     }
 
-    public boolean exists() {
+    public boolean exists(){
         return Loader.isModLoaded(name);
     }
 }

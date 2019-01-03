@@ -5,34 +5,33 @@ import com.zippeykeys.praisebe.iface.ILocalize;
 import com.zippeykeys.praisebe.util.MathUtil;
 
 import lombok.val;
+
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-public class ItemBlockEnum<T extends Enum<T> & ILocalize> extends ItemBlock {
 
-    public ItemBlockEnum(BlockEnum<T> blockIn) {
+public class ItemBlockEnum<T extends Enum<T> & ILocalize> extends ItemBlock{
+    public ItemBlockEnum(BlockEnum<T> blockIn){
         super(blockIn);
-
-        if (blockIn.getValues().length != 0)
-            setHasSubtypes(true);
+        if(blockIn.getValues().length != 0){ setHasSubtypes(true); }
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public BlockEnum<T> getBlock() {
+    public BlockEnum<T> getBlock(){
         return (BlockEnum<T>) super.getBlock();
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack stack) {
+    public String getUnlocalizedName(ItemStack stack){
         val block = getBlock();
         return block.getUnlocalizedName()
-                + block.getValues()[MathUtil.clamp(stack.getItemDamage(), 0, getBlock().getValues().length - 1)]
-                        .getName();
+               + block.getValues()[MathUtil.clamp(stack.getItemDamage(), 0, getBlock().getValues().length - 1)]
+                 .getName();
     }
 
     @Override
-    public int getMetadata(int damage) {
+    public int getMetadata(int damage){
         return damage;
     }
 }

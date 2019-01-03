@@ -2,18 +2,20 @@ package com.zippeykeys.praisebe.block;
 
 import com.zippeykeys.praisebe.iface.ILocalize;
 
+import org.jetbrains.annotations.Contract;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+
 @AllArgsConstructor
-public enum EOreBlock implements ILocalize {
+public enum EOreBlock implements ILocalize{
     // Normal //
     GALLIUM("gallium"), //
     PLATINUM("platinum"), //
     TITANIUM("titanium"), //
     TUNGSTEN("tungsten"), //
     CHROMIUM("chromium"), //
-
     // Enchanted //
     GALVORN("galvorn"), //
     MITHRIL("mithril"), //
@@ -25,7 +27,8 @@ public enum EOreBlock implements ILocalize {
     private String name;
 
     @Override
-    public String getPrefix() {
+    @Contract(pure = true)
+    public String getPrefix(){
         return "building";
     }
 }

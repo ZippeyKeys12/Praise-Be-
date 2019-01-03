@@ -7,10 +7,14 @@ import com.zippeykeys.praisebe.iface.ILocalize;
 import com.zippeykeys.praisebe.item.block.ItemBlockEnum;
 import com.zippeykeys.praisebe.util.RegistryUtil;
 
+import org.jetbrains.annotations.Contract;
+
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
+
 import lombok.val;
 import lombok.var;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -20,103 +24,107 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
-public class BlockEnum<T extends Enum<T> & ILocalize> extends PBBlock {
+
+public class BlockEnum<T extends Enum<T> & ILocalize> extends PBBlock{
     protected final T[] values;
 
     protected final PropertyEnum<T> DATA_PROPERTY;
 
     protected final BlockStateContainer newBlockState;
 
-    public BlockEnum(String nameIn, Material materialIn, Class<T> clazz) {
+    public BlockEnum(String nameIn, Material materialIn, Class<T> clazz){
         this(nameIn, materialIn, clazz, "type");
     }
 
-    public BlockEnum(String nameIn, Material materialIn, Class<T> clazz, CreativeTabs... creativeTabs) {
+    public BlockEnum(String nameIn, Material materialIn, Class<T> clazz, CreativeTabs... creativeTabs){
         this(nameIn, materialIn, clazz, "type", creativeTabs);
     }
 
     public BlockEnum(String nameIn, Material materialIn, Class<T> clazz, String propertyName,
-            CreativeTabs... creativeTabs) {
+      CreativeTabs... creativeTabs){
         super(nameIn, materialIn, creativeTabs);
         DATA_PROPERTY = PropertyEnum.create(propertyName, clazz);
         newBlockState = new BlockStateContainer.Builder(this) //
-                .add(DATA_PROPERTY) //
-                .build();
+          .add(DATA_PROPERTY) //
+          .build();
         values = clazz.getEnumConstants();
         setDefaultState(getBlockState().getBaseState());
     }
 
     @Override
-    public void addOreDictEntry(String entry) {
-        for (var value : values) {
+    public void addOreDictEntry(String entry){
+        for(var value : values){
             oreDictEntries.put(entry + value.name(), new ItemStack(this, 1, value.ordinal()));
         }
     }
 
     @Override
-    public void addAllOreDictEntry(Collection<String> entriesIn) {
-        for (var entry : entriesIn) {
+    public void addAllOreDictEntry(Collection<String> entriesIn){
+        for(var entry : entriesIn){
             addOreDictEntry(entry);
         }
     }
 
     @Override
-    protected BlockStateContainer createBlockState() {
+    protected BlockStateContainer createBlockState(){
         return new BlockStateContainer(this);
     }
 
     @Override
-    public final BlockStateContainer getBlockState() {
+    @Contract(pure = true)
+    public final BlockStateContainer getBlockState(){
         return newBlockState;
     }
 
     @Override
-    public IBlockState getStateFromMeta(int meta) {
+    public IBlockState getStateFromMeta(int meta){
         return getDefaultState().withProperty(DATA_PROPERTY, values[meta]);
     }
 
     @Override
-    public int getMetaFromState(IBlockState state) {
-        return state.getValue(DATA_PROPERTY).ordinal();
+    public int getMetaFromState(IBlockState state){
+        return state.getValue(DATA_PROPERTY)
+          .ordinal();
     }
 
     @Override
-    public int damageDropped(IBlockState state) {
+    public int damageDropped(IBlockState state){
         return getMetaFromState(state);
     }
 
     @Override
-    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> items) {
-        for (var value : values) {
+    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> items){
+        for(var value : values){
             items.add(new ItemStack(this, 1, value.ordinal()));
         }
     }
 
     @Override
-    public ItemBlock getItem() {
+    public ItemBlock getItem(){
         return RegistryUtil.transferRegistryName(new ItemBlockEnum<>(this), this);
     }
 
     @Override
-    public Int2ObjectMap<String> getVariants() {
+    public Int2ObjectMap<String> getVariants(){
         val variants = new Int2ObjectOpenHashMap<String>();
-        for (var i = 0; i < values.length; i++) {
+        for(var i = 0; i < values.length; i++){
             variants.put(i, DATA_PROPERTY.getName() + "=" + values[i].name());
         }
         return variants;
     }
 
-    protected BlockStateContainer createStateContainer() {
+    protected BlockStateContainer createStateContainer(){
         return new BlockStateContainer.Builder(this) //
-                .add(DATA_PROPERTY) //
-                .build();
+          .add(DATA_PROPERTY) //
+          .build();
     }
 
-    public T[] getValues() {
+    public T[] getValues(){
         return values;
     }
 
-    public static <C extends Enum<C> & ILocalize> BlockEnumBuilder<C> builder(Class<C> clazz) {
+    @Contract("_ -> new")
+    public static <C extends Enum<C> & ILocalize> BlockEnumBuilder<C> builder(Class<C> clazz){
         return new BlockEnumBuilder<C>(clazz);
     }
 }

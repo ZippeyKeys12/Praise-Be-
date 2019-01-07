@@ -6,39 +6,68 @@ buildscript {
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.11"
     }
 }
 
 plugins {
-    id "net.ltgt.apt" version "0.10"
     id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.11'
+    id "org.jetbrains.kotlin.kapt" version "1.3.11"
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
 
-repositories{
+buildDir = 'build'
+
+sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+    test.java.srcDirs += 'src/test/kotlin'
+}
+
+repositories {
     mavenCentral()
     maven {
         name 'ModMaven'
         url "http://modmaven.k-4u.nl/"
     }
+    maven {
+        name 'forgelin'
+        url "http://maven.shadowfacts.net/"
+    }
 }
 
-version = "1.0"
+version = '1.0'
+
 group = "com.zippeykeys.praisebe" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "PraiseBe"
 
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+
 compileJava {
     sourceCompatibility = targetCompatibility = '1.8'
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 minecraft {
     version = "1.12.2-14.23.5.2768"
     runDir = "run"
 
+    replaceIn "Reference.kt"
     replace "@VERSION@", project.version
-    replaceIn "PraiseBe.java"
 
     // the mappings can be changed at any time, and must be in the following format.
     // snapshot_YYYYMMDD   snapshot are built nightly.
@@ -50,6 +79,8 @@ minecraft {
 }
 
 dependencies {
+    //    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
     // you may put jars on which you depend on in ./libs
     // or you may define them like so..
     //compile "some.group:artifact:version:classifier"
@@ -58,20 +89,16 @@ dependencies {
     // real examples
     //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
     //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
-    compileOnly 'org.jetbrains:annotations:16.0.2'
 
-    compileOnly 'org.projectlombok:lombok:1.18.4'
-    apt 'org.projectlombok:lombok:1.18.4'
+    // Kotlin
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    compile "org.jetbrains.kotlin:kotlin-reflect"
+    compile "net.shadowfacts:Forgelin:1.8.2"
 
-    apt 'org.immutables:value:2.7.3'
-    compileOnly 'org.immutables:value:2.7.3:annotations'
-    apt 'org.immutables:builder:2.7.3'
-    compileOnly 'org.immutables:builder:2.7.3'
-
+    // Generation
     compile 'com.google.dagger:dagger:2.19'
-    apt 'com.google.dagger:dagger-compiler:2.19'
+    kapt 'com.google.dagger:dagger-compiler:2.19'
 
-    compileOnly 'com.google.auto.factory:auto-factory:1.0-beta6'
     // the 'provided' configuration is for optional dependencies that exist at compile-time but might not at runtime.
     //provided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
 
@@ -84,11 +111,15 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
+    // Test
+    testCompile "org.jetbrains.kotlin:kotlin-test"
+    testCompile "org.jetbrains.kotlin:kotlin-test-junit"
+
     testCompile "org.mockito:mockito-core:2.+"
     testCompileOnly 'junit:junit:4.12'
 
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.1.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.1.0'
+    testCompile 'org.junit.jupiter:junit-jupiter-api:5.1.0'
+    testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.1.0'
 }
 
 test {

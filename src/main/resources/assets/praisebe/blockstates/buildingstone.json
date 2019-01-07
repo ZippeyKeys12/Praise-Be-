@@ -1,22 +1,22 @@
 {
-    "forge_marker": 1,
-    "defaults": {
-        "textures": {},
-        "model": "cube_all",
-        "uvlock": true
-    },
-    "variants": {
-        "type": {
-            "marble": {
-                "textures": {
-                    "all": "praisebe:blocks/marble"
-                }
-            },
-            "basalt": {
-                "textures": {
-                    "all": "praisebe:blocks/basalt"
-                }
-            }
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {},
+    "model": "cube_all",
+    "uvlock": true
+  },
+  "variants": {
+    "type": {
+      "marble": {
+        "textures": {
+          "all": "praisebe:blocks/marble"
         }
+      },
+      "basalt": {
+        "textures": {
+          "all": "praisebe:blocks/basalt"
+        }
+      }
     }
+  }
 }
